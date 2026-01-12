@@ -1,0 +1,216 @@
+L'objectif principal est de concevoir un site internet vitrine pour l'entreprise KSY GROUPE. Un site vitrine à l'image de la nouvelle charte graphique et logo 
+de l'entreprise. Afin de gagner du temps concernant le développement : nous allons juste récupérer les informations de l'entreprise sur l'ancienne version du site.
+Ton travail est de faire une dissertation sur le site mettant en lumière toutes les activités, vision, philosophie. Ces informations seront soumises à un Agent IA.
+pour qu'il génère un site vitrine avec des informations officielles de l'entreprise. Dans l'ancienne version, l'entreprise se présentait au nom de Ksy Auto Market 
+ton travail sera aussi de supprimer toutes mentions de l'ancien nom  de l'entreprise. Et de considérer, prendre en compte l'image du nouveau logo de l'entreprise afin de générer un site vitrine 
+professionnel, cohérent et aligné avec la nouvelle charte. Pour début, KSY GROUPE se contentera d'une vente restreinte de ses articles. Les articles sont répartis par
+marque --> modèle ---> categorie ---> slug ----> nom du produit ---> etat ---> description ---> prix ---> compatibilité et Stocks.
+En conclusion, l'ancienne version dispose d'un API BACKEND et une base de données fonctionnelles. Nous voulons pour un début lancer un site vitrine qui 
+présente la philosophie, la vision et les articles du site dans un format vitrine sans intéraction client, sans insertions de données, juste à titre informatif.
+Si les clients sont intéressés, ils peuvent appeler le service client ou se rendre au magasin.
+
+Les ressources : 
+Nouvelle charte graphique 
+1.COULEURS OFFICIELLES
+Bleu nuit institutionnel : HEX #0B1F3B | RGB 11-31-59 | CMJN 100-75-35-30
+Or mat premium : HEX #C9A24D | RGB 201-162-77 | CMJN 20-35-80-10
+Noir : #000000 | Blanc : #FFFFFF
+2.TYPOGRAPHIES
+Typographie principale : Montserrat / Inter / Poppins.
+Typographie secondaire : Roboto / Open Sans.
+
+
+Ancienne version du site(HTML)
+
+
+
+Répartition des articles(JSON)
+
+Aide moi à trouver le terme technique de ce composant mix en UI design HTML,css : 
+Une fusion entre le header et le hero , le tout sur un seul background avec un style très épuré qui laisse l'interface respirer avec une seule immage sans arrière-plan
+qui se marie bien avec la couleur du background et avec un bouton CTA, une petite description en haut du bouton CTA, un logo à l'en-tête bien positionné en haut à gauche,
+les liens sont bien centrés et une barre de recherche avec comme contenu une simple loupe dont le fond s'accorde avec le background.
+ Le header et le hero ne forment qu'un. 
+
+Le style Tailwind CSS doit reposer sur ces couleurs : 
+1.Couleur principale (Blanc : #FFFFFF) doit être représentée, utilisée à 60 %
+2.Couleur secondaire (Bleu nuit institutionnel : HEX #0B1F3B) doit être représentée, utilisée à 25 %
+3.Couleur supplémentaire pour les animations, les boutons CTA (Or mat premium : HEX #C9A24D) doit être représentée, utilisée à 10 % 
+4.Couleur additionnelle pour le texte et autres( #000000) doit être représentée, utilisée à 5 %
+
+Design a unified hero header (hero-header fusion) with a minimalist layout, single cohesive background, integrated navigation,
+centered menu links, subtle search icon, top-left logo, primary CTA with micro-description above it, and a single foreground image
+without background. The design should feel airy, premium, and corporate-tech oriented.
+
+Implementation requirements:
+
+Structure: semantic HTML5
+
+Styling: modern, utility-first Tailwind CSS
+
+Interactions & micro-interactions: JavaScript using Vanilla JS only (no frameworks).
+
+Color system constraints (Tailwind CSS):
+
+Primary color: White (#FFFFFF) — must be dominant and represented at approximately 60% of the interface
+
+Secondary color: Institutional midnight blue (#0B1F3B) — must be represented at approximately 25%
+
+Accent color (animations & primary CTAs): Premium matte gold (#C9A24D) — must be represented at approximately 10%
+
+Additional color (text and minor elements): Black (#000000) — must be represented at approximately 5%
+
+Business theme & brand context:
+
+The unified hero header must be designed for the automotive industry, specifically focused on car sales and automotive spare parts distribution
+
+The brand name is KSY GROUPE and must be reflected through a corporate, trustworthy, and premium visual identity
+
+The overall tone should convey professionalism, reliability, technological expertise, and institutional credibility within the automotive market
+
+Je ne suis pas fort en motion design. Tu peux m'aider à aboutir à cette réalisation, à trouver les termes techniques:
+Alors, je veux juste animer mon logo comme on le trouve dans certtaines publicités de Tesla, Apple. Une publicité premium à partir du logo qui prend vie.
+L'emplacement de cette motion animation  sera mise dans le hero et va juste remplacer l'image. L'animation doit fusionner, se marier avec le background du hero.
+Il faut faire comprendre à l'IA que l'animation doit partir, se baser sur l'image et je veux lui donner l'image. 
+Le nom de l'entreprise est KSY GROUPE, spécialisée dans les ventes de voitures et pièces détachées.
+
+
+Create a high-end, cinematic-style logo presentation video, not a website, web page, or user interface.
+
+The result must be a standalone animated video, reusing the logo's colors: (White: #FFFFFF), (Corporate Midnight Blue: HEX #0B1F3B), and (Premium Matte Gold: HEX #C9A24D), intended solely for brand promotion and establishing its visual identity.
+
+The animation must be based solely on the provided KSY GROUPE logo image. The movement must originate from the logo itself, utilizing its existing shapes, geometry, and colors, as if the logo were naturally coming to life.
+
+Do not generate any website structure, HTML, CSS code, interface, navigation, or interactive elements. This is a purely video animation.
+
+The visual style should adopt a minimalist, high-end, and cinematic aesthetic, inspired by Tesla and Apple advertisements, with fluid, subtle, and realistic movements based on physics.
+
+The logo presentation should be achieved through shape transformations, controlled rotations, smooth crossfades, a slight depth effect, and elegant transitions, avoiding anything flashy, aggressive, or exaggerated.
+
+The background should be clean, minimalist, and abstract, allowing the logo to visually blend into it through a play of shadows, light, and movement, creating an impression of fusion and emergence, not separation.
+
+The KSY GROUPE brand operates in the automotive sector, specializing in the sale of vehicles and spare parts. The animation should convey values ​​of precision, reliability, cutting-edge engineering, and technological expertise.
+
+The final deliverable should be a short video sequence (approximately 5 to 8 seconds), suitable for brand introductions, advertisements, presentations and use as a main visual, with a timeless, fluid and high-end aesthetic.
+
+Le but est de rajouter une fonctionnalité Accordéon au bouton 'Explore inventory' qui à chaque clic, affichera une section 'Articles' qui se placera tout
+juste en bas du hero. Ce bouton Accordéon sera doté d'une animation reveal conçue pour un site vitrine ultra premium corporate. Pas la peine de créer un notre bloc 
+pour utiliser comme fond afin de placer les articles. Nous utiliserons le fond du Hero pour placer les articles.
+Voici la composition de la section 'articles' :
+Pour début, KSY GROUPE se contentera d'une vente restreinte de ses articles. Les articles sont répartis par
+marque --> modèle ---> categorie --->  nom du produit  --->  prix ---> etat ---> description ---> compatibilité ---> slug ----> Stocks. 
+Comme marques nous avons : 
+HYUNDAI, KIA, PEUGEOT, SUZUKI, JETOUR, BAIC, CHANGAN.
+modèles HYUNDAI nous avons : Tucson, Santa Fe, Palisade, Elantra, Kona, Sonata.
+modèles KIA : Sportage, Sorento, seltos, Picanto, Rio.
+modèles SUZUKI : Vitara, Swift, Alto, Ciaz, Baleno, Fronx, Spresso.
+modèles PEUGEOT : 208, 308, 2008, 3008, 508, Partner, Expert, Rifter, Boxer.
+modèles JETOUR : X50,X70,T2,Dashing Dasheng.
+modèles BAIC : X35, X55II, X7.
+modèles CHANGAN : CS55, Alsvin. 
+Les catégories sont les mêmes pour tous les modèles confondus. Nous avons donc :
+Freinage, Suspension, Electricité, Filtration, Carrosserie, refroidissement.
+Pour les noms de produits qui sont les mêmes pour tous les modèles. Le nom reste le même, on rajoute simplement à la fin la marque et le modèle.
+Par exmple : Plaquettes de frein AR HYUNDAI Tucson, Plaquettes de frein AR HYUNDAI Tucson, Amortisseur AV HYUNDAI Tucson, Amortisseur AR HYUNDAI Tucson,
+Filtre à air HYUNDAI Tucson, Filtre à carburant HYUNDAI Tucson,Bougies HYUNDAI Tucson, Alternateur HYUNDAI Tucson,Démarreur HYUNDAI Tucson, Compresseur de clim HYUNDAI Tucson
+Radiateur HYUNDAI Tucson, Feu arrière HYUNDAI Tucson, Phare avant HYUNDAI Tucson, Rétroviseur HYUNDAI Tucson.
+Le prix est En FCFA. Et tu as carte blanche pour mettre les autres informations (description, compatibilité,...)
+Comme je l'ai dit en haut, le bouton Accordéon sera doté d'une animation reveal conçue pour un site vitrine ultra premium corporate. Pas la peine de créer un notre bloc 
+pour utiliser comme fond afin de placer les articles. Dans la section 'articles', je veux une répartition qui filtre les articles(pièces) par marque, modèle,
+categorie et autres pour faciliter les recherches. Pas besoin de mettre une babrre de recherche. Pour un rendu ultra premium, n'oublie pas les icônes de qualités 
+vectorielles (SVG). Ce que je souhaite le plus c'est un style corporate ultra épuré qui se marie bien avec le hero, qui réutilise les couleurs de KSY GROUPE 
+une bonne disposition lisible et élégante qui donne envie au client d'acheter. 
+
+Structure : HTML 5
+Style : Tailwind UI 
+Interactions : Vanilla JS et JavaScript
+
+Le style Tailwind CSS doit reposer sur ces couleurs : 
+1.Couleur principale (Blanc : #FFFFFF) doit être représentée, utilisée à 60 %
+2.Couleur secondaire (Bleu nuit institutionnel : HEX #0B1F3B) doit être représentée, utilisée à 25 %
+3.Couleur supplémentaire pour les animations, les boutons CTA (Or mat premium : HEX #C9A24D) doit être représentée, utilisée à 10 % 
+4.Couleur additionnelle pour le texte et autres( #000000) doit être représentée, utilisée à 5 %
+
+Interdiction de casser la logique et de modifier le style du header et hero moins encore supprimer un élément. 
+Voici le code pour préciser à l'IA où rajouter les upgrades et bien cibler le bouton sur le hero.
+
+L'objectif est de créer une page complète qui présente l'identité et les politiques de l'entreprise KSY GROUPE à travers plusieurs sections :
+
+1.Section vision et politique de l'entreprise : KSY GROUPE place le client et la fiabilité au centre de sa chaîne logistique.
+Chez KSY GROUPE, nous croyons qu'un e‑commerce automobile performant repose sur une chaîne d'approvisionnement modernisée, transparente et humaine. 
+Notre politique logistique vise trois objectifs clairs : réduire les délais, sécuriser les livraisons, et proposer des tarifs justes adaptés aux réalités 
+africaines. Nous investissons dans des partenariats locaux pour couvrir chaque commune et province du Sénégal et de la Côte d'Ivoire,
+et déployons des procédés de vérification qualité avant départ afin que chaque pièce arrive en parfait état.
+Nous privilégions la simplicité : confirmation de commande claire, suivi en temps réel lorsque possible, échange fluide avec le service client, 
+et résolution proactive en cas d'incident. Notre vision est de contribuer à professionnaliser le secteur 
+automobile local — en offrant aux mécaniciens, garages et particuliers un accès fiable à des pièces authentiques, livrées dans des conditions optimales.
+
+2.Section Annonces : c'est ici où on annonce aux clients les nouveaux arrivages, les articles qui arrivent avec des informations précises sur la marque, 
+modèle, nom du produit, et autres accompagné d'un compte à rebours qui montrent le temps restant jusqu'à l'arrivée et on invite les clients de réserver via le service client 
+ou en se rendant au magasin. Mais également, les coommuniqués officiels qui concernent l'entreprise.
+
+3.Section Politique d'achat : le but est de montrer au client comment acheter un article à KSY GROUPE. La politique actuelle de l'entreprise impose un achat ou vente 
+basés sur le présentiel. Le site constitue le canal officiel pour acquérir un produit KSY GROUPE à travers deux processus qui sont : premièrement en contactant 
+le service client ou deuxièment en se rendant au magasin. 
+KSY GROUPE promet une ouverture et une intégration(mise à jour) de vente dynamique en ligne sous peu de temps. 
+
+4.Section politique de livraison : ici, on présente la politique logistique claire et transparente de la livraison. La couverture càd, les localités où KSY GROUPE
+assurent les livraisons. KSY GROUPE s'assume de livrer à l'ensemble du territoire national du Sénégal et de la Côte d'Ivoire, toutes les provinces et régions confondues.
+Les modes de livraison, càd comment KSY GROUPE livre : Moto pour les petites & moyennes commandes; Idéal pour pièces légères et accessoires (batteries légères, filtres, bougies...).
+Livraison en centre-ville en priorité.
+Camions transporteurs pour les commandes volumineuses.Pour pièces lourdes ou lots (pare-chocs, moteurs, lots pour garages).
+Planification selon planning hebdomadaire et points relais.   
+
+5. Section Délais typiques de livraison : 
+Au Sénégal
+Livraisons locales (même ville) : 24 à 48 heures.
+Livraisons interrégionales : 48 à 72 heures, selon destination.
+Zones rurales éloignées : prévoir jusqu'à 96 heures selon accessibilité.
+
+En Côte d'Ivoire
+Livraisons urbaines : 24 à 48 heures.
+Livraisons interurbaines : 48 à 72 heures.
+Commandes volumineuses (transport planifié) : peut nécessiter 72 à 120 heures selon disponibilité des camions.
+Ces délais sont indicatifs et peuvent varier en période de forte demande ou en cas de conditions météorologiques exceptionnelles.
+Nous mettons à jour le client à chaque étape via notifications et WhatsApp.
+
+6.Section Politique tarifaire de livraison :  Notre tarification est simple : les petites commandes bénéficient de tarifs faibles calculés au forfait,
+tandis que les commandes volumineuses sont facturées selon le poids, le volume et la distance. 
+Le barème précis est calculé automatiquement lors du paiement et affiché avant confirmation.
+Commande légère — Forfait fixe (ex : 3 000 - 7 000 FCFA)
+Commande volumineuse
+Coût au poids + distance (devis clair avant expédition)
+Promotions
+Livraison gratuite pour commandes > 50 000 FCFA (campagnes ponctuelles).
+
+7.Section En cas de retard, dommage ou erreur :
+Si votre commande n'arrive pas dans les délais indiqués, ou si le colis est endommagé :
+
+1.Vérifiez d'abord le suivi (numéro fourni par email/WhatsApp).
+2.Contactez notre service client : téléphone ou WhatsApp (réponse rapide pendant les heures ouvrables).
+3.Envoyez photo(s) du dommage si nécessaire pour lancer la procédure de réclamation.
+4.Nous proposons le remplacement, le remboursement partiel ou total, ou une réexpédition selon le cas.
+
+Pour les erreurs de livraison (mauvaise adresse, destinataire absent), 
+nous organiserons une nouvelle livraison après confirmation des détails par le client. 
+Des frais supplémentaires peuvent s'appliquer si l'erreur vient du client.
+
+Structure : HTML 5
+Style : Tailwind UI 
+Interactions : Vanilla JS et JavaScript
+
+Le style Tailwind CSS doit reposer sur ces couleurs : 
+1.Couleur principale (Blanc : #FFFFFF) doit être représentée, utilisée à 60 %
+2.Couleur secondaire (Bleu nuit institutionnel : HEX #0B1F3B) doit être représentée, utilisée à 25 %
+3.Couleur supplémentaire pour les animations, les boutons CTA (Or mat premium : HEX #C9A24D) doit être représentée, utilisée à 10 % 
+4.Couleur additionnelle pour le texte et autres( #000000) doit être représentée, utilisée à 5 %
+
+Je veux une présentation de 2 processus(service client ou se rendre au magasin) en format d'illustration SVG pour la section politique d'achat.
+Des icônes vectorielles de qualité en SVG pour représenter, illustrer les zones de livraisons(localités) et modes de livraison mais également toutes les sections 
+qui identifient ou citent de choses de manières énumérées, ordonnées.
+En conclusion, je veux une page qui sera marquée par la présence des icônes SVG. Une page compréhensible en image par les enfants. Une page similaire à une affiche sur une route.
+
+L'objectif est d'améliorer le comportement du menu hamburger en corrigeant l'erreur qui fait bloquer le bloc des liens mobiles lorsqu'on clique dessus.
+La redirection vers le lien cliqué se fait mais le problème est que le bloc mobile ne disparait pas lorsqu'on clique sur un lien.
+Ton travail est de passer au crible la logique du menu hamburger afin de corriger l'erreur logique mais également de vérifier les propriétés Css afin de voir s'il y a 
+un élément bloquant. Interdiction impérative de modifier la logique restante du code ou de modifier la structure.

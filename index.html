@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSY GROUPE</title>
+    
+    <!-- Fonts: Playfair Display (Serif for luxury/corporate) and Inter (Sans for tech/readability) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ksy-white': '#FFFFFF',
+                        'ksy-blue': '#0B1F3B', // Institutional Midnight Blue
+                        'ksy-gold': '#C9A24D', // Premium Matte Gold
+                        'ksy-black': '#000000',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    spacing: {
+                        '128': '32rem',
+                    },
+                    boxShadow: {
+                        'gold-glow': '0 4px 20px -5px rgba(201, 162, 77, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Utilities for that extra airy feel */
+        body {
+            background-color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+            html{
+  scroll-behavior: smooth;
+}
+section{
+  scroll-margin-top: 80px;
+}
+
+        /* Smooth reveal animation */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .reveal-delay-1 { animation-delay: 0.1s; }
+        .reveal-delay-2 { animation-delay: 0.2s; }
+        .reveal-delay-3 { animation-delay: 0.3s; }
+
+        @keyframes revealUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Subtle floating animation for the car */
+        .float-car {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Search input transition */
+        .search-bar {
+            width: 0;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        .search-bar.active {
+            width: 200px;
+            opacity: 1;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Accordion Animation */
+        #inventory-accordion {
+            transition: max-height 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #inventory-accordion.open {
+            opacity: 1;
+        }
+
+        /* Custom Scrollbar for Inventory Grid */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(11, 31, 59, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #C9A24D;
+            border-radius: 4px;
+        }
+        
+        /* Institutional Pattern Background */
+        .bg-grid-pattern {
+            background-image: radial-gradient(#0B1F3B 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+
+        /* Search Highlight Animation */
+        @keyframes highlightPulse {
+            0% { box-shadow: 0 0 0 0 rgba(201, 162, 77, 0); }
+            50% { box-shadow: 0 0 0 10px rgba(201, 162, 77, 0.1); border-color: #C9A24D; }
+            100% { box-shadow: 0 0 0 0 rgba(201, 162, 77, 0); }
+        }
+        .highlight-product {
+            animation: highlightPulse 1.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="text-ksy-blue antialiased selection:bg-ksy-gold selection:text-white">
+
+    <!-- 
+      LAYOUT STRATEGY:
+      A CSS Grid/Flex hybrid. The background is primarily white (60%).
+      A geometric Midnight Blue shape anchors the bottom/right (25%).
+      Gold accents guide the eye (10%).
+    -->
+
+    <div class="relative min-h-screen w-full flex flex-col overflow-x-hidden">
+        
+        <!-- DECORATIVE BACKGROUND ELEMENTS -->
+        <!-- The Midnight Blue Anchor -->
+        <div class="absolute top-0 right-0 w-[45%] h-full bg-ksy-blue/5 skew-x-12 translate-x-32 hidden lg:block z-0 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-full h-[30vh] bg-gradient-to-t from-ksy-blue/5 to-transparent z-0 pointer-events-none"></div>
+        
+        <!-- Navigation Bar (Integrated) -->
+        <nav class="relative z-50 w-full px-6 py-6 lg:px-12 flex justify-between items-center bg-white/80 backdrop-blur-sm sticky top-0 border-b border-gray-100/50 lg:bg-transparent lg:border-none lg:static">
+            
+            <!-- Logo: Top Left -->
+            <div class="flex-shrink-0 z-50">
+                <a href="index.html#vision" class="group flex items-center gap-2">
+                    <div class="w-10 h-10 bg-ksy-blue flex items-center justify-center text-ksy-gold rounded-sm transition-transform group-hover:scale-105">
+                        <span class="font-serif font-bold text-xl">K</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif font-bold text-xl tracking-wide text-ksy-blue leading-none">KSY</span>
+                        <span class="text-[0.6rem] font-sans uppercase tracking-[0.2em] text-ksy-gold font-bold">Groupe</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Desktop Menu: Centered -->
+            <div class="hidden lg:flex items-center gap-10 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <a href="index.html#annonces" class="text-sm font-medium text-ksy-blue/80 hover:text-ksy-blue transition-colors relative group py-2">
+                    Annonces
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-ksy-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="index.html#vision" class="text-sm font-medium text-ksy-blue/80 hover:text-ksy-blue transition-colors relative group py-2">
+                    Ksy Groupe
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-ksy-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="index.html#achat" class="text-sm font-medium text-ksy-blue/80 hover:text-ksy-blue transition-colors relative group py-2">
+                    Distribution
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-ksy-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="index.html#livraison" class="text-sm font-medium text-ksy-blue/80 hover:text-ksy-blue transition-colors relative group py-2">
+                    Livraison
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-ksy-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                  <a href="index.html#tarification" class="text-sm font-medium text-ksy-blue/80 hover:text-ksy-blue transition-colors relative group py-2">
+                    Tarification
+                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-ksy-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+
+            <!-- Interactions: Search & Mobile Toggle -->
+            <div class="flex items-center gap-4 lg:gap-6 z-50">
+                <div class="relative flex items-center justify-end">
+                    <input type="text" id="searchInput" placeholder="Rechercher des pièces ou des modèles..." class="search-bar h-10 bg-gray-50 border border-gray-200 rounded-full text-xs focus:outline-none focus:border-ksy-gold text-ksy-blue font-medium placeholder-gray-400">
+                    <button id="searchBtn" class="p-2 text-ksy-blue hover:text-ksy-gold transition-colors focus:outline-none" aria-label="Toggle Search">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                
+                <button class="lg:hidden text-ksy-blue focus:outline-none p-2" id="mobileMenuBtn">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="fixed inset-0 bg-ksy-white z-40 transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col justify-center items-center gap-8">
+            <a href="index.html#annonces" class="text-2xl font-serif text-ksy-blue hover:text-ksy-gold">Annonces</a>
+            <a href="index.html#vision" class="text-2xl font-serif text-ksy-blue hover:text-ksy-gold">Ksy Groupe</a>
+            <a href="index.html#achat" class="text-2xl font-serif text-ksy-blue hover:text-ksy-gold">Distribution</a>
+            <a href="index.html#livraison" class="text-2xl font-serif text-ksy-blue hover:text-ksy-gold">Livraison</a>
+            <a href="index.html#tarification" class="text-2xl font-serif text-ksy-blue hover:text-ksy-gold">Tarification</a>
+            <button id="closeMenuBtn" class="absolute top-6 right-6 p-2 text-ksy-blue">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+        </div>
+
+        <!-- MAIN HERO CONTENT -->
+        <section id="collection" class="relative z-10 flex-shrink-0 flex flex-col lg:flex-row items-center justify-between px-6 lg:px-12 py-12 lg:py-0 max-w-7xl mx-auto w-full min-h-[600px] lg:min-h-[700px]">
+            
+            <!-- Text Content (Left) -->
+            <div class="w-full lg:w-5/12 space-y-8 lg:space-y-10 text-center lg:text-left pt-10 lg:pt-0">
+                
+                <div class="space-y-4 reveal-up">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ksy-blue/5 border border-ksy-blue/10">
+                        <span class="w-2 h-2 rounded-full bg-ksy-gold"></span>
+                        <span class="text-xs font-bold tracking-widest uppercase text-ksy-blue/70">Leader local de l'automobile</span>
+                    </div>
+                    
+                    <h1 class="text-5xl lg:text-7xl font-serif font-bold leading-tight text-ksy-blue">
+                        Précision en <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-ksy-gold to-yellow-600">mouvement.</span>
+                    </h1>
+                    
+                    <p class="text-ksy-black/70 text-lg leading-relaxed max-w-md mx-auto lg:mx-0 font-sans">
+                        KSY Groupe propose des solutions haut de gamme pour les flottes de véhicules et assure la distribution de 
+                        pièces détachées certifiées pour le secteur automobile moderne au niveau local.
+                    </p>
+                </div>
+
+                <!-- CTA Cluster -->
+                <div class="flex flex-col items-center lg:items-start gap-3 reveal-up reveal-delay-2">
+                    <span class="text-[10px] uppercase tracking-widest font-bold text-ksy-blue/40">Découvrez notre collection 2026</span>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <!-- CTA with Accordion Trigger Logic -->
+                        <button id="inventoryToggleBtn" class="group relative px-8 py-4 bg-ksy-gold text-white font-medium text-sm tracking-wide shadow-gold-glow hover:bg-yellow-600 transition-all duration-300 overflow-hidden rounded-sm cursor-pointer outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ksy-gold">
+                            <span class="relative z-10 flex items-center gap-2">
+                                <span id="ctaText">EXPLORER LA COLLECTION</span>
+                                <i id="ctaIcon" data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-500"></i>
+                            </span>
+                            <!-- Button Shine Effect -->
+                            <div class="absolute top-0 -left-full w-full h-full bg-white/20 transform skew-x-12 transition-all duration-700 group-hover:left-full"></div>
+                        </button>
+                        <!--  Réseaux
+                        <a href="#" class="px-8 py-4 border border-ksy-blue/10 text-ksy-blue font-medium text-sm tracking-wide hover:bg-ksy-blue/5 transition-all rounded-sm">
+                            PARTNER NETWORK
+                        </a> -->
+                    </div>
+                </div>
+
+                <!-- Trust Indicators -->
+                <div class="pt-8 flex items-center justify-center lg:justify-start gap-8 opacity-60 reveal-up reveal-delay-3">
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-serif font-bold text-ksy-blue">5+</span>
+                        <span class="text-xs text-ksy-black">Années d'expérience</span>
+                    </div>
+                    <div class="w-px h-8 bg-gray-300"></div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-serif font-bold text-ksy-blue">11k</span>
+                        <span class="text-xs text-ksy-black">Pièces en stock</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Visual Content (Right) - The Foreground Image -->
+            <div class="w-full lg:w-7/12 relative mt-12 lg:mt-0 flex justify-center lg:justify-end reveal-up reveal-delay-1">
+                
+                <!-- Background Geometric Accent behind car (The 25% Blue representation) -->
+                <div class="absolute top-1/2 left-1/2 lg:left-auto lg:right-0 transform -translate-x-1/2 -translate-y-1/2 lg:translate-x-10 w-[120%] lg:w-[140%] h-[120%] lg:h-[140%] z-0">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full opacity-10 lg:opacity-100">
+                        <path fill="#0B1F3B" d="M42.7,-72.2C54.6,-66.5,63.1,-52.4,70.3,-38.9C77.5,-25.4,83.4,-12.7,80.8,-1.5C78.2,9.7,67.1,19.4,57.1,30.3C47.1,41.2,38.1,53.4,26.7,62.8C15.2,72.2,1.3,78.9,-11.3,77.3C-23.9,75.7,-35.1,65.8,-46.8,56.1C-58.5,46.3,-70.6,36.7,-77.3,24.3C-84,11.9,-85.2,-3.3,-79.8,-15.9C-74.4,-28.5,-62.3,-38.5,-50.3,-44.1C-38.2,-49.7,-26.1,-50.9,-14.2,-52.7C-2.3,-54.5,9.4,-57,20.9,-59.2" transform="translate(100 100) scale(1.1)" />
+                    </svg>
+                </div>
+
+                <!-- SVG Car Illustration -->
+                <div class="relative z-10 w-full max-w-2xl float-car">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" class="w-full h-auto drop-shadow-2xl">
+                        <defs>
+                            <linearGradient id="carBodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#f0f0f0;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#ffffff;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="windowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#0B1F3B;stop-opacity:0.9" />
+                                <stop offset="100%" style="stop-color:#000000;stop-opacity:0.8" />
+                            </linearGradient>
+                             <filter id="shadowBlur" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur in="SourceAlpha" stdDeviation="15" />
+                                <feOffset dx="0" dy="20" result="offsetblur" />
+                                <feComponentTransfer>
+                                  <feFuncA type="linear" slope="0.5" />
+                                </feComponentTransfer>
+                                <feMerge> 
+                                  <feMergeNode />
+                                  <feMergeNode in="SourceGraphic" /> 
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <ellipse cx="300" cy="240" rx="260" ry="20" fill="#0B1F3B" opacity="0.2" filter="url(#shadowBlur)"/>
+                        <path d="M50,180 Q60,140 130,135 L180,135 L230,80 L420,80 L490,135 L530,135 Q560,135 560,170 L560,190 Q560,210 530,210 L80,210 Q50,210 50,180 Z" fill="url(#carBodyGrad)" stroke="#d1d5db" stroke-width="1"/>
+                        <path d="M240,85 L410,85 L475,135 L195,135 Z" fill="url(#windowGrad)" />
+                        <path d="M90,210 A45,45 0 0,1 180,210" fill="#333" />
+                        <path d="M420,210 A45,45 0 0,1 510,210" fill="#333" />
+                        <circle cx="135" cy="210" r="42" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+                        <circle cx="135" cy="210" r="28" fill="none" stroke="#C9A24D" stroke-width="2"/>
+                        <circle cx="465" cy="210" r="42" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+                        <circle cx="465" cy="210" r="28" fill="none" stroke="#C9A24D" stroke-width="2"/>
+                        <path d="M530,145 L555,148 L550,160 Z" fill="#C9A24D" opacity="0.8"/>
+                        <path d="M50,150 L560,150" stroke="#0B1F3B" stroke-width="1" stroke-opacity="0.1" fill="none"/>
+                    </svg>
+                </div>
+                
+                <!-- Floating Tech Specs Card
+                <div class="absolute -bottom-6 -left-6 lg:bottom-10 lg:-left-10 bg-white/90 backdrop-blur-md p-4 shadow-xl border-l-4 border-ksy-gold rounded-sm z-20 reveal-up reveal-delay-3 max-w-[180px]">
+                    <div class="text-[10px] font-bold uppercase tracking-wider text-ksy-blue mb-1">Featured</div>
+                    <div class="text-sm font-bold text-black">Model S-Series</div>
+                    <div class="text-[10px] text-gray-500 mt-1">Available for immediate distribution.</div>
+                </div> -->
+
+            </div>
+        </section>
+
+        <!-- INVENTORY ACCORDION SECTION (Preserved but collapsed by default) -->
+        <section id="inventory-accordion" class="w-full relative z-30 bg-white border-t border-gray-100/50">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-12">
+                    <div class="space-y-2">
+                        <h2 class="text-3xl font-serif font-bold text-ksy-blue">Une collection taillée sur mesure</h2>
+                        <p class="text-sm text-gray-500 font-sans">Parcourez les pièces certifiées par marque et modèle.</p>
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <div class="w-full overflow-x-auto pb-2 custom-scrollbar"><div class="flex items-center gap-2 min-w-max" id="brand-filters"></div></div>
+                    <div class="w-full overflow-x-auto pb-2 custom-scrollbar"><div class="flex items-center gap-3 min-w-max" id="model-filters"></div></div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" id="category-filters"></div>
+                </div>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="products-grid"></div>
+                <div class="mt-12 flex justify-center">
+                    <!-- BOUTON VOIR PLUS 
+                    <button class="text-xs font-bold tracking-widest uppercase text-ksy-gold hover:text-ksy-blue transition-colors flex items-center gap-2">View Full Catalog <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                    -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- CORPORATE IDENTITY & POLICY CONTENT (Ultra-Premium, Poster Style) -->
+        <!-- ========================================================================= -->
+        
+        <main class="w-full bg-white relative z-20 overflow-hidden">
+            
+            <!-- 1. VISION & POLICY -->
+            <section id="vision" class="py-24 px-6 lg:px-12 max-w-7xl mx-auto border-t border-gray-100">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <!-- SVG Illustration -->
+                    <div class="order-2 lg:order-1 flex justify-center">
+                        <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-md h-auto opacity-90">
+                            <!-- Abstract Supply Chain -->
+                            <circle cx="250" cy="200" r="180" fill="none" stroke="#0B1F3B" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.2" />
+                            <circle cx="250" cy="200" r="120" fill="none" stroke="#C9A24D" stroke-width="1" />
+                            <!-- Central Node -->
+                            <circle cx="250" cy="200" r="30" fill="#0B1F3B" />
+                            <path d="M235,200 L250,215 L275,185" fill="none" stroke="#C9A24D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                            <!-- Orbiting Nodes -->
+                            <circle cx="250" cy="80" r="15" fill="#FFFFFF" stroke="#0B1F3B" stroke-width="2" />
+                            <circle cx="370" cy="200" r="15" fill="#FFFFFF" stroke="#0B1F3B" stroke-width="2" />
+                            <circle cx="130" cy="200" r="15" fill="#FFFFFF" stroke="#0B1F3B" stroke-width="2" />
+                            <!-- Connection Lines -->
+                            <path d="M250,110 L250,170" stroke="#0B1F3B" stroke-width="1" />
+                            <path d="M340,200 L280,200" stroke="#0B1F3B" stroke-width="1" />
+                            <path d="M160,200 L220,200" stroke="#0B1F3B" stroke-width="1" />
+                            <!-- Labels -->
+                            <text x="250" y="60" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#0B1F3B" font-weight="bold" letter-spacing="1">CONFIANCE</text>
+                            <text x="420" y="205" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#0B1F3B" font-weight="bold" letter-spacing="1">QUALITÉ</text>
+                            <text x="70" y="205" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#0B1F3B" font-weight="bold" letter-spacing="1">LOGISTIQUE</text>
+                        </svg>
+                    </div>
+
+                    <!-- Manifesto Text -->
+                    <div class="order-1 lg:order-2 space-y-8">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 bg-ksy-blue/5 border border-ksy-blue/10 rounded-full">
+                             <span class="w-1.5 h-1.5 rounded-full bg-ksy-gold"></span>
+                             <span class="text-[10px] uppercase tracking-widest font-bold text-ksy-blue">Vision d'entreprise</span>
+                        </div>
+                        <h2 class="text-4xl lg:text-5xl font-serif font-bold text-ksy-blue leading-tight">
+                            L'avenir de <br><span class="text-ksy-gold">Chaîne d'approvisionnement au niveau local.</span>
+                        </h2>
+                        <div class="space-y-6 text-gray-500 font-sans leading-relaxed text-sm lg:text-base text-justify">
+                            <p>KSY GROUPE place le client et la fiabilité au cœur de sa chaîne logistique.</p>
+                            <p>Nous pensons qu'un écosystème de commerce électronique automobile performant repose sur une chaîne d'approvisionnement moderne, transparente et centrée sur l'humain.</p>
+                            <p>Notre politique logistique s'articule autour de trois objectifs clairs : réduire les délais de livraison, sécuriser les expéditions et proposer des prix équitables adaptés aux réalités africaines.</p>
+                            <p>Nous investissons dans des partenariats locaux pour couvrir chaque commune et province du <span style="font-weight: bolder; color: #0B1F3B;"> Sénégal </span>et de la <span style="font-weight: bolder; color: #0B1F3B;">Côte d’Ivoire,</span> et mettons en place un contrôle qualité avant expédition afin que chaque pièce arrive en parfait état.</p>
+                            <p>Nous privilégions la simplicité : confirmation de commande claire, suivi en temps réel lorsque cela est possible, communication fluide avec le service client et résolution proactive des incidents.</p>
+                            <p class="font-bold text-ksy-blue border-l-4 border-ksy-gold pl-4">Notre vision est de contribuer à la professionnalisation du secteur automobile local en fournissant aux mécaniciens, aux garages et aux particuliers un accès fiable à des pièces d'origine, livrées dans des conditions optimales.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. ANNOUNCEMENTS & COMMUNICATIONS -->
+            <section id="annonces" class="py-20 bg-ksy-blue/5 border-y border-gray-100">
+                <div class="max-w-5xl mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <h3 class="text-2xl font-serif font-bold text-ksy-blue">Communications officielles</h3>
+                        <p class="text-xs uppercase tracking-widest text-gray-500 mt-2">Livraisons entrantes et mises à jour</p>
+                    </div>
+
+                    <div class="bg-white p-8 lg:p-12 shadow-sm border border-gray-100 rounded-sm relative overflow-hidden">
+                        <!-- Decorative bg -->
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-ksy-gold/10 rounded-bl-full"></div>
+
+                        <div class="flex flex-col lg:flex-row items-center justify-between gap-10 relative z-10">
+                            <!-- Product Info -->
+                            <div class="space-y-4 text-center lg:text-left">
+                                <span class="bg-ksy-blue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest rounded-sm">Arrivée imminente</span>
+                                <h4 class="text-3xl font-serif font-bold text-ksy-blue">HYUNDAI Tucson 2024</h4>
+                                <p class="text-gray-500">Kits de suspension complets et unités optiques.</p>
+                                <div class="flex items-center justify-center lg:justify-start gap-4 text-sm font-bold text-ksy-blue mt-4">
+                                    <span class="flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4 text-ksy-gold"></i> Jan 28</span>
+                                    <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                    <span class="flex items-center gap-2"><i data-lucide="truck" class="w-4 h-4 text-ksy-gold"></i> Container #KSY-892</span>
+                                </div>
+                            </div>
+
+                            <!-- Countdown -->
+                            <div class="flex gap-4">
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-ksy-blue text-white flex items-center justify-center text-2xl font-bold rounded-sm shadow-gold-glow" id="days">04</div>
+                                    <span class="text-[10px] uppercase font-bold text-gray-400 mt-2 block">Jours</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-16 h-16 border border-ksy-blue/10 bg-gray-50 text-ksy-blue flex items-center justify-center text-2xl font-bold rounded-sm" id="hours">12</div>
+                                    <span class="text-[10px] uppercase font-bold text-gray-400 mt-2 block">Heures</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-8 border-t border-gray-100 flex justify-center lg:justify-start gap-6">
+                            <button class="text-xs font-bold uppercase tracking-widest text-ksy-blue hover:text-ksy-gold transition-colors flex items-center gap-2">
+                                <i data-lucide="phone" class="w-4 h-4"></i> Réserver via le service client
+                            </button>
+                            <button class="text-xs font-bold uppercase tracking-widest text-ksy-blue hover:text-ksy-gold transition-colors flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-4 h-4"></i> Visitez notre magasin
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. PURCHASING POLICY -->
+            <section id="achat" class="py-24 px-6 max-w-7xl mx-auto">
+                <div class="text-center mb-16 space-y-4">
+                    <h3 class="text-3xl font-serif font-bold text-ksy-blue">Protocole d'achat</h3>
+                    <p class="text-sm text-gray-500 max-w-lg mx-auto">KSY GROUPE fonctionne actuellement uniquement sur des transactions en personne afin de garantir l'authenticité et la confiance.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                    <!-- Method 1 -->
+                    <div class="group border border-gray-100 p-10 hover:border-ksy-gold/30 hover:shadow-lg transition-all duration-500 rounded-sm text-center">
+                        <div class="w-20 h-20 bg-ksy-blue/5 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-ksy-gold group-hover:text-white transition-colors text-ksy-blue">
+                            <i data-lucide="headset" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-serif font-bold text-ksy-blue mb-3">Service client</h4>
+                        <p class="text-sm text-gray-500 leading-relaxed">Contactez notre équipe d'assistance dédiée pour confirmer la disponibilité et réserver vos pièces. Le paiement est finalisé après vérification.</p>
+                    </div>
+
+                    <!-- Method 2 -->
+                    <div class="group border border-gray-100 p-10 hover:border-ksy-gold/30 hover:shadow-lg transition-all duration-500 rounded-sm text-center">
+                        <div class="w-20 h-20 bg-ksy-blue/5 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-ksy-gold group-hover:text-white transition-colors text-ksy-blue">
+                            <i data-lucide="store" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-serif font-bold text-ksy-blue mb-3">Notre Magasin</h4>
+                        <p class="text-sm text-gray-500 leading-relaxed">Visitez notre siège social du secteur automobile pour une consultation directe, une inspection et un retrait immédiat de votre commande.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <span class="inline-block px-4 py-2 bg-gray-50 border border-gray-200 rounded-full text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                       Plateforme de vente dynamique en ligne — Lancement prévu au troisième trimestre 2026
+                    </span>
+                </div>
+            </section>
+
+            <!-- 4. DELIVERY POLICY -->
+            <section id="livraison" class="py-24 bg-ksy-blue text-white relative overflow-hidden">
+                <!-- Background Map Pattern (SVG) -->
+                <svg class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"/>
+                    </pattern>
+                    <rect width="100%" height="100%" fill="url(#grid)" />
+                </svg>
+
+                <div class="max-w-7xl mx-auto px-6 relative z-10">
+                    <div class="flex flex-col lg:flex-row gap-16">
+                        <!-- Left: Info -->
+                        <div class="lg:w-1/2 space-y-8">
+                            <h3 class="text-4xl font-serif font-bold">Logistique nationale <br>Couverture.</h3>
+                            <p class="text-white/70 text-lg leading-relaxed font-light">Nous exploitons un réseau de distribution complet couvrant l’ensemble des territoires nationaux du Sénégal et de la Côte d’Ivoire.</p>
+                            
+                            <div class="space-y-6 pt-4">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 border border-white/20 rounded-sm flex items-center justify-center flex-shrink-0">
+                                        <i data-lucide="bike" class="w-6 h-6 text-ksy-gold"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-lg mb-1">Moto express</h5>
+                                        <p class="text-sm text-white/60">Optimisé pour les petites et moyennes commandes. Idéal pour les filtres, les bougies d'allumage et les composants électriques urgents.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 border border-white/20 rounded-sm flex items-center justify-center flex-shrink-0">
+                                        <i data-lucide="truck" class="w-6 h-6 text-ksy-gold"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-lg mb-1">Camions transporteurs</h5>
+                                        <p class="text-sm text-white/60">Flotte dédiée aux moteurs, pare-chocs et commandes groupées pour garages. Itinéraires hebdomadaires planifiés et points de relais.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Visual Map Representation -->
+                        <div class="lg:w-1/2 flex items-center justify-center">
+                            <svg viewBox="0 0 400 300" class="w-full h-auto opacity-90 drop-shadow-2xl">
+                                <!-- Abstract Map Outlines -->
+                                <path d="M50,100 Q100,50 150,80 T250,120 T350,100" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.2"/>
+                                <path d="M60,180 Q120,200 180,180 T300,220" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.2"/>
+                                <!-- Routes -->
+                                <path d="M150,80 L250,120 L300,220" fill="none" stroke="#C9A24D" stroke-width="2" stroke-dasharray="6 6"/>
+                                <!-- Points -->
+                                <circle cx="150" cy="80" r="6" fill="#C9A24D"/>
+                                <circle cx="250" cy="120" r="4" fill="#FFFFFF"/>
+                                <circle cx="300" cy="220" r="4" fill="#FFFFFF"/>
+                                <circle cx="180" cy="180" r="4" fill="#FFFFFF"/>
+                                <!-- Pulse Animation -->
+                                <circle cx="150" cy="80" r="10" fill="none" stroke="#C9A24D" stroke-width="1" opacity="0.5">
+                                    <animate attributeName="r" from="10" to="20" dur="2s" repeatCount="indefinite" />
+                                    <animate attributeName="opacity" from="0.5" to="0" dur="2s" repeatCount="indefinite" />
+                                </circle>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5 & 6. TIMES & PRICING (Grid Layout) -->
+            <section id="tarification" class="py-24 px-6 max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    
+                    <!-- Times -->
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-3 mb-6">
+                            <i data-lucide="clock" class="w-6 h-6 text-ksy-gold"></i>
+                            <h3 class="text-2xl font-serif font-bold text-ksy-blue">Délais de livraison habituels</h3>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-sm border-l-4 border-ksy-blue space-y-4">
+                            <h4 class="font-bold text-ksy-blue uppercase tracking-widest text-xs mb-2">Senegal</h4>
+                            <div class="flex justify-between text-sm border-b border-gray-200 pb-2">
+                                <span class="text-gray-600">Même ville</span>
+                                <span class="font-bold text-ksy-blue">24 à 48 heures</span>
+                            </div>
+                            <div class="flex justify-between text-sm border-b border-gray-200 pb-2">
+                                <span class="text-gray-600">Interrégionale</span>
+                                <span class="font-bold text-ksy-blue">48 à 72 heures</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">régions reculées</span>
+                                <span class="font-bold text-ksy-blue">~ 96 heures</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-6 rounded-sm border-l-4 border-ksy-gold space-y-4">
+                            <h4 class="font-bold text-ksy-blue uppercase tracking-widest text-xs mb-2">Côte d’Ivoire</h4>
+                            <div class="flex justify-between text-sm border-b border-gray-200 pb-2">
+                                <span class="text-gray-600">Centres urbains</span>
+                                <span class="font-bold text-ksy-blue">24 à 48 heures</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Expéditions prévues</span>
+                                <span class="font-bold text-ksy-blue">72 à 120 heures</span>
+                            </div>
+                        </div>
+                        <p class="text-[10px] text-gray-400 italic mt-2">*Horaires indicatifs. Mises à jour en temps réel via WhatsApp.</p>
+                    </div>
+
+                    <!-- Pricing -->
+                    <div class="space-y-8">
+                         <div class="flex items-center gap-3 mb-6">
+                            <i data-lucide="tag" class="w-6 h-6 text-ksy-gold"></i>
+                            <h3 class="text-2xl font-serif font-bold text-ksy-blue">Structure tarifaire</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="border border-gray-100 p-6 text-center hover:shadow-md transition-shadow">
+                                <div class="text-xs uppercase font-bold text-gray-400 mb-2">Commandes légères</div>
+                                <div class="text-2xl font-serif font-bold text-ksy-blue mb-1">montant fixe</div>
+                                <p class="text-xs text-gray-500">3 000 – 7 000 FCFA</p>
+                            </div>
+                             <div class="border border-gray-100 p-6 text-center hover:shadow-md transition-shadow">
+                                <div class="text-xs uppercase font-bold text-gray-400 mb-2">En vrac / lourd</div>
+                                <div class="text-2xl font-serif font-bold text-ksy-blue mb-1">Quotation</div>
+                                <p class="text-xs text-gray-500">Poids + Volume + Poussière</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-ksy-blue/5 p-6 flex items-center gap-4 rounded-sm border border-ksy-blue/10">
+                            <i data-lucide="gift" class="w-8 h-8 text-ksy-gold"></i>
+                            <div>
+                                <h5 class="font-bold text-ksy-blue text-sm">Promotions de campagne</h5>
+                                <p class="text-xs text-gray-600">Livraison gratuite occasionnellement disponible pour les commandes supérieures à 50 000 FCFA.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. DELAYS & RESOLUTION -->
+            <section id="dommage" class="py-20 bg-gray-50 border-t border-gray-100">
+                <div class="max-w-4xl mx-auto px-6 text-center">
+                    <h3 class="text-2xl font-serif font-bold text-ksy-blue mb-12">En cas de retard, dommage ou erreur</h3>
+                    
+                    <div class="flex flex-col md:flex-row justify-center items-start gap-8 relative">
+                         <!-- Connecting Line (Desktop) -->
+                        <div class="hidden md:block absolute top-6 left-10 right-10 h-0.5 bg-gray-200 z-0"></div>
+
+                        <!-- Step 1 -->
+                        <div class="relative z-10 flex flex-col items-center w-full md:w-1/3">
+                            <div class="w-12 h-12 bg-white border-2 border-ksy-gold rounded-full flex items-center justify-center text-ksy-gold font-bold mb-4 shadow-sm">1</div>
+                            <h5 class="font-bold text-ksy-blue text-sm mb-2">Vérifier</h5>
+                            <p class="text-xs text-gray-500 leading-relaxed px-4">Consultez vos e-mails ou le suivi WhatsApp pour les mises à jour en temps réel.</p>
+                        </div>
+
+                         <!-- Step 2 -->
+                        <div class="relative z-10 flex flex-col items-center w-full md:w-1/3">
+                            <div class="w-12 h-12 bg-white border-2 border-ksy-blue rounded-full flex items-center justify-center text-ksy-blue font-bold mb-4 shadow-sm">2</div>
+                            <h5 class="font-bold text-ksy-blue text-sm mb-2">Rapport</h5>
+                            <p class="text-xs text-gray-500 leading-relaxed px-4">Contactez immédiatement le service client. En cas de dommages, veuillez joindre des photos nettes.</p>
+                        </div>
+
+                         <!-- Step 3 -->
+                        <div class="relative z-10 flex flex-col items-center w-full md:w-1/3">
+                            <div class="w-12 h-12 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center text-gray-400 font-bold mb-4 shadow-sm">3</div>
+                            <h5 class="font-bold text-ksy-blue text-sm mb-2">Résoudre</h5>
+                            <p class="text-xs text-gray-500 leading-relaxed px-4">Remplacement, réexpédition ou remboursement immédiats selon l'évaluation.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Premium Separator (Originally the bottom border) -->
+        <div class="h-2 w-full bg-gradient-to-r from-ksy-blue via-ksy-gold to-ksy-blue relative z-30"></div>
+
+        <!-- NEW: CORPORATE FOOTER -->
+        <footer class="relative z-20 bg-white pt-20 pb-10 border-t-0">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                
+                <!-- Top Footer Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
+                    
+                    <!-- 1. Brand Identity (Col Span 4) -->
+                    <div class="lg:col-span-4 space-y-6">
+                        <!-- Footer Logo Reuse -->
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-8 h-8 bg-ksy-blue flex items-center justify-center text-ksy-gold rounded-sm">
+                                <span class="font-serif font-bold text-base">K</span>
+                            </div>
+                            <span class="font-serif font-bold text-lg tracking-wide text-ksy-blue">KSY Groupe</span>
+                        </div>
+                        
+                        <p class="text-ksy-blue font-serif text-2xl font-bold leading-tight">
+                            Confiance <br>institutionnelle.
+                        </p>
+                        
+                        <p class="text-sm text-gray-500 leading-relaxed max-w-sm">
+                            Nous établissons la norme en matière de distribution automobile et d'excellence des flottes. Nous associons l'innovation mondiale à l'expertise locale.
+                        </p>
+                    </div>
+
+                    <!-- 2. Navigation (Col Span 3) -->
+                    <div class="lg:col-span-3 lg:pl-8">
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-ksy-blue/40 mb-6">Entreprise</h4>
+                        <nav class="flex flex-col space-y-4">
+                            <a href="index.html#vision" class="text-sm font-medium text-ksy-blue hover:text-ksy-gold hover:pl-2 transition-all duration-300">Présentation de l'entreprise</a>
+                            <a href="index.html#collection" class="text-sm font-medium text-ksy-blue hover:text-ksy-gold hover:pl-2 transition-all duration-300">Visitez la collection</a>
+                            <a href="index.html#annonces" class="text-sm font-medium text-ksy-blue hover:text-ksy-gold hover:pl-2 transition-all duration-300">Prochains arrivages</a>
+                            <a href="index.html#annonces" class="text-sm font-medium text-ksy-blue hover:text-ksy-gold hover:pl-2 transition-all duration-300">Nos annonces</a>
+                            <a href="index.html#achat" class="text-sm font-medium text-ksy-blue hover:text-ksy-gold hover:pl-2 transition-all duration-300">Comment se passe l'achat chez Ksy Groupe ?</a>
+                            <a href="index.html#tarification" class="text-sm font-medium text-ksy-blue hover:text-ksy-gold hover:pl-2 transition-all duration-300">Tarifs de livraison</a>
+                            <a href="index.html#dommage" class="text-sm font-medium text-ksy-blue hover:text-ksy-gold hover:pl-2 transition-all duration-300">Si votre commande n'arrive pas dans les délais indiqués, ou si le colis est endommagé ?</a>
+                        </nav>
+                    </div>
+
+                    <!-- 3. Contact & Trust (Col Span 3) -->
+                    <div class="lg:col-span-3">
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-ksy-blue/40 mb-6">Quartier général</h4>
+                        <address class="not-italic flex flex-col space-y-4">
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-ksy-gold mt-1"></i>
+                                <span class="text-sm text-gray-600 leading-relaxed">
+                                    128 Premium Boulevard,<br>
+                                    Automotive District,<br>
+                                    Dakar, Senegal
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="phone" class="w-4 h-4 text-ksy-gold"></i>
+                                <span class="text-sm text-gray-600 font-medium">+221 33 800 00 00</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="mail" class="w-4 h-4 text-ksy-gold"></i>
+                                <span class="text-sm text-gray-600">contact@ksygroupe.com</span>
+                            </div>
+                        </address>
+                    </div>
+
+                    <!-- 4. Social & Connect (Col Span 2) -->
+                    <div class="lg:col-span-2">
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-ksy-blue/40 mb-6">Suivez-nous</h4>
+                        <div class="flex gap-4">
+                            <a href="#" class="w-10 h-10 border border-gray-100 flex items-center justify-center rounded-sm text-ksy-blue hover:border-ksy-gold hover:text-ksy-gold transition-all duration-300 group">
+                                <i data-lucide="linkedin" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 border border-gray-100 flex items-center justify-center rounded-sm text-ksy-blue hover:border-ksy-gold hover:text-ksy-gold transition-all duration-300 group">
+                                <i data-lucide="facebook" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 border border-gray-100 flex items-center justify-center rounded-sm text-ksy-blue hover:border-ksy-gold hover:text-ksy-gold transition-all duration-300 group">
+                                <i data-lucide="instagram" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Bottom Legal Bar -->
+                <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 opacity-80">
+                    <p class="text-xs text-gray-400 font-sans">
+                        &copy; <span id="currentYear"></span> KSY Groupe. Tous droits réservés.
+                    </p>
+                    <div class="flex gap-6">
+                        <a href="#" class="text-xs text-gray-400 hover:text-ksy-blue transition-colors">politique de confidentialité</a>
+                        <a href="#" class="text-xs text-gray-400 hover:text-ksy-blue transition-colors">Conditions d'utilisation</a>
+                        <a href="#" class="text-xs text-gray-400 hover:text-ksy-blue transition-colors">Mentions légales</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JAVASCRIPT: INTERACTION & LOGIC -->
+  <!-- REDIRECTION DES LIENS -->    
+<script>    
+// Vérifie si une ancre est dans l'URL
+window.addEventListener("load", () => {
+  const hash = window.location.hash;
+  if (hash) {
+    const target = document.querySelector(hash);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+});
+  </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Lucide Icons
+            lucide.createIcons();
+
+            // Set Footer Year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // --- COUNTDOWN LOGIC (New) ---
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            
+            // Set a static target for demo: 4 days from now
+            let targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 4);
+            
+            function updateCountdown() {
+                const now = new Date();
+                const diff = targetDate - now;
+
+                if (diff <= 0) {
+                    daysEl.textContent = "00";
+                    hoursEl.textContent = "00";
+                    return;
+                }
+
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+                daysEl.textContent = d < 10 ? '0' + d : d;
+                hoursEl.textContent = h < 10 ? '0' + h : h;
+            }
+            setInterval(updateCountdown, 1000 * 60); // Update every minute
+            updateCountdown(); // Initial call
+
+
+            // --- 1. DATA STRUCTURE ---
+            const inventoryData = {
+                brands: ['HYUNDAI', 'KIA', 'PEUGEOT', 'SUZUKI', 'JETOUR', 'BAIC', 'CHANGAN'],
+                models: {
+                    'HYUNDAI': ['Tucson', 'Santa Fe', 'Palisade', 'Elantra', 'Kona', 'Sonata'],
+                    'KIA': ['Sportage', 'Sorento', 'Seltos', 'Picanto', 'Rio'],
+                    'PEUGEOT': ['208', '308', '2008', '3008', '508', 'Partner', 'Rifter'],
+                    'SUZUKI': ['Vitara', 'Swift', 'Alto', 'Ciaz', 'Baleno', 'Fronx'],
+                    'JETOUR': ['X50', 'X70', 'T2', 'Dashing'],
+                    'BAIC': ['X35', 'X55II', 'X7'],
+                    'CHANGAN': ['CS55', 'Alsvin']
+                },
+                categories: [
+                    { id: 'freinage', label: 'Freinage', icon: 'disc' },
+                    { id: 'suspension', label: 'Suspension', icon: 'activity' },
+                    { id: 'electricite', label: 'Electricité', icon: 'zap' },
+                    { id: 'filtration', label: 'Filtration', icon: 'filter' },
+                    { id: 'carrosserie', label: 'Carrosserie', icon: 'shield' },
+                    { id: 'refroidissement', label: 'Refroidissement', icon: 'snowflake' }
+                ],
+                productTemplates: [
+                    { prefix: 'Plaquettes de frein AR', cat: 'freinage', price: 25000 },
+                    { prefix: 'Amortisseur AV', cat: 'suspension', price: 45000 },
+                    { prefix: 'Filtre à air', cat: 'filtration', price: 8500 },
+                    { prefix: 'Alternateur', cat: 'electricite', price: 120000 },
+                    { prefix: 'Compresseur Clim', cat: 'refroidissement', price: 185000 },
+                    { prefix: 'Pare-chocs AV', cat: 'carrosserie', price: 95000 }
+                ]
+            };
+
+            // State
+            let state = {
+                brand: inventoryData.brands[0],
+                model: inventoryData.models[inventoryData.brands[0]][0],
+                category: 'all' // or specific category ID
+            };
+
+            // --- 2. ACCORDION LOGIC ---
+            const toggleBtn = document.getElementById('inventoryToggleBtn');
+            const accordion = document.getElementById('inventory-accordion');
+            const ctaIcon = document.getElementById('ctaIcon');
+            const ctaText = document.getElementById('ctaText');
+
+            toggleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isOpen = accordion.classList.contains('open');
+                
+                if (isOpen) {
+                    accordion.style.maxHeight = null;
+                    accordion.classList.remove('open');
+                    ctaIcon.style.transform = 'rotate(0deg)';
+                    ctaText.textContent = "EXPLORER LA COLLECTION";
+                    ctaIcon.setAttribute('data-lucide', 'chevron-down');
+                } else {
+                    renderUI(); // Ensure fresh data before showing
+                    accordion.classList.add('open');
+                    accordion.style.maxHeight = accordion.scrollHeight + "px";
+                    ctaIcon.style.transform = 'rotate(180deg)';
+                    ctaText.textContent = "FERMER LA COLLECTION";
+                    ctaIcon.setAttribute('data-lucide', 'chevron-up');
+                    
+                    // Smooth scroll to accordion top after short delay
+                    setTimeout(() => {
+                        const yOffset = -80; 
+                        const y = accordion.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        window.scrollTo({top: y, behavior: 'smooth'});
+                    }, 100);
+                }
+                lucide.createIcons();
+            });
+
+            // Recalculate height on window resize
+            window.addEventListener('resize', () => {
+                if (accordion.classList.contains('open')) {
+                    accordion.style.maxHeight = accordion.scrollHeight + "px";
+                }
+            });
+
+            // --- 3. RENDERING LOGIC ---
+            const brandContainer = document.getElementById('brand-filters');
+            const modelContainer = document.getElementById('model-filters');
+            const catContainer = document.getElementById('category-filters');
+            const gridContainer = document.getElementById('products-grid');
+
+            function renderUI() {
+                renderBrands();
+                renderModels();
+                renderCategories();
+                renderProducts();
+                lucide.createIcons();
+                
+                // If open, adjust height for dynamic content changes
+                if (accordion.classList.contains('open')) {
+                    setTimeout(() => {
+                        accordion.style.maxHeight = accordion.scrollHeight + "px";
+                    }, 50);
+                }
+            }
+
+            function renderBrands() {
+                brandContainer.innerHTML = inventoryData.brands.map(brand => {
+                    const isActive = state.brand === brand;
+                    const classes = isActive 
+                        ? 'bg-ksy-blue text-white shadow-lg border-transparent' 
+                        : 'bg-white text-ksy-blue/70 border-gray-200 hover:border-ksy-gold hover:text-ksy-gold';
+                    
+                    // Simple "logo" using first letter in a circle
+                    const letter = brand.charAt(0);
+                    
+                    return `
+                        <button onclick="setBrand('${brand}')" class="${classes} border px-5 py-3 rounded-sm text-sm font-bold tracking-wider transition-all duration-300 flex items-center gap-3 group">
+                            <span class="w-6 h-6 rounded-full ${isActive ? 'bg-ksy-gold text-white' : 'bg-gray-100 text-gray-500 group-hover:bg-ksy-gold/10'} flex items-center justify-center text-[10px] font-serif">
+                                ${letter}
+                            </span>
+                            ${brand}
+                        </button>
+                    `;
+                }).join('');
+            }
+
+            function renderModels() {
+                const currentModels = inventoryData.models[state.brand];
+                modelContainer.innerHTML = currentModels.map(model => {
+                    const isActive = state.model === model;
+                    const activeStyle = isActive ? 'text-ksy-gold border-b-2 border-ksy-gold' : 'text-gray-400 hover:text-ksy-blue';
+                    return `
+                        <button onclick="setModel('${model}')" class="${activeStyle} px-2 py-2 text-sm font-medium transition-colors whitespace-nowrap">
+                            ${model}
+                        </button>
+                    `;
+                }).join('');
+            }
+
+            function renderCategories() {
+                catContainer.innerHTML = inventoryData.categories.map(cat => {
+                    const isActive = state.category === cat.id;
+                    const borderClass = isActive ? 'border-ksy-gold bg-ksy-gold/5' : 'border-gray-100 hover:border-ksy-blue/20';
+                    const iconColor = isActive ? 'text-ksy-gold' : 'text-ksy-blue/40';
+                    const textColor = isActive ? 'text-ksy-blue font-bold' : 'text-gray-500';
+
+                    return `
+                        <button onclick="setCategory('${cat.id}')" class="flex flex-col items-center justify-center p-4 border rounded-sm transition-all duration-300 ${borderClass} group">
+                            <i data-lucide="${cat.icon}" class="w-6 h-6 mb-2 ${iconColor} group-hover:text-ksy-gold transition-colors"></i>
+                            <span class="text-xs uppercase tracking-wide ${textColor}">${cat.label}</span>
+                        </button>
+                    `;
+                }).join('');
+            }
+
+            function renderProducts() {
+                // Generate dummy products based on selection
+                let products = [];
+                
+                // If specific category selected, show products for that cat. If 'all', show mix.
+                const templates = state.category === 'all' 
+                    ? inventoryData.productTemplates 
+                    : inventoryData.productTemplates.filter(t => t.cat === state.category);
+
+                // Create visual product cards
+                products = templates.map((tmpl, index) => {
+                    return `
+                        <div class="product-card group relative bg-white border border-gray-100 hover:border-ksy-gold/30 hover:shadow-gold-glow transition-all duration-500 p-6 rounded-sm" id="product-${index}">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="bg-green-50 text-green-700 text-[10px] font-bold px-2 py-1 rounded-sm uppercase tracking-wider">In Stock</span>
+                                <span class="text-xs text-gray-400 font-mono">#${state.brand.substring(0,2)}${state.model.substring(0,2)}-00${index+1}</span>
+                            </div>
+                            
+                            <h3 class="text-lg font-serif font-bold text-ksy-blue group-hover:text-ksy-gold transition-colors mb-1">
+                                ${tmpl.prefix}
+                            </h3>
+                            <p class="text-sm text-gray-500 mb-4 font-medium uppercase tracking-wide text-[10px]">
+                                ${state.brand} ${state.model}
+                            </p>
+
+                            <p class="text-xs text-gray-400 mb-6 leading-relaxed">
+                                Certified OEM component compatible with ${state.brand} ${state.model} series. Guaranteed durability.
+                            </p>
+
+                            <div class="flex items-center justify-between mt-auto border-t border-gray-50 pt-4">
+                                <span class="font-bold text-ksy-blue font-mono">${tmpl.price.toLocaleString()} FCFA</span>
+                                <button class="w-8 h-8 rounded-full bg-ksy-blue flex items-center justify-center text-ksy-gold group-hover:bg-ksy-gold group-hover:text-white transition-colors">
+                                    <i data-lucide="plus" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                if (products.length === 0) {
+                     gridContainer.innerHTML = '<div class="col-span-3 text-center text-gray-400 py-10">No specific parts found in this category.</div>';
+                } else {
+                    gridContainer.innerHTML = products.join('');
+                }
+            }
+
+            // --- 4. EXPOSE FUNCTIONS TO WINDOW FOR HTML ONCLICK ---
+            window.setBrand = (brand) => {
+                state.brand = brand;
+                state.model = inventoryData.models[brand][0]; // Reset model to first of new brand
+                renderUI();
+            };
+
+            window.setModel = (model) => {
+                state.model = model;
+                renderUI();
+            };
+
+            window.setCategory = (catId) => {
+                // toggle logic
+                state.category = (state.category === catId) ? 'all' : catId;
+                renderUI();
+            };
+
+            // Existing Menu Logic (Preserved)
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const closeMenuBtn = document.getElementById('closeMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            function toggleMenu() {
+                const isClosed = mobileMenu.classList.contains('translate-x-full');
+                if (isClosed) {
+                    mobileMenu.classList.remove('translate-x-full');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    mobileMenu.classList.add('translate-x-full');
+                    document.body.style.overflow = '';
+                    
+                }
+            }
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+            closeMenuBtn.addEventListener('click', toggleMenu);
+
+            // Fermeture du menu mobile
+const mobileLinks = mobileMenu.querySelectorAll('a');
+
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (!mobileMenu.classList.contains('translate-x-full')) {
+            toggleMenu();
+        }
+    });
+});
+
+            
+
+            // Existing Search Logic (Preserved)
+            const searchBtn = document.getElementById('searchBtn');
+            const searchInput = document.getElementById('searchInput');
+            searchBtn.addEventListener('click', () => {
+                searchInput.classList.toggle('active');
+                if (searchInput.classList.contains('active')) searchInput.focus();
+            });
+            document.addEventListener('click', (e) => {
+                if (!searchBtn.contains(e.target) && !searchInput.contains(e.target)) {
+                    searchInput.classList.remove('active');
+                }
+            });
+
+            // Existing Mouse Animation
+            const carElement = document.querySelector('.float-car');
+            const heroSection = document.querySelector('section');
+            heroSection.addEventListener('mousemove', (e) => {
+                const x = (window.innerWidth - e.pageX) / 50;
+                const y = (window.innerHeight - e.pageY) / 50;
+                if(window.innerWidth > 1024) carElement.style.transform = `translate(${x}px, ${y}px)`;
+            });
+            heroSection.addEventListener('mouseleave', () => {
+                carElement.style.transform = 'translate(0, 0)';
+            });
+
+
+            // ==========================================
+            // NEW: SEARCH ENGINE & REDIRECTION LOGIC
+            // ==========================================
+            
+            function initSearchLogic() {
+                const wrapper = searchInput.parentElement;
+                
+                // 1. Create Floating Results Panel (Hidden by default)
+                const resultsPanel = document.createElement('div');
+                resultsPanel.className = `
+                    absolute top-full right-0 mt-4 w-72 lg:w-80 
+                    bg-white border border-gray-100 shadow-2xl rounded-sm overflow-hidden 
+                    transition-all duration-300 z-50 
+                    opacity-0 translate-y-2 pointer-events-none
+                `;
+                resultsPanel.id = "searchResultsPanel";
+                wrapper.appendChild(resultsPanel);
+
+                // 2. Search Event Listener
+                searchInput.addEventListener('input', (e) => {
+                    const query = e.target.value.toLowerCase().trim();
+                    
+                    if (query.length < 2) {
+                        hideResults();
+                        return;
+                    }
+
+                    const results = performSearch(query);
+                    renderResults(results);
+                });
+
+                // 3. Search Algorithm (Pure Vanilla JS)
+                function performSearch(query) {
+                    let matches = [];
+
+                    // A. Brand Match
+                    inventoryData.brands.forEach(brand => {
+                        if (brand.toLowerCase().includes(query)) {
+                            matches.push({ type: 'brand', label: brand, sub: 'Voir tous les modèles', icon: 'zap' });
+                        }
+                    });
+
+                    // B. Model Match
+                    Object.keys(inventoryData.models).forEach(brand => {
+                        inventoryData.models[brand].forEach(model => {
+                            if (model.toLowerCase().includes(query)) {
+                                matches.push({ type: 'model', label: `${brand} ${model}`, sub: 'Parcourez les pièces compatibles', brand: brand, model: model, icon: 'layers' });
+                            }
+                        });
+                    });
+
+                    // C. Part/Product Match
+                    inventoryData.productTemplates.forEach(prod => {
+                        if (prod.prefix.toLowerCase().includes(query)) {
+                            matches.push({ type: 'part', label: prod.prefix, sub: `Category: ${prod.cat}`, catId: prod.cat, icon: 'tool' });
+                        }
+                    });
+
+                    // D. Category Match
+                    inventoryData.categories.forEach(cat => {
+                         if (cat.label.toLowerCase().includes(query)) {
+                             matches.push({ type: 'category', label: cat.label, sub: 'Afficher la catégorie', catId: cat.id, icon: cat.icon });
+                         }
+                    });
+
+                    return matches.slice(0, 5); // Limit to top 5 results for clean UI
+                }
+
+                // 4. Render Results Function
+                function renderResults(results) {
+                    if (results.length === 0) {
+                        resultsPanel.innerHTML = `
+                            <div class="p-4 text-center text-xs text-gray-400">
+                               Aucune correspondance spécifique trouvée.
+                            </div>
+                        `;
+                        showResults();
+                        return;
+                    }
+
+                    resultsPanel.innerHTML = '';
+                    results.forEach(result => {
+                        const item = document.createElement('div');
+                        item.className = "flex items-center gap-3 p-3 border-b border-gray-50 hover:bg-ksy-blue/5 cursor-pointer transition-colors group";
+                        
+                        // Icon
+                        const iconDiv = document.createElement('div');
+                        iconDiv.className = "w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:text-ksy-gold group-hover:bg-white transition-colors";
+                        iconDiv.innerHTML = `<i data-lucide="${result.icon}" class="w-4 h-4"></i>`;
+                        
+                        // Text
+                        const textDiv = document.createElement('div');
+                        textDiv.innerHTML = `
+                            <div class="text-sm font-bold text-ksy-blue group-hover:text-ksy-gold transition-colors">${result.label}</div>
+                            <div class="text-[10px] text-gray-400 uppercase tracking-wide">${result.sub}</div>
+                        `;
+
+                        item.appendChild(iconDiv);
+                        item.appendChild(textDiv);
+                        
+                        // Click Handler (Redirection)
+                        item.addEventListener('click', () => {
+                            handleResultClick(result);
+                        });
+
+                        resultsPanel.appendChild(item);
+                    });
+
+                    // Re-init icons for dynamic content
+                    lucide.createIcons();
+                    showResults();
+                }
+
+                // 5. Redirection & Smooth Scroll Logic
+                function handleResultClick(result) {
+                    // Update State based on result type
+                    if (result.type === 'brand') {
+                        state.brand = result.label;
+                        state.model = inventoryData.models[result.label][0];
+                        state.category = 'all';
+                    } else if (result.type === 'model') {
+                        state.brand = result.brand;
+                        state.model = result.model;
+                        state.category = 'all';
+                    } else if (result.type === 'category') {
+                        state.category = result.catId;
+                    } else if (result.type === 'part') {
+                        state.category = result.catId;
+                        // Keep current brand/model context for part search
+                    }
+
+                    // Refresh UI
+                    renderUI();
+
+                    // Open Accordion if closed
+                    if (!accordion.classList.contains('open')) {
+                        accordion.classList.add('open');
+                        accordion.style.maxHeight = accordion.scrollHeight + "px";
+                        ctaIcon.style.transform = 'rotate(180deg)';
+                        ctaText.textContent = "CLOSE INVENTORY";
+                        ctaIcon.setAttribute('data-lucide', 'chevron-up');
+                        lucide.createIcons();
+                    }
+
+                    // Hide Search
+                    hideResults();
+                    searchInput.value = '';
+
+                    // Smooth Scroll to Inventory
+                    setTimeout(() => {
+                        const grid = document.getElementById('products-grid');
+                        const yOffset = -100;
+                        const y = grid.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        
+                        window.scrollTo({top: y, behavior: 'smooth'});
+
+                        // Flash Highlight Effect
+                        grid.classList.add('highlight-product');
+                        setTimeout(() => grid.classList.remove('highlight-product'), 1500);
+
+                    }, 100);
+                }
+
+                function showResults() {
+                    resultsPanel.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+                    resultsPanel.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                }
+
+                function hideResults() {
+                    resultsPanel.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+                    resultsPanel.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                }
+
+                // Click outside to close
+                document.addEventListener('click', (e) => {
+                    if (!wrapper.contains(e.target)) {
+                        hideResults();
+                    }
+                });
+            }
+
+            // Init Search
+            initSearchLogic();
+
+        });
+    </script>
+</body>
+</html>
