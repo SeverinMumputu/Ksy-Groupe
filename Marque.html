@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSY GROUPE | Recherche Pièces Détachées Premium</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Playfair Display (Titres Premium) & Inter (Corps) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Configuration des couleurs personnalisées Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ksy: {
+                            white: '#FFFFFF',      // 25%
+                            blue: '#0B1F3B',       // 60% (Dominante)
+                            gold: '#C9A24D',       // 10% (Accents)
+                            black: '#000000',      // 5%
+                            gray: '#F3F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2560&auto=format&fit=crop')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Styles personnalisés pour les transitions et scrollbar */
+        body {
+            background-color: #0B1F3B; /* Couleur secondaire dominante */
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Masquer la scrollbar standard mais garder le scroll */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B1F3B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C9A24D;
+            border-radius: 4px;
+        }
+
+        .glass-effect {
+            background: rgba(11, 31, 59, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Effet de survol sur les cartes */
+        .card-hover {
+            transition: all 0.4s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(201, 162, 77, 0.3);
+            border-color: #C9A24D;
+        }
+
+        /* Animation de chargement */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #C9A24D;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- 1. FUSION HEADER (Sticky) -->
+    <nav class="fixed w-full z-50 glass-effect border-b border-ksy-gold/20 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.location.reload()">
+                    <div class="text-2xl font-serif font-bold tracking-widest text-ksy-white">
+                        <a href="index.html">KSY <span class="text-ksy-gold">GROUPE</span></a>
+                    </div>
+                </div>
+
+                <!-- 2. BARRE DE RECHERCHE (LOUPE) -->
+                <div class="hidden md:block relative w-1/3">
+                    <div class="relative">
+                        <input type="text" 
+                               id="global-search"
+                               placeholder="Rechercher une pièce (ex: Alternateur Tucson...)" 
+                               class="w-full bg-ksy-blue/50 text-ksy-white border border-gray-600 rounded-full py-2 pl-5 pr-12 focus:outline-none focus:border-ksy-gold focus:ring-1 focus:ring-ksy-gold transition-all text-sm placeholder-gray-400">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                            <i class="fas fa-search text-ksy-gold"></i>
+                        </div>
+                    </div>
+                    <!-- Résultats de recherche live -->
+                    <div id="search-results-dropdown" class="absolute mt-2 w-full bg-ksy-white rounded-lg shadow-xl overflow-hidden hidden z-50">
+                        <!-- Peuplé par JS -->
+                    </div>
+                </div>
+
+                <!-- Menu (Décoratif pour le contexte corporate) -->
+                <div class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="Ksy_groupe.html#annonces" class="text-ksy-gold border-b border-ksy-gold pb-1">Annonces</a>
+                    <a href="Ksy_groupe.html#vision" class="text-gray-300 hover:text-ksy-gold transition">Ksy Groupe</a>
+                    <a href="Ksy_groupe.html#videos" class="text-gray-300 hover:text-ksy-gold transition">Vidéos</a>
+                    <a href="index.html#contact" class="text-gray-300 hover:text-ksy-gold transition">Contact</a>
+                </div>
+
+                   <!-- Hamburger Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-ksy-gold hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Search (Visible only on small screens) -->
+        <div class="md:hidden px-4 pb-4">
+            <div class="relative">
+                <input type="text" id="mobile-search" placeholder="Rechercher..." class="w-full bg-ksy-blue/50 text-white border border-gray-600 rounded-full py-2 pl-4 pr-10 text-sm focus:border-ksy-gold focus:outline-none">
+                <i class="fas fa-search absolute right-3 top-3 text-ksy-gold"></i>
+            </div>
+        </div>
+
+               <!-- Menu Mobile Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-ksy-blue border-t border-white/10 absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="Ksy_groupe.html#annonces" class="text-ksy-gold border-b border-ksy-gold pb-1">Annonces</a>
+                    <a href="Ksy_groupe.html#vision" class="text-gray-300 hover:text-ksy-gold transition">Ksy Groupe</a>
+                    <a href="Ksy_groupe.html#videos" class="text-gray-300 hover:text-ksy-gold transition">Vidéos</a>
+                    <a href="index.html#contact" class="text-gray-300 hover:text-ksy-gold transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3. HERO SECTION & 4. SÉLECTION MARQUE -->
+    <header class="relative min-h-screen flex flex-col justify-center items-center pt-24 pb-12">
+        <!-- Background Image (Voiture + Fond fusionné) -->
+        <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed">
+            <!-- Overlay sombre pour intégration parfaite -->
+            <div class="absolute inset-0 bg-gradient-to-b from-ksy-blue/90 via-ksy-blue/80 to-ksy-blue"></div>
+        </div>
+
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+            
+            <!-- Hero Text -->
+            <div class="mb-16 animate-fade-in-up">
+                <h2 class="text-ksy-gold text-sm uppercase tracking-[0.3em] mb-4 font-semibold">Excellence Automobile</h2>
+                <h1 class="text-4xl md:text-6xl font-serif font-bold text-white mb-6 leading-tight">
+                    Pièces d'Origine & <br/>Qualité Premium
+                </h1>
+                <p class="text-gray-300 max-w-2xl mx-auto text-lg font-light">
+                    Sélectionnez votre véhicule pour découvrir notre catalogue exclusif de composants certifiés.
+                </p>
+            </div>
+
+            <!-- 4. BLOC SÉLECTION MARQUE -->
+            <div class="w-full" id="brand-section">
+                <div class="flex items-center justify-center mb-8 space-x-4">
+                    <div class="h-[1px] w-12 bg-ksy-gold"></div>
+                    <h3 class="text-xl font-serif text-white">Sélectionnez une Marque</h3>
+                    <div class="h-[1px] w-12 bg-ksy-gold"></div>
+                </div>
+
+                <!-- Grille des Marques -->
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-6" id="brand-grid">
+                    <!-- Généré par JS -->
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- 5. BLOC SÉLECTION MODÈLE (Reveal) -->
+    <section id="model-section" class="py-16 bg-ksy-blue relative hidden reveal-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <p class="text-ksy-gold uppercase text-xs tracking-widest mb-2" id="selected-brand-name">Marque</p>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white">Choisissez le Modèle</h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="model-grid">
+                <!-- Généré par JS -->
+            </div>
+            
+            <!-- Bouton retour -->
+            <div class="mt-12 text-center">
+                <button onclick="resetToBrand()" class="text-gray-400 hover:text-white text-sm underline decoration-ksy-gold underline-offset-4">Retour aux marques</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. BLOC SÉLECTION CATÉGORIE (Reveal) -->
+    <section id="category-section" class="py-16 bg-[#08172c] relative hidden reveal-section border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <div class="flex justify-center items-center space-x-2 text-sm text-gray-400 mb-4">
+                    <span id="breadcrumb-brand">Brand</span>
+                    <i class="fas fa-chevron-right text-xs text-ksy-gold"></i>
+                    <span id="breadcrumb-model" class="text-white">Model</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white">Catégorie de Pièce</h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto" id="category-grid">
+                <!-- Généré par JS -->
+            </div>
+            
+             <div class="mt-8 text-center">
+                <button onclick="resetToModel()" class="text-gray-400 hover:text-white text-sm underline decoration-ksy-gold underline-offset-4">Changer de modèle</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. AFFICHAGE DES PRODUITS (Reveal) -->
+    <section id="product-section" class="py-20 bg-ksy-white text-ksy-blue relative hidden reveal-section min-h-screen">
+        <div class="max-w-7xl mx-auto px-4">
+            
+            <!-- En-tête section produits -->
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 pb-6 border-b border-gray-200">
+                <div>
+                    <h2 class="text-3xl font-serif font-bold text-ksy-blue mb-2">Résultats</h2>
+                    <p class="text-gray-500 text-sm" id="result-context">Affichage des pièces disponibles</p>
+                </div>
+                
+                <!-- 7. FILTRAGE PAR ANNÉE -->
+                <div class="mt-4 md:mt-0 flex items-center space-x-4">
+                    <label for="year-filter" class="text-sm font-semibold text-ksy-blue">Année modèle :</label>
+                    <select id="year-filter" class="bg-gray-100 border border-gray-300 text-ksy-blue text-sm rounded-lg focus:ring-ksy-blue focus:border-ksy-blue block p-2.5">
+                        <option value="all">Toutes les années</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="old">2020 et avant</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Grille Produits -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="product-grid">
+                <!-- Généré par JS -->
+            </div>
+            
+            <!-- Bouton Retour Catégories -->
+            <div class="mt-16 text-center">
+                <button onclick="resetToCategory()" class="px-8 py-3 border border-ksy-blue text-ksy-blue hover:bg-ksy-blue hover:text-white transition uppercase text-xs tracking-widest font-bold">
+                    Changer de catégorie
+                </button>
+            </div>
+        </div>
+    </section>
+
+            <section id="contact">
+        <!-- Premium Separator (Originally the bottom border) -->
+        <div class="h-2 w-full bg-gradient-to-r from-ksy-blue via-ksy-gold to-ksy-blue relative z-30"></div>
+
+        <!-- NEW: CORPORATE FOOTER -->
+        <footer  class="bg-ksy-white text-ksy-blue py-20 border-t border-ksy-blue/5">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center md:items-start gap-16">
+                
+                <!-- Company Trust Anchor -->
+                <div class="text-center md:text-left space-y-4 max-w-xs">
+                    <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+                         <span class="font-serif font-bold text-2xl tracking-wide">KSY Groupe</span>
+                    </div>
+                    <div class="flex flex-col items-center md:items-start gap-2">
+                        <address class="not-italic text-sm text-ksy-blue/50 leading-relaxed font-light">
+                            128 Premium Boulevard, Automotive District<br>
+                            Dakar, Senegal
+                        </address>
+                        <a href="tel:+221338000000" class="text-sm font-bold text-ksy-blue hover:text-ksy-gold transition-colors mt-2">+221 33 800 00 00</a>
+                    </div>
+                </div>
+
+                <!-- Direct Actions -->
+                <div class="flex flex-col items-center md:items-start gap-5">
+                    <span class="text-[10px] uppercase tracking-widest text-ksy-blue font-bold">Contact prioritaire</span>
+                    
+                    <a href="https://wa.me/221338000000" class="group flex items-center gap-4 text-sm text-white hover:text-ksy-gold transition-colors bg-ksy-blue px-6 py-3 rounded-sm border border-white/5 hover:border-ksy-gold/30">
+                        <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                        <span class="font-medium">WhatsApp Official</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/30 group-hover:text-ksy-gold"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    </a>
+                    
+                    <a href="mailto:contact@ksygroupe.com" class="group flex items-center gap-4 text-sm text-ksy-blue hover:text-ksy-gold transition-colors px-6">
+                        <div class="w-2 h-2 rounded-full bg-ksy-gold"></div>
+                        <span class="font-medium">contact@ksygroupe.com</span>
+                    </a>
+                </div>
+
+                <!-- Socials -->
+                <div class="flex items-center gap-6">
+                    <a href="#" class="text-ksy-blue hover:text-ksy-gold transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="#" class="text-ksy-blue hover:text-ksy-gold transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                </div>
+
+            </div>
+            
+            <div class="mt-20 text-center border-t border-ksy-blue/3 pt-8">
+                <p class="text-[10px] text-ksy-blue uppercase tracking-widest font-medium">&copy; 2026 KSY Groupe</p>
+            </div>
+        </footer>
+        </section>
+
+    <!-- MODAL DÉTAILS PRODUIT -->
+    <div id="product-modal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-black bg-opacity-80 transition-opacity backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl border-t-4 border-ksy-gold">
+                    
+                    <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="text-2xl font-serif font-bold leading-6 text-ksy-blue mb-1" id="modal-title">Nom Produit</h3>
+                                    <button onclick="closeModal()" class="text-gray-400 hover:text-red-500 transition">
+                                        <i class="fas fa-times text-xl"></i>
+                                    </button>
+                                </div>
+                                <p class="text-sm text-ksy-gold font-semibold uppercase tracking-wide mb-4" id="modal-subtitle">Marque - Modèle</p>
+                                
+                                <div class="flex flex-col md:flex-row gap-6 mt-6">
+                                    <div class="w-full md:w-1/2">
+                                        <div class="aspect-square bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border border-gray-200">
+                                             <img id="modal-image" src="" alt="Pièce" class="w-full h-full object-cover">
+                                        </div>
+                                    </div>
+                                    <div class="w-full md:w-1/2 space-y-4">
+                                        <div>
+                                            <h4 class="text-xs font-bold text-gray-500 uppercase">Description</h4>
+                                            <p class="text-sm text-gray-800" id="modal-desc">Description détaillée...</p>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-xs font-bold text-gray-500 uppercase">Compatibilité</h4>
+                                            <p class="text-sm text-gray-800" id="modal-compat">Liste des moteurs...</p>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-xs font-bold text-gray-500 uppercase">État</h4>
+                                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Neuf / Origine</span>
+                                        </div>
+                                        
+                                        <div class="pt-4 mt-4 border-t border-gray-100">
+                                            <button class="w-full bg-ksy-blue hover:bg-[#0f2a4f] text-white font-bold py-3 px-4 rounded transition duration-300 flex items-center justify-center gap-2">
+                                                <i class="fas fa-info-circle"></i> Demander plus d'infos
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script src="Marque.js"></script>
+</body>
+</html>

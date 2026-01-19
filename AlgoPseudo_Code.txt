@@ -214,3 +214,238 @@ L'objectif est d'améliorer le comportement du menu hamburger en corrigeant l'er
 La redirection vers le lien cliqué se fait mais le problème est que le bloc mobile ne disparait pas lorsqu'on clique sur un lien.
 Ton travail est de passer au crible la logique du menu hamburger afin de corriger l'erreur logique mais également de vérifier les propriétés Css afin de voir s'il y a 
 un élément bloquant. Interdiction impérative de modifier la logique restante du code ou de modifier la structure.
+
+Fais moi une analyse technique de la vidéo de fond qu'on retrouve sur la page d'Accueil du site de Masuma.com
+L'objectif pour moi est de refaire cette vidéo d'une voiture qui se décompose et met plus en valeurs les pièces détachées s'accordant ainsi 
+à la philosophie du site à savoir la vente des pièces détachées.Mais avant de parvervir à ce rendu, j'aimerai d'abord comprendre la technique
+afin de mieux manipuler.
+
+hero background 
+
+Le but est de créer un prompt ultra-technique me permettant de générer une vidéo exploded view où les pièces se séparent spatialement, tout en conservant
+leur logique mécanique, sans chaos, sans collision pour mon entreprise KSY GROUPE spécialisée dans les ventes de pièces détachées.
+La vidéo sera intégrée comme hero background dans ma page d'accueil. Il est impératif que les couleurs de la video réutilisent les couleurs du logo de l'entreprise 
+afin de respecter la charte graphique pour un rendu premium et cohérent. Une voiture faite avec nos couleurs.
+Voici les couleurs du logo et les recommandations d'utilisation à respecter :
+1.Couleur principale (Blanc : #FFFFFF) doit être représentée, utilisée à 30 %
+2.Couleur secondaire (Bleu nuit institutionnel : HEX #0B1F3B) doit être représentée, utilisée à 60 %
+3.Couleur supplémentaire (Or mat premium : HEX #C9A24D) doit être représentée, utilisée à 10 % 
+
+Je veux renvoyer une idée fondamentale aux clients à travers cette exploded view :
+On ne vend pas une voiture, on vend ce qu’il y a à l’intérieur.
+Je veux un rendu avec une modelisation 3D.
+
+En conclusion, nous allons faire un clone ou une reproduction de la vidéo de Masuma mais avec nos couleurs définies, un arrière-plan de la vidéo 
+qui rappelle le paysage africain et notre philosophie qui est de proposer des solutions haut de gamme pour les flottes de véhicules et 
+assure la distribution de pièces détachées certifiées pour le secteur automobile moderne au niveau local.
+Je veux un prompt ultra-technique très complet et bien détaillé comme dans l'analyse de description de Masuma pour un rendu ultra premium corporate.
+
+Le but est de procéder à des changements et améliorations drastiques afin de se ratacher à la nouvelle volonté du client de faire les choses simplement pour un début.
+Une volonté qui s'accorde à la vision de l'entreprise de proposer un service local et pour ce faire , nous allons réduire le site vitrine à l'image de la 
+page d'accueil du site internet de Masuma.
+Si tu as une bonne mémoire, nous avons conçu un site vitrine pour KSY GROUPE qui contenait une fusion du header et hero avec un style épuré ultra corporate premium.
+Nous allons concerver ce style mais ce que nous allons modifier c'est la structure des éléments présents dans la page d'accueil.
+Comme il est énoncé ci-haut, l'objectif est de créer une page d'accueil vitrine ultra premium épuré de KSY GROUPE afin de se ratacher à la volonté du client et pour y parvenir à 
+ce résultat, nous utiliserons le site de Masuma comme mobile de développement.
+De quoi sera constitué la nouvelle structure du site :
+1/Une fusion header et hero(video background) : 
+Dans la première version du site vitrine, on retrouvait bien évidemment une fusion header et hero background image mais cette fois-ci ce sera une fusion 
+header et hero avec une video exploded view comme il est question dans le site de Masuma.
+Et pour te réduire la tâche de travail, j'ai déjà conçu une video  exploded view qui cadre avec la charte graphique 
+de KSY GROUPE. En conclusion, une fusion entre le header et le hero video exploded view, le tout sur un seul background avec un style très épuré qui laisse l'interface respirer
+qui se marie bien avec la couleur du background. Tu peux mettre juste une vidéo temporaire tirée d'un lien Freepik et moi je m'occuperai après la génération de mettre la vraie vidéo.
+2/ les éléments constitutifs du header à savoir la barre de recherche.
+3/ Les 2 boutons CTA : recherche des pièces automobiles et recherche des modèles de voiture. Ces boutons seront positionnés juste après le hero video exploded view
+4/Le footer : dans le footer, on retrouvera les informations primaires d'une entreprise à savoir l'adresse de KSY GROUPE, le numéro WhatsApp cliquable qui redirige 
+vers le compte WhatsApp de KSY GROUPE, le numéro de téléphone, l'adresse mail avec un comportement de redirection à la boîte mail, les logos de pages sociales 
+(Facebook et instagram). Je veux un footer ultra premium corporate. 
+
+Structure : HTML 5
+Style : Tailwind UI 
+Interactions : Vanilla JS et JavaScript
+Logo : qualité vectorielles SVG
+Rendu : Corporate Premium Epuré.
+
+Le style Tailwind CSS doit reposer sur ces couleurs : 
+1.Couleur principale (Blanc : #FFFFFF) doit être représentée, utilisée à 25 %
+2.Couleur secondaire (Bleu nuit institutionnel : HEX #0B1F3B) doit être représentée, utilisée à 60 %
+3.Couleur supplémentaire pour les animations, les boutons CTA (Or mat premium : HEX #C9A24D) doit être représentée, utilisée à 10 % 
+4.Couleur additionnelle pour le texte et autres( #000000) doit être représentée, utilisée à 5 %
+
+Consignes à respecter : respecte la nouvelle structure qui cadre avec celle de Masuma. Une structure dans un design et style qui nous ressemble.
+Veille à mettre une vidéo temporaire qui cadre avec le design et les recommandations données ci-haut. Cette vidéo temporaire sera remplacée.
+
+Le but est de remplacer l'image d'illustration SVG du car par une vidéo exploded view en format MP4.
+Il faudra alors apporter quelques modifications externes, en gros quelques comportements à la vidéo comme :
+1/La vidéo doit tourner en boucle.
+2/Bloquer définitivement le son de la vidéo car dans la vidéo dispose d'une musique de fond.
+3/La vidéo doit se marier et former une seule couche avec le fond du background hero. 
+4/Conserver l'emplacement de la vidéo à la place de l'image SVG.
+
+Interdictions formelles :
+1/Il est strictement interdit de modifier le reste de la structure HTML, altérer les couleurs CSS ou changer le design Tailwind.
+Il faut respecter l'emplacement des blocs et n'intervenir que dans le remplacement de l'image SVG.
+
+Voici la structure HTML complète et  Tailwind Design
+
+
+Voici le design CSS 
+
+Je veux un remplacement méticuleux à la place concernée sans casser la structure HTML restante.
+
+
+
+Le but est de créer une page complète 'recherche des pièces détachées par marque (voitures)' similaire au design ultra premium corporate 
+de la page d'accueil  pour une uniformité générale du site. Le but de cette page, je tiens à préciser concerne l'exposition de produits et non la vente des articles.
+De ce fait, aucune mention d'affichage du prix, du panier. Une exposition qui sera soutenue par ou mettra au vu du client les informations plus détaillées en bas.
+Voici l'architecture de la page :
+1/Une fusion du header et du hero 
+2/Une loupe pour la barre de recherche qui doit être géré logiquement et éviter tout comportement statique.
+La barre de recherche doit pointer vers lees données et afficher le résultat dans un rendu premium. Cette loupe doit se positionner dans le header et veiller à la 
+redirection vers le produit recherché.
+Interdiction formelle de mettre la loupe dans le hero.
+3/Une image de voitures pour hero background. L'image doit bien se marier avec le fond du hero et former une seule couche.
+4/Le bloc de sélection  de marques présente sur le Hero background. Le Hero background doit bien jouer son rôle d'image de fond et éviter de gêner 
+ou casser le design du bloc de sélection.
+Un bloc de sélection similaire à un bloc de sélection pour un e-commerce.
+5/Le bloc de sélection des modèles. A chaque clic sur une marque, le bloc des modèles de cette marque apparait
+grâce à une animation reveal premium.
+6/Le bloc de séléction de catégorie. Après choisi le modèle, le client devra alors la catégorie. Ensuite, les produits de cette catégorie qui correspondent 
+au modèle et à la marque apparaissent suivi d'autres informations telles que la description, la compatibilité, et autres.
+7/Ne pas oublier le filtrage des données par modèle d'année 
+8/Un filtrage cohérent qui tourne sur les marques que nous disposons d'abord de type premium pour les clients qui auront du mal à reconnaitre le logo de la marque.
+9/Des images officielles de logo en format jpeg ou Png et non en format SVG.
+10/Des images en png ou jpeg pour représenter les produits.
+Voici la composition des pièces détachées par marque(voitures) chez KSY GROUPE :
+Pour début, KSY GROUPE se contentera d'une vente restreinte de ses articles. Les articles sont répartis par
+marque --> modèle ---> categorie --->  nom du produit  ---> etat ---> description ---> compatibilité ---> 
+Comme marques nous avons : 
+HYUNDAI, KIA, PEUGEOT, SUZUKI, JETOUR, BAIC, CHANGAN.
+modèles HYUNDAI nous avons : Tucson, Santa Fe, Palisade, Elantra, Kona, Sonata.
+modèles KIA : Sportage, Sorento, seltos, Picanto, Rio.
+modèles SUZUKI : Vitara, Swift, Alto, Ciaz, Baleno, Fronx, Spresso.
+modèles PEUGEOT : 208, 308, 2008, 3008, 508, Partner, Expert, Rifter, Boxer.
+modèles JETOUR : X50,X70,T2,Dashing Dasheng.
+modèles BAIC : X35, X55II, X7.
+modèles CHANGAN : CS55, Alsvin. 
+Les catégories sont donc :
+Freinage, Suspension, Electricité, Filtration, Carrosserie, refroidissement.
+concernant les produits nous avons :
+- Filtre à air
+- Feu arrière
+- Filtre à carburant
+- Bougies
+- Alternateur
+- Démarreur
+- Compresseur de clim
+- Phare avant
+- Radiateur
+- Plaquettes de frein AR
+- Amortisseur AV
+- Amortisseur AR
+- Plaquettes de frein AV 
+Pour les noms de produits qui sont les mêmes pour tous les modèles. Le nom reste le même, on rajoute simplement à la fin la marque et le modèle.
+Par exmple : Plaquettes de frein AR HYUNDAI Tucson, Plaquettes de frein AR HYUNDAI Tucson, Amortisseur AV HYUNDAI Tucson, Amortisseur AR HYUNDAI Tucson,
+Filtre à air HYUNDAI Tucson, Filtre à carburant HYUNDAI Tucson,Bougies HYUNDAI Tucson, Alternateur HYUNDAI Tucson,Démarreur HYUNDAI Tucson, Compresseur de clim HYUNDAI Tucson
+Radiateur HYUNDAI Tucson, Feu arrière HYUNDAI Tucson, Phare avant HYUNDAI Tucson, Rétroviseur HYUNDAI Tucson.
+
+Structure : HTML 5
+Style : Tailwind UI 
+Interactions : Vanilla JS et JavaScript
+
+Le style Tailwind CSS doit reposer sur ces couleurs : 
+1.Couleur principale (Blanc : #FFFFFF) doit être représentée, utilisée à 25 %
+2.Couleur secondaire (Bleu nuit institutionnel : HEX #0B1F3B) doit être représentée, utilisée à 60 %
+3.Couleur supplémentaire pour les animations, les boutons CTA (Or mat premium : HEX #C9A24D) doit être représentée, utilisée à 10 % 
+4.Couleur additionnelle pour le texte et autres( #000000) doit être représentée, utilisée à 5 %
+
+Le but est de créer une page complète 'recherche des pièces détachées'similaire au design ultra premium corporate 
+de la page d'accueil  pour une uniformité générale du site. Le but de cette page, je tiens à préciser concerne l'exposition de produits et non la vente des articles.
+De ce fait, aucune mention d'affichage du prix, du panier. Une exposition qui sera soutenue par ou mettra au vu du client les informations plus détaillées en bas.
+Voici l'architecture de la page :
+1/Une fusion du header et du hero 
+2/Une loupe pour la barre de recherche qui doit être gérée logiquement et éviter tout comportement statique.
+La barre de recherche doit pointer vers les données et afficher le résultat dans un rendu premium. Cette loupe doit se positionner dans le header et veiller à la 
+redirection vers le produit recherché.
+3/Une image de pièces détachées pour hero background. L'image doit bien se marier avec le fond du hero et former une seule couche.
+4/Le bloc de sélection  de categorie présente sur le Hero background. Le Hero background doit bien jouer son rôle d'image de fond et éviter de gêner 
+ou casser le design du bloc de sélection.
+5/Chaque catégorie sera représentée par une image en format png ou jpeg et non en svg suivi du nom de la catégorie en bas.Un bloc de sélection similaire à un bloc de sélection pour un e-commerce.
+6/A chaque clic sur une catégorie, le bloc des produits(pièces) de cette catégorie apparait grâce à une animation reveal premium.
+7/Un filtrage cohérent qui tourne sur les catégories que nous disposons d'abord de type premium.
+Pour plus de crédilité aux yeux du client, chaque produit devra avoir une image png ou jpeg et non en format SVG en plus d'autres informations
+qui seront présentes telles que :  etat ---> description ---> compatibilité
+Voici la composition des pièces détachées chez KSY GROUPE :
+Pour début, KSY GROUPE se contentera d'une vente restreinte de ses articles. Les articles sont répartis par
+categorie --->  nom du produit  ---> etat ---> description ---> compatibilité ---> 
+Les catégories sont donc :
+Freinage, Suspension, Electricité, Filtration, Carrosserie, refroidissement.
+concernant les produits nous avons :
+- Filtre à air
+- Feu arrière
+- Filtre à carburant
+- Bougies
+- Alternateur
+- Démarreur
+- Compresseur de clim
+- Phare avant
+- Radiateur
+- Plaquettes de frein AR
+- Amortisseur AV
+- Amortisseur AR
+- Plaquettes de frein AV 
+ 
+Structure : HTML 5
+Style : Tailwind UI 
+Interactions : Vanilla JS et JavaScript
+
+Le style Tailwind CSS doit reposer sur ces couleurs : 
+1.Couleur principale (Blanc : #FFFFFF) doit être représentée, utilisée à 25 %
+2.Couleur secondaire (Bleu nuit institutionnel : HEX #0B1F3B) doit être représentée, utilisée à 60 %
+3.Couleur supplémentaire pour les animations, les boutons CTA (Or mat premium : HEX #C9A24D) doit être représentée, utilisée à 10 % 
+4.Couleur additionnelle pour le texte et autres( #000000) doit être représentée, utilisée à 5 %
+
+
+L'objectif est de créer une page complète qui présente l'identité et la politique de l'entreprise KSY GROUPE à travers plusieurs sections :
+
+1.Section vision et politique de l'entreprise : KSY GROUPE place le client et la fiabilité au centre de sa chaîne logistique.
+Chez KSY GROUPE, nous croyons qu'un e‑commerce automobile performant repose sur une chaîne d'approvisionnement modernisée, transparente et humaine. 
+Notre politique logistique vise trois objectifs clairs : réduire les délais, sécuriser les livraisons, et proposer des tarifs justes adaptés aux réalités 
+africaines. Nous investissons dans des partenariats locaux pour couvrir chaque commune et province du Sénégal et de la Côte d'Ivoire,
+et déployons des procédés de vérification qualité avant départ afin que chaque pièce arrive en parfait état.
+Nous privilégions la simplicité : confirmation de commande claire, suivi en temps réel lorsque possible, échange fluide avec le service client, 
+et résolution proactive en cas d'incident. Notre vision est de contribuer à professionnaliser le secteur 
+automobile local — en offrant aux mécaniciens, garages et particuliers un accès fiable à des pièces authentiques, livrées dans des conditions optimales.
+
+2.Section Annonces : c'est ici où on annonce aux clients les nouveaux arrivages, les articles qui arrivent avec des informations précises sur la marque, 
+modèle, catégorie, nom du produit, et autres accompagné d'un compte à rebours qui montrent le temps restant jusqu'à l'arrivée et on invite les clients de réserver via le service client 
+ou en se rendant au magasin. Mais également, les communiqués officiels qui concernent l'entreprise.
+
+3.Section Politique d'achat : le but est de montrer au client comment acheter un article à KSY GROUPE. La politique actuelle de l'entreprise impose un achat ou vente 
+basés sur le présentiel. Le site constitue le canal officiel pour acquérir un produit KSY GROUPE à travers deux processus qui sont : premièrement en contactant 
+le service client ou deuxièment en se rendant au magasin. 
+KSY GROUPE promet une ouverture et une intégration(mise à jour) de vente dynamique en ligne sous peu de temps. 
+
+4.Section politique de livraison : ici, on présente la politique logistique claire et transparente de la livraison. La couverture càd, les localités où KSY GROUPE
+assurent les livraisons. KSY GROUPE s'assume de livrer à l'ensemble du territoire national du Sénégal et de la Côte d'Ivoire, toutes les provinces et régions confondues.
+Les modes de livraison, càd comment KSY GROUPE livre : Moto pour les petites & moyennes commandes; Idéal pour pièces légères et accessoires (batteries légères, filtres, bougies...).
+Livraison en centre-ville en priorité.
+Camions transporteurs pour les commandes volumineuses.Pour pièces lourdes ou lots (pare-chocs, moteurs, lots pour garages).
+Planification selon planning hebdomadaire et points relais.   
+
+5.Section vidéos : le but est de faire plonger le client au coeur de nos actions, présenter notre magasin à travers une panoplie de vidéos avec une description tout 
+en bas de la vidéo.
+
+Structure : HTML 5
+Style : Tailwind UI 
+Interactions : Vanilla JS et JavaScript
+
+Le style Tailwind CSS doit reposer sur ces couleurs : 
+1.Couleur principale (Blanc : #FFFFFF) doit être représentée, utilisée à 25 %
+2.Couleur secondaire (Bleu nuit institutionnel : HEX #0B1F3B) doit être représentée, utilisée à 60 %
+3.Couleur supplémentaire pour les animations, les boutons CTA (Or mat premium : HEX #C9A24D) doit être représentée, utilisée à 10 % 
+4.Couleur additionnelle pour le texte et autres( #000000) doit être représentée, utilisée à 5 %
+
+Je veux une présentation de 2 processus(service client ou se rendre au magasin) en format PNG ou JPEG pour la section politique d'achat.
+Des icônes vectorielles de qualité en SVG pour représenter, illustrer les zones de livraisons(localités) et modes de livraison(moto et camions transporteurs). 
+

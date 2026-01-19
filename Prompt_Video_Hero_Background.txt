@@ -1,0 +1,290 @@
+Cinematic Exploded View Automotive CGI — KSY GROUPE
+1. PROJECT IDENTITY & CORE PHILOSOPHY
+
+Brand: KSY GROUPE
+Sector: Automotive certified spare parts distribution – fleet & professional vehicles
+Core message to convey visually:
+
+“We do not sell a car. We sell what is inside.”
+
+Video usage:
+Hero background video for homepage (looped, silent, atmospheric)
+
+Tone & Positioning:
+
+Ultra-premium corporate
+
+Industrial precision
+
+Engineering authority
+
+African-rooted, globally modern
+
+2. VIDEO FORMAT & DELIVERY CONSTRAINTS
+
+Type: Pre-rendered CGI cinematic video
+
+Resolution: 1920×1080 (Full HD) – web optimized
+
+Aspect ratio: 16:9
+
+Duration: 12–18 seconds
+
+Loop: Perfect seamless loop (first and last frame identical in spatial state)
+
+Audio: None (muted background video)
+
+Compression target: Web-ready (MP4 / WebM)
+
+3. 3D MODELING REQUIREMENTS (FOUNDATIONAL)
+Vehicle Model
+
+Modern sedan or SUV (neutral, non-brand-specific)
+
+Fully disassembled mechanical structure
+
+Every component must be:
+
+Individually separated meshes
+
+Correctly positioned in real mechanical hierarchy
+
+Non-destructive topology (no fractured meshes)
+
+Required Components
+
+Exterior shell (panels, doors, hood, bumpers)
+
+Engine block (certified spare parts emphasis)
+
+Transmission system
+
+Suspension components
+
+Braking system
+
+Cooling system
+
+Electrical & electronic modules
+
+⚠️ No single combined mesh allowed
+Each piece must be logically independent.
+
+4. EXPLODED VIEW ANIMATION LOGIC (CRITICAL)
+Animation Style
+
+Exploded view engineering animation
+
+No chaos, no destruction, no random motion
+
+Components separate progressively, following real-world assembly order
+
+Motion Rules
+
+Linear or radial displacements only
+
+No exaggerated rotations
+
+Smooth easing (ease-in / ease-out)
+
+Constant velocity feel (industrial precision)
+
+Animation Phases
+
+Initial state: Fully assembled vehicle
+
+Phase 1: Exterior panels separate outward
+
+Phase 2: Subsystems emerge (engine, suspension, brakes)
+
+Phase 3: Core certified spare parts subtly highlighted
+
+End state: Balanced spatial exploded composition (readable, elegant)
+
+⚠️ No collisions
+⚠️ No overlapping geometry
+⚠️ No particle effects
+
+5. CAMERA & CINEMATOGRAPHY
+Camera Behavior
+
+Single continuous camera movement
+
+Slow cinematic dolly + micro pan
+
+No fast cuts, no aggressive zoom
+
+Camera Settings
+
+Focal length: 50–85mm (no distortion)
+
+Stable horizon
+
+Engineering documentation feel
+
+🎯 Camera must serve understanding, not spectacle.
+
+6. LIGHTING & MATERIALS (PREMIUM INDUSTRIAL)
+Lighting Setup
+
+Soft industrial HDRI base
+
+Controlled key light (top/side)
+
+Rim light for component separation
+
+Soft shadows (area lights only)
+
+Material Philosophy
+
+Clean, matte to semi-gloss finishes
+
+Metallic parts subtly reflective
+
+No dirty textures, no wear & tear
+
+7. COLOR DIRECTION — KSY GROUPE BRANDING (STRICT)
+
+The vehicle must be designed using the brand colors, not simply tinted.
+
+Color Distribution (MANDATORY)
+
+Secondary – Dominant
+
+Deep institutional midnight blue
+
+HEX #0B1F3B
+
+60% of visible surfaces
+
+Used for:
+
+Main vehicle body
+
+Structural elements
+
+Background contrast
+
+Primary – Neutral
+
+Pure white
+
+HEX #FFFFFF
+
+30%
+
+Used for:
+
+Internal components
+
+Mechanical readability
+
+Certified parts clarity
+
+Accent – Premium
+
+Matte gold
+
+HEX #C9A24D
+
+10%
+
+Used for:
+
+Key certified spare parts
+
+Strategic highlights
+
+Value signaling (never overused)
+
+⚠️ No additional colors
+⚠️ No gradients that alter brand tones
+
+8. BACKGROUND ENVIRONMENT (AFRICAN IDENTITY)
+Environment Concept
+
+Minimalist cinematic background
+
+Abstract African-inspired landscape:
+
+Subtle desert horizon
+
+Warm atmospheric depth
+
+No literal scenery, no people, no buildings
+
+Purpose
+
+Evoke Africa as a market & origin
+
+Maintain corporate seriousness
+
+Avoid tourism or folklore clichés
+
+Background must remain:
+
+Soft focus
+
+Darkened
+
+Secondary to vehicle
+
+9. POST-PROCESSING & FINAL LOOK
+
+Subtle cinematic contrast
+
+No aggressive color grading
+
+Clean blacks
+
+Slight vignette
+
+No text overlays
+
+No UI elements
+
+The result must feel:
+
+Calm
+
+Confident
+
+Technical
+
+High-end
+
+10. EMOTIONAL & SUBCONSCIOUS IMPACT
+
+Viewer must feel:
+
+Trust in engineering
+
+Confidence in certification
+
+Perception of mastery over automotive complexity
+
+Unspoken message:
+
+“KSY GROUPE understands every component of your vehicle.”
+
+11. EXPLICIT EXCLUSIONS
+
+❌ No explosions
+❌ No futuristic sci-fi effects
+❌ No holograms
+❌ No gimmicks
+❌ No marketing text inside the video
+
+This is engineering visualization, not advertising animation.
+
+12. FINAL OBJECTIVE
+
+Deliver a cinematic exploded-view 3D video, inspired by Masuma’s technical philosophy, but fully reinterpreted for KSY GROUPE, integrating:
+
+Brand colors
+
+African context
+
+Premium corporate identity
+
+Certified spare parts expertise

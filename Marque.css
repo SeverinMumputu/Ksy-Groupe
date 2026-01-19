@@ -1,7 +1,6 @@
   /* Custom Utilities for that extra airy feel */
         body {
-             background-color: #0B1F3B; /* Couleur secondaire dominante */
-            color: #FFFFFF;
+            background-color: #FFFFFF;
             overflow-x: hidden;
         }
 
@@ -122,3 +121,43 @@ section{
     transparent 85%
   );
 }
+
+ /* Animation de révélation Premium */
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Background Fusion */
+        .hero-fusion {
+            background: linear-gradient(to right, rgba(11, 31, 59, 1) 30%, rgba(11, 31, 59, 0.7) 100%), 
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Scrollbar Personnalisée */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #0B1F3B; }
+        ::-webkit-scrollbar-thumb { background: #C9A24D; }
+
+        .brand-logo-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .brand-logo-card:hover, .brand-logo-card.active {
+            border-color: #C9A24D;
+            background: rgba(201, 162, 77, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .model-pill.active {
+            background-color: #C9A24D;
+            color: #0B1F3B;
+            border-color: #C9A24D;
+        }

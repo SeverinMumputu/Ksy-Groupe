@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSY GROUPE | Catalogue Pièces Détachées</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ksy-white': '#FFFFFF',
+                        'ksy-blue': '#0B1F3B', // Institutional Midnight Blue
+                        'ksy-gold': '#C9A24D', // Premium Matte Gold
+                        'ksy-black': '#000000',
+                        'ksy-gray': '#F4F4F5',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    boxShadow: {
+                        'gold-glow': '0 4px 20px -5px rgba(201, 162, 77, 0.4)',
+                        'card-hover': '0 20px 40px -10px rgba(11, 31, 59, 0.15)',
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to bottom, rgba(11, 31, 59, 0.85), rgba(11, 31, 59, 0.95)), url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base styles */
+        body {
+            background-color: #FFFFFF;
+            overflow-x: hidden;
+        }
+        
+        /* Premium Reveal Animation */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .reveal-delay-1 { animation-delay: 0.1s; }
+        .reveal-delay-2 { animation-delay: 0.2s; }
+        .reveal-delay-3 { animation-delay: 0.3s; }
+
+        @keyframes revealUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Category Card Hover Effect */
+        .category-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: #C9A24D;
+        }
+        .category-card.active {
+            border-color: #C9A24D;
+            background-color: rgba(201, 162, 77, 0.1);
+        }
+
+        /* Product Card Animation */
+        .product-card {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.4s ease-out;
+        }
+        .product-card.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0B1F3B; }
+        ::-webkit-scrollbar-thumb { background: #C9A24D; border-radius: 3px; }
+
+        /* Search Bar Focus Glow */
+        .search-input:focus-within {
+            box-shadow: 0 0 0 2px #C9A24D, 0 10px 30px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="text-ksy-blue antialiased selection:bg-ksy-gold selection:text-white">
+
+    <!-- 
+      LAYOUT:
+      1. Header/Hero Fusion (Blue Background - 60% Visual Weight on Load)
+      2. Category Selector (Overlay)
+      3. Product Grid (White Background - 25% Visual Weight)
+      4. Footer (Blue Background)
+    -->
+
+    <!-- HEADER + HERO SECTION -->
+    <header class="relative bg-ksy-blue min-h-[85vh] flex flex-col">
+        
+        <!-- Background Image Wrapper -->
+        <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-fixed z-0"></div>
+        
+        <!-- Animated Particles/Dust (CSS only for subtle effect) -->
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 z-0 pointer-events-none"></div>
+
+        <!-- Navigation (Translucent) -->
+        <nav class="relative z-50 w-full px-6 py-6 lg:px-12 flex justify-between items-center border-b border-white/10">
+            <!-- Logo -->
+            <a href="index.html" class="group flex items-center gap-2">
+                <div class="w-10 h-10 bg-white flex items-center justify-center text-ksy-blue rounded-sm transition-transform group-hover:scale-105">
+                    <span class="font-serif font-bold text-xl">K</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif font-bold text-xl tracking-wide text-white leading-none">KSY</span>
+                    <span class="text-[0.6rem] font-sans uppercase tracking-[0.2em] text-ksy-gold font-bold">Groupe</span>
+                </div>
+            </a>
+
+            <!-- Menu (Simplified for this page) -->
+            <div class="hidden lg:flex items-center gap-10">
+                <a href="index.html" class="text-sm font-medium text-white/70 hover:text-ksy-gold transition-colors">Accueil</a>
+                <span class="text-sm font-medium text-ksy-gold border-b border-ksy-gold pb-1">Catalogue</span>
+                <a href="#contact" class="text-sm font-medium text-white/70 hover:text-ksy-gold transition-colors">Contact</a>
+            </div>
+            
+            <!-- Mobile Menu Icon -->
+             <button class="lg:hidden text-white focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </nav>
+
+        <!-- HERO CONTENT & SEARCH -->
+        <div class="relative z-10 flex-grow flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center mt-10">
+            
+            <span class="text-ksy-gold text-xs font-bold tracking-[0.3em] uppercase mb-4 reveal-up">Catalogue Officiel</span>
+            
+            <h1 class="text-4xl md:text-6xl font-serif font-bold text-white mb-6 reveal-up reveal-delay-1">
+                L'excellence <span class="italic text-ksy-gold">mécanique</span>
+            </h1>
+            
+            <p class="text-white/60 max-w-2xl text-lg font-light mb-12 reveal-up reveal-delay-2">
+                Explorez notre collection de pièces détachées certifiées. Une exposition technique dédiée aux professionnels et passionnés exigeants.
+            </p>
+
+            <!-- PREMIUM SEARCH BAR -->
+            <div class="w-full max-w-2xl relative group reveal-up reveal-delay-3">
+                <div class="search-input flex items-center bg-white/10 backdrop-blur-md border border-white/20 rounded-sm p-2 transition-all duration-300">
+                    <div class="p-3 text-ksy-gold">
+                        <i data-lucide="search" class="w-6 h-6"></i>
+                    </div>
+                    <input 
+                        type="text" 
+                        id="searchInput"
+                        placeholder="Rechercher une pièce, une référence ou un modèle..." 
+                        class="w-full bg-transparent border-none text-white placeholder-white/50 focus:ring-0 text-lg font-light px-4 h-12 focus:outline-none"
+                        autocomplete="off"
+                    >
+                    <div id="loadingIndicator" class="hidden pr-4">
+                        <div class="w-5 h-5 border-2 border-ksy-gold border-t-transparent rounded-full animate-spin"></div>
+                    </div>
+                </div>
+                <p class="text-left text-xs text-white/30 mt-2 pl-2">* Filtrez par nom, catégorie ou compatibilité véhicule.</p>
+            </div>
+        </div>
+
+        <!-- CATEGORY SELECTOR (Overlaying the Hero) -->
+        <div class="relative z-20 w-full max-w-7xl mx-auto px-6 -mb-24 mt-16 pb-12">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <!-- Categories Injection via JS -->
+                 <div id="categoryContainer" class="contents">
+                    <!-- Cards will be generated here -->
+                 </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN EXPOSITION SECTION -->
+    <main class="bg-ksy-white pt-32 pb-24 relative z-10 min-h-screen">
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-ksy-blue/10 pb-6">
+                <div>
+                    <h2 class="text-3xl font-serif font-bold text-ksy-blue mb-2">Pièces Détachées</h2>
+                    <p class="text-sm text-ksy-blue/60 font-medium" id="resultCount">Affichage de l'ensemble du catalogue</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <button onclick="resetFilters()" class="text-xs font-bold uppercase tracking-widest text-ksy-gold hover:text-ksy-blue transition-colors flex items-center gap-2">
+                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                        Réinitialiser
+                    </button>
+                </div>
+            </div>
+
+            <!-- PRODUCT GRID -->
+            <div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Products injected via JS -->
+            </div>
+
+            <!-- Empty State (Hidden by default) -->
+            <div id="emptyState" class="hidden flex flex-col items-center justify-center py-20 text-center">
+                <div class="w-16 h-16 bg-ksy-blue/5 rounded-full flex items-center justify-center text-ksy-blue/30 mb-4">
+                    <i data-lucide="package-open" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-serif text-ksy-blue mb-2">Aucune pièce trouvée</h3>
+                <p class="text-gray-500 max-w-md">Essayez de modifier vos critères de recherche ou sélectionnez une autre catégorie.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER (Consistent with Homepage) -->
+    <footer class="bg-ksy-blue text-white py-16 border-t-4 border-ksy-gold" id="contact">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+            
+            <!-- Brand -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-white flex items-center justify-center text-ksy-blue rounded-sm">
+                        <span class="font-serif font-bold">K</span>
+                    </div>
+                    <span class="font-serif font-bold text-xl">KSY Groupe</span>
+                </div>
+                <p class="text-white/50 text-sm leading-relaxed">
+                    Votre partenaire de confiance pour des pièces automobiles d'exception. Qualité d'origine, service premium.
+                </p>
+            </div>
+
+            <!-- Contact -->
+            <div class="space-y-4">
+                <h4 class="text-ksy-gold text-xs uppercase tracking-widest font-bold">Informations</h4>
+                <div class="space-y-2 text-sm text-white/70">
+                    <p class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4 text-ksy-gold"></i> 128 Premium Blvd, Dakar</p>
+                    <p class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4 text-ksy-gold"></i> +221 33 800 00 00</p>
+                    <p class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4 text-ksy-gold"></i> contact@ksygroupe.com</p>
+                </div>
+            </div>
+
+            <!-- Legal -->
+            <div class="space-y-4 md:text-right">
+                <h4 class="text-ksy-gold text-xs uppercase tracking-widest font-bold">Mentions</h4>
+                <div class="space-y-2 text-sm text-white/70">
+                    <a href="#" class="block hover:text-white">Conditions Générales</a>
+                    <a href="#" class="block hover:text-white">Politique de Confidentialité</a>
+                    <p class="pt-4 text-white/30 text-xs">© 2026 KSY Groupe. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- DATA SOURCE ---
+        const categories = [
+            { id: 'freinage', name: 'Freinage', img: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=300&q=80' },
+            { id: 'suspension', name: 'Suspension', img: 'https://images.unsplash.com/photo-1552163958-e325121b6623?auto=format&fit=crop&w=300&q=80' },
+            { id: 'electricite', name: 'Électricité', img: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=300&q=80' },
+            { id: 'filtration', name: 'Filtration', img: 'https://images.unsplash.com/photo-1635784063683-149b8cb8c66e?auto=format&fit=crop&w=300&q=80' },
+            { id: 'carrosserie', name: 'Carrosserie', img: 'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&w=300&q=80' },
+            { id: 'refroidissement', name: 'Refroidissement', img: 'https://images.unsplash.com/photo-1580273916550-e323be2ed532?auto=format&fit=crop&w=300&q=80' }
+        ];
+
+        const products = [
+            { id: 1, name: "Plaquettes de frein AV", category: "freinage", status: "Neuf", desc: "Céramique haute performance, réduction de bruit.", compat: "Toyota Land Cruiser, Hilux", img: "https://images.unsplash.com/photo-1626244247833-ce20f666f4d5?auto=format&fit=crop&w=600&q=80" },
+            { id: 2, name: "Plaquettes de frein AR", category: "freinage", status: "Neuf", desc: "Durabilité accrue, standard OEM.", compat: "Toyota Corolla, Yaris", img: "https://images.unsplash.com/photo-1626244247833-ce20f666f4d5?auto=format&fit=crop&w=600&q=80" },
+            { id: 3, name: "Amortisseur AV", category: "suspension", status: "Neuf", desc: "Hydraulique renforcé, confort optimal.", compat: "Mercedes Classe C, Classe E", img: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=600&q=80" },
+            { id: 4, name: "Amortisseur AR", category: "suspension", status: "Neuf", desc: "Gaz double tube, stabilité route.", compat: "BMW X5, X3", img: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=600&q=80" },
+            { id: 5, name: "Alternateur", category: "electricite", status: "Reconditionné", desc: "12V 150A, Bobinage cuivre pur.", compat: "Peugeot 3008, 5008", img: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=600&q=80" },
+            { id: 6, name: "Démarreur", category: "electricite", status: "Neuf", desc: "Lancement rapide, haute couple.", compat: "Renault Clio, Megane", img: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=600&q=80" },
+            { id: 7, name: "Bougies", category: "electricite", status: "Neuf", desc: "Iridium, longévité 100k km.", compat: "Universel Essence", img: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=600&q=80" },
+            { id: 8, name: "Filtre à air", category: "filtration", status: "Neuf", desc: "Filtration micro-particules, flux optimisé.", compat: "Ford Ranger, Everest", img: "https://images.unsplash.com/photo-1635784063683-149b8cb8c66e?auto=format&fit=crop&w=600&q=80" },
+            { id: 9, name: "Filtre à carburant", category: "filtration", status: "Neuf", desc: "Protection injection haute pression.", compat: "Diesel Common Rail", img: "https://images.unsplash.com/photo-1635784063683-149b8cb8c66e?auto=format&fit=crop&w=600&q=80" },
+            { id: 10, name: "Phare avant", category: "carrosserie", status: "Neuf", desc: "LED Matrix ou Halogène, verre trempé.", compat: "Audi A4, A6", img: "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&w=600&q=80" },
+            { id: 11, name: "Feu arrière", category: "carrosserie", status: "Neuf", desc: "Design fumé, LED intégrées.", compat: "Volkswagen Golf 8", img: "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&w=600&q=80" },
+            { id: 12, name: "Radiateur", category: "refroidissement", status: "Neuf", desc: "Aluminium, dissipation thermique max.", compat: "Hyundai Tucson, Santa Fe", img: "https://images.unsplash.com/photo-1580273916550-e323be2ed532?auto=format&fit=crop&w=600&q=80" },
+            { id: 13, name: "Compresseur clim", category: "refroidissement", status: "Neuf", desc: "Rotatif silencieux, gaz R134a.", compat: "Kia Sportage, Sorento", img: "https://images.unsplash.com/photo-1580273916550-e323be2ed532?auto=format&fit=crop&w=600&q=80" }
+        ];
+
+        // --- STATE MANAGEMENT ---
+        let currentCategory = 'all';
+        let searchQuery = '';
+
+        // --- DOM ELEMENTS ---
+        const categoryContainer = document.getElementById('categoryContainer');
+        const productGrid = document.getElementById('productGrid');
+        const searchInput = document.getElementById('searchInput');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const emptyState = document.getElementById('emptyState');
+        const resultCountLabel = document.getElementById('resultCount');
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            renderCategories();
+            filterProducts(); // Initial render
+        });
+
+        // --- RENDER CATEGORIES ---
+        function renderCategories() {
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = `category-card group relative h-28 w-full rounded-sm overflow-hidden border-2 border-white/10 bg-ksy-blue cursor-pointer focus:outline-none`;
+                btn.onclick = () => selectCategory(cat.id);
+                btn.dataset.id = cat.id;
+                
+                btn.innerHTML = `
+                    <img src="${cat.img}" alt="${cat.name}" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity">
+                    <div class="absolute inset-0 bg-gradient-to-t from-ksy-blue via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-3 text-center">
+                        <span class="text-white font-serif font-bold tracking-wide text-sm group-hover:text-ksy-gold transition-colors">${cat.name}</span>
+                    </div>
+                `;
+                categoryContainer.appendChild(btn);
+            });
+        }
+
+        // --- LOGIC: CATEGORY SELECTION ---
+        function selectCategory(id) {
+            // Toggle logic: if clicking active, revert to all
+            if (currentCategory === id) {
+                currentCategory = 'all';
+            } else {
+                currentCategory = id;
+            }
+
+            // Update UI classes
+            document.querySelectorAll('.category-card').forEach(card => {
+                if (card.dataset.id === currentCategory) {
+                    card.classList.add('active', 'border-ksy-gold');
+                    card.classList.remove('border-white/10');
+                } else {
+                    card.classList.remove('active', 'border-ksy-gold');
+                    card.classList.add('border-white/10');
+                }
+            });
+
+            // Trigger Search logic
+            filterProducts();
+            
+            // Scroll to grid slightly
+            if(window.innerWidth < 1024) {
+                 productGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // --- LOGIC: SEARCH & FILTER ---
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase();
+            loadingIndicator.classList.remove('hidden');
+            
+            // Debounce for "Network feel"
+            clearTimeout(window.searchTimeout);
+            window.searchTimeout = setTimeout(() => {
+                filterProducts();
+                loadingIndicator.classList.add('hidden');
+            }, 300);
+        });
+
+        function resetFilters() {
+            searchInput.value = '';
+            searchQuery = '';
+            currentCategory = 'all';
+            document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active', 'border-ksy-gold'));
+            filterProducts();
+        }
+
+        function filterProducts() {
+            const filtered = products.filter(product => {
+                const matchesCategory = currentCategory === 'all' || product.category === currentCategory;
+                const matchesSearch = 
+                    product.name.toLowerCase().includes(searchQuery) || 
+                    product.compat.toLowerCase().includes(searchQuery) ||
+                    product.desc.toLowerCase().includes(searchQuery);
+                
+                return matchesCategory && matchesSearch;
+            });
+
+            renderProducts(filtered);
+        }
+
+        // --- RENDER PRODUCTS ---
+        function renderProducts(items) {
+            productGrid.innerHTML = '';
+            
+            if (items.length === 0) {
+                emptyState.classList.remove('hidden');
+                resultCountLabel.innerText = "0 résultat trouvé";
+            } else {
+                emptyState.classList.add('hidden');
+                resultCountLabel.innerText = `${items.length} pièce${items.length > 1 ? 's' : ''} disponible${items.length > 1 ? 's' : ''}`;
+                
+                items.forEach((product, index) => {
+                    const card = document.createElement('div');
+                    // Premium styling for Card
+                    card.className = "product-card bg-white group rounded-sm border border-gray-100 hover:border-ksy-gold/30 hover:shadow-card-hover transition-all duration-300 overflow-hidden";
+                    card.style.animationDelay = `${index * 50}ms`; // Staggered animation
+                    
+                    card.innerHTML = `
+                        <!-- Image Container -->
+                        <div class="relative h-48 w-full bg-gray-50 overflow-hidden border-b border-gray-100">
+                            <img src="${product.img}" alt="${product.name}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute top-3 left-3">
+                                <span class="px-2 py-1 bg-ksy-blue text-white text-[10px] uppercase font-bold tracking-widest rounded-sm">${product.status}</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Content -->
+                        <div class="p-6">
+                            <h3 class="font-serif font-bold text-lg text-ksy-blue mb-2 group-hover:text-ksy-gold transition-colors">${product.name}</h3>
+                            
+                            <div class="space-y-3">
+                                <!-- Description -->
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="info" class="w-4 h-4 text-ksy-gold mt-0.5 flex-shrink-0"></i>
+                                    <p class="text-xs text-gray-500 line-clamp-2">${product.desc}</p>
+                                </div>
+                                
+                                <!-- Compatibility -->
+                                <div class="flex items-start gap-2 bg-ksy-blue/5 p-2 rounded-sm">
+                                    <i data-lucide="car-front" class="w-4 h-4 text-ksy-blue mt-0.5 flex-shrink-0"></i>
+                                    <div>
+                                        <p class="text-[10px] uppercase text-ksy-blue/60 font-bold">Compatibilité</p>
+                                        <p class="text-xs text-ksy-blue font-medium italic">${product.compat}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Decorative line -->
+                            <div class="w-8 h-0.5 bg-ksy-gold mt-6 group-hover:w-full transition-all duration-500"></div>
+                        </div>
+                    `;
+                    productGrid.appendChild(card);
+                    
+                    // Trigger reflow for animation
+                    setTimeout(() => card.classList.add('show'), 50);
+                });
+                
+                lucide.createIcons();
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSY GROUPE | Recherche de Pièces par Marque</title>
+    
+    <!-- Polices de prestige -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icônes Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind CSS avec configuration de couleurs stricte -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ksy-white': '#FFFFFF',
+                        'ksy-blue': '#0B1F3B', // Bleu nuit (60%)
+                        'ksy-gold': '#C9A24D', // Or mat (10%)
+                        'ksy-black': '#000000', // Noir (5%)
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    boxShadow: {
+                        'premium-glow': '0 10px 40px -10px rgba(201, 162, 77, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #FFFFFF; }
+        
+        /* Animation de révélation Premium */
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Background Fusion */
+        .hero-fusion {
+            background: linear-gradient(to right, rgba(11, 31, 59, 1) 30%, rgba(11, 31, 59, 0.7) 100%), 
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Scrollbar Personnalisée */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #0B1F3B; }
+        ::-webkit-scrollbar-thumb { background: #C9A24D; }
+
+        .brand-logo-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .brand-logo-card:hover, .brand-logo-card.active {
+            border-color: #C9A24D;
+            background: rgba(201, 162, 77, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .model-pill.active {
+            background-color: #C9A24D;
+            color: #0B1F3B;
+            border-color: #C9A24D;
+        }
+    </style>
+</head>
+<body class="text-ksy-blue antialiased">
+
+    <!-- HEADER / HERO FUSION -->
+    <header class="relative min-h-[90vh] flex flex-col hero-fusion overflow-hidden">
+        
+        <!-- Navigation -->
+        <nav class="relative z-50 w-full px-6 py-6 lg:px-12 flex justify-between items-center bg-ksy-blue/20 backdrop-blur-sm border-b border-white/10">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-white flex items-center justify-center text-ksy-blue rounded-sm">
+                    <span class="font-serif font-bold text-xl">K</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif font-bold text-xl tracking-wide text-white leading-none">KSY</span>
+                    <span class="text-[0.6rem] font-sans uppercase tracking-[0.2em] text-ksy-gold font-bold">Groupe</span>
+                </div>
+            </div>
+            <div class="hidden lg:flex gap-8 text-sm uppercase tracking-widest font-medium text-white/70">
+                <a href="#" class="hover:text-ksy-gold transition-colors">Vision</a>
+                <a href="#" class="text-ksy-gold">Pièces Détachées</a>
+                <a href="#" class="hover:text-ksy-gold transition-colors">Services</a>
+                <a href="#" class="hover:text-ksy-gold transition-colors">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 flex-grow flex flex-col items-center justify-center px-6 text-center pt-10 pb-20">
+            <h1 class="text-5xl lg:text-7xl font-serif font-bold text-white mb-6">
+                Expertise <span class="text-ksy-gold italic">Automobile</span>
+            </h1>
+            <p class="text-white/60 max-w-2xl text-lg mb-12 font-light">
+                Recherchez avec précision les pièces d'origine adaptées à votre véhicule parmi nos marques partenaires exclusives.
+            </p>
+
+            <!-- Barre de Recherche Intelligente -->
+            <div class="w-full max-w-3xl relative">
+                <div class="flex items-center bg-white/10 backdrop-blur-md border border-white/20 rounded-sm p-1 shadow-2xl">
+                    <div class="p-4 text-ksy-gold">
+                        <i data-lucide="search" class="w-6 h-6"></i>
+                    </div>
+                    <input type="text" id="globalSearch" placeholder="Recherche rapide (ex: Plaquettes Tucson 2022)..." 
+                           class="w-full bg-transparent border-none text-white placeholder-white/40 focus:ring-0 text-lg px-2 py-4">
+                </div>
+            </div>
+        </div>
+
+        <!-- Brand Selector Overlay -->
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-6xl px-6 z-20">
+            <div class="bg-ksy-blue/90 backdrop-blur-xl p-8 rounded-t-lg border-t border-x border-white/10 shadow-2xl">
+                <!-- Filtre Alphabétique -->
+                <div class="flex flex-wrap justify-center gap-2 mb-8 border-b border-white/5 pb-6">
+                    <button onclick="filterBrands('ALL')" class="px-3 py-1 text-[10px] font-bold text-ksy-gold border border-ksy-gold/30 hover:bg-ksy-gold hover:text-ksy-blue transition-all rounded-full">TOUS</button>
+                    <div id="alphaFilter" class="flex gap-2"></div>
+                </div>
+
+                <!-- Grille de Marques -->
+                <div id="brandGrid" class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+                    <!-- Généré par JS -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION SÉLECTION MODÈLES -->
+    <section id="modelSection" class="reveal-section bg-ksy-blue border-t border-white/10 py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <span class="text-ksy-gold text-xs font-bold tracking-widest uppercase mb-2 block">Étape 02</span>
+                <h2 class="text-3xl font-serif font-bold text-white">Sélectionnez votre modèle</h2>
+            </div>
+            <div id="modelGrid" class="flex flex-wrap justify-center gap-4">
+                <!-- Généré par JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION CATÉGORIES ET FILTRES ANNÉE -->
+    <section id="categorySection" class="reveal-section bg-white py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center mb-12 gap-8">
+                <div>
+                    <h2 class="text-3xl font-serif font-bold text-ksy-blue">Exploration Technique</h2>
+                    <p class="text-ksy-blue/50">Précisez la catégorie et l'année de votre véhicule</p>
+                </div>
+                
+                <div class="flex items-center gap-6">
+                    <!-- Filtre Année -->
+                    <div class="flex flex-col gap-2">
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-ksy-blue/40">Année Modèle</label>
+                        <select id="yearFilter" class="bg-ksy-blue/5 border border-ksy-blue/10 px-6 py-2 rounded-sm text-sm font-medium focus:ring-1 focus:ring-ksy-gold outline-none">
+                            <option value="all">Toutes les années</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grille de Catégories -->
+            <div id="categoryGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-20">
+                <!-- Généré par JS -->
+            </div>
+
+            <!-- RÉSULTATS D'EXPOSITION -->
+            <div id="productExposition" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Produits apparaîtront ici -->
+            </div>
+            
+            <!-- État vide -->
+            <div id="emptyState" class="hidden text-center py-20 border-2 border-dashed border-ksy-blue/5">
+                <i data-lucide="info" class="w-12 h-12 text-ksy-gold mx-auto mb-4"></i>
+                <p class="text-ksy-blue/50 font-medium">Veuillez sélectionner une marque et un modèle pour afficher les pièces.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER CORPORATE -->
+    <footer class="bg-ksy-blue text-white py-16 border-t-2 border-ksy-gold">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between gap-12">
+            <div class="max-w-sm">
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-8 h-8 bg-white flex items-center justify-center text-ksy-blue rounded-sm">
+                        <span class="font-serif font-bold">K</span>
+                    </div>
+                    <span class="font-serif font-bold text-xl">KSY GROUPE</span>
+                </div>
+                <p class="text-white/40 text-sm leading-relaxed">
+                    Division Pièces Détachées. Excellence opérationnelle et distribution certifiée pour les flottes de véhicules en Afrique de l'Ouest.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-12">
+                <div>
+                    <h4 class="text-ksy-gold text-xs font-bold tracking-widest uppercase mb-6">Plateforme</h4>
+                    <ul class="text-white/60 text-sm space-y-4">
+                        <li><a href="#" class="hover:text-ksy-gold">Catalogue</a></li>
+                        <li><a href="#" class="hover:text-ksy-gold">Partenaires</a></li>
+                        <li><a href="#" class="hover:text-ksy-gold">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-ksy-gold text-xs font-bold tracking-widest uppercase mb-6">Contact</h4>
+                    <p class="text-white/60 text-sm leading-loose">
+                        Dakar, Sénégal<br>
+                        contact@ksygroupe.com<br>
+                        +221 33 800 00 00
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- DONNÉES TECHNIQUES ---
+        const data = {
+            brands: [
+                { id: 'hyundai', name: 'HYUNDAI', logo: 'https://cdn.iconscout.com/icon/free/png-256/free-hyundai-logo-icon-download-in-svg-png-gif-file-formats--brands-car-logos-pack-icons-1918485.png' },
+                { id: 'kia', name: 'KIA', logo: 'https://cdn.iconscout.com/icon/free/png-256/free-kia-logo-icon-download-in-svg-png-gif-file-formats--brands-car-logos-pack-icons-1918491.png' },
+                { id: 'peugeot', name: 'PEUGEOT', logo: 'https://cdn.iconscout.com/icon/free/png-256/free-peugeot-logo-icon-download-in-svg-png-gif-file-formats--brands-car-logos-pack-icons-1918509.png' },
+                { id: 'suzuki', name: 'SUZUKI', logo: 'https://cdn.iconscout.com/icon/free/png-256/free-suzuki-logo-icon-download-in-svg-png-gif-file-formats--brands-car-logos-pack-icons-1918520.png' },
+                { id: 'jetour', name: 'JETOUR', logo: 'https://images.seeklogo.com/logo-png/51/1/jetour-logo-png_seeklogo-513476.png' },
+                { id: 'baic', name: 'BAIC', logo: 'https://images.seeklogo.com/logo-png/33/1/baic-motor-logo-png_seeklogo-331527.png' },
+                { id: 'changan', name: 'CHANGAN', logo: 'https://images.seeklogo.com/logo-png/33/1/changan-logo-png_seeklogo-331535.png' }
+            ],
+            models: {
+                hyundai: ['Tucson', 'Santa Fe', 'Palisade', 'Elantra', 'Kona', 'Sonata'],
+                kia: ['Sportage', 'Sorento', 'Seltos', 'Picanto', 'Rio'],
+                suzuki: ['Vitara', 'Swift', 'Alto', 'Ciaz', 'Baleno', 'Fronx', 'Spresso'],
+                peugeot: ['208', '308', '2008', '3008', '508', 'Partner', 'Expert', 'Rifter', 'Boxer'],
+                jetour: ['X50', 'X70', 'T2', 'Dashing'],
+                baic: ['X35', 'X55 II', 'X7'],
+                changan: ['CS55', 'Alsvin']
+            },
+            categories: [
+                { id: 'freinage', name: 'Freinage', icon: 'shield-check' },
+                { id: 'suspension', name: 'Suspension', icon: 'layers' },
+                { id: 'electricite', name: 'Électrique', icon: 'zap' },
+                { id: 'filtration', name: 'Filtration', icon: 'filter' },
+                { id: 'carrosserie', name: 'Carrosserie', icon: 'layout' },
+                { id: 'refroidissement', name: 'Refroidissement', icon: 'thermometer' }
+            ],
+            productBase: [
+                "Filtre à air", "Filtre à carburant", "Feux arrière", "Bougies d’allumage", 
+                "Alternateur", "Démarreur", "Compresseur AC", "Phare avant", 
+                "Radiateur", "Plaquettes de frein arrière", "Amortisseur avant", 
+                "Amortisseur arrière", "Plaquettes de frein avant"
+            ]
+        };
+
+        // --- ÉTAT DE L'APPLICATION ---
+        let selection = {
+            brand: null,
+            model: null,
+            category: null,
+            year: 'all'
+        };
+
+        // --- INITIALISATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            initAlphaFilter();
+            renderBrands(data.brands);
+            checkEmptyState();
+        });
+
+        // --- LOGIQUE FILTRE ALPHABÉTIQUE ---
+        function initAlphaFilter() {
+            const container = document.getElementById('alphaFilter');
+            const letters = "ABCDEFGHJKLMNOPQRSTUVWXYZ".split('');
+            letters.forEach(l => {
+                const btn = document.createElement('button');
+                btn.className = "w-6 h-6 text-[10px] font-bold text-white/40 hover:text-ksy-gold transition-colors";
+                btn.innerText = l;
+                btn.onclick = () => filterBrands(l);
+                container.appendChild(btn);
+            });
+        }
+
+        function filterBrands(letter) {
+            const filtered = letter === 'ALL' 
+                ? data.brands 
+                : data.brands.filter(b => b.name.startsWith(letter));
+            renderBrands(filtered);
+        }
+
+        // --- RENDU DES MARQUES ---
+        function renderBrands(brands) {
+            const grid = document.getElementById('brandGrid');
+            grid.innerHTML = '';
+            brands.forEach(b => {
+                const card = document.createElement('div');
+                card.className = `brand-logo-card p-4 rounded-sm flex flex-col items-center justify-center cursor-pointer ${selection.brand === b.id ? 'active' : ''}`;
+                card.onclick = () => selectBrand(b.id);
+                card.innerHTML = `
+                    <img src="${b.logo}" alt="${b.name}" class="h-10 w-auto object-contain mb-3 grayscale brightness-200 group-hover:grayscale-0">
+                    <span class="text-[10px] font-bold text-white tracking-widest">${b.name}</span>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- LOGIQUE SÉLECTION MARQUE ---
+        function selectBrand(brandId) {
+            selection.brand = brandId;
+            selection.model = null;
+            selection.category = null;
+            
+            // UI Update
+            renderBrands(data.brands.filter(b => b.name !== '')); // Refresh highlights
+            
+            // Reveal Model Section
+            const section = document.getElementById('modelSection');
+            section.classList.add('visible');
+            renderModels(brandId);
+            
+            // Smooth Scroll
+            section.scrollIntoView({ behavior: 'smooth' });
+            checkEmptyState();
+        }
+
+        // --- RENDU DES MODÈLES ---
+        function renderModels(brandId) {
+            const grid = document.getElementById('modelGrid');
+            grid.innerHTML = '';
+            const models = data.models[brandId] || [];
+            models.forEach(m => {
+                const pill = document.createElement('button');
+                pill.className = `model-pill px-8 py-3 border border-white/20 text-white text-sm rounded-full hover:border-ksy-gold transition-all ${selection.model === m ? 'active' : ''}`;
+                pill.innerText = m;
+                pill.onclick = () => selectModel(m);
+                grid.appendChild(pill);
+            });
+        }
+
+        function selectModel(model) {
+            selection.model = model;
+            renderModels(selection.brand); // Refresh highlight
+            
+            const section = document.getElementById('categorySection');
+            section.classList.add('visible');
+            renderCategories();
+            section.scrollIntoView({ behavior: 'smooth' });
+            checkEmptyState();
+        }
+
+        // --- RENDU DES CATÉGORIES ---
+        function renderCategories() {
+            const grid = document.getElementById('categoryGrid');
+            grid.innerHTML = '';
+            data.categories.forEach(c => {
+                const card = document.createElement('button');
+                card.className = `p-6 border border-ksy-blue/5 flex flex-col items-center gap-4 hover:bg-ksy-blue hover:text-white transition-all group ${selection.category === c.id ? 'bg-ksy-blue text-white' : 'bg-ksy-blue/5 text-ksy-blue'}`;
+                card.onclick = () => {
+                    selection.category = c.id;
+                    renderCategories();
+                    renderExposition();
+                };
+                card.innerHTML = `
+                    <i data-lucide="${c.icon}" class="w-6 h-6 ${selection.category === c.id ? 'text-ksy-gold' : 'text-ksy-blue group-hover:text-ksy-gold'}"></i>
+                    <span class="text-[10px] font-bold uppercase tracking-widest">${c.name}</span>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        // --- RENDU FINAL : EXPOSITION PRODUIT ---
+        function renderExposition() {
+            const container = document.getElementById('productExposition');
+            container.innerHTML = '';
+            
+            if(!selection.category) return;
+
+            // Simuler des produits basés sur la sélection
+            // Note: En conditions réelles, cela viendrait d'une base de données filtrée
+            const results = data.productBase.slice(0, 4).map(name => ({
+                id: Math.random(),
+                name: `${name} ${selection.brand.toUpperCase()} ${selection.model}`,
+                condition: 'NEUF / CERTIFIÉ',
+                desc: `Composant de haute précision conçu pour les standards de performance ${selection.brand.toUpperCase()}. Matériaux premium assurant une longévité maximale.`,
+                compat: `${selection.model} (${selection.year === 'all' ? '2020-2024' : selection.year})`,
+                img: `https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=60&w=400`
+            }));
+
+            results.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "bg-ksy-blue/5 rounded-sm overflow-hidden border border-transparent hover:border-ksy-gold/50 transition-all flex flex-col";
+                card.innerHTML = `
+                    <div class="h-48 overflow-hidden bg-white flex items-center justify-center p-8">
+                        <img src="${p.img}" alt="${p.name}" class="max-h-full object-contain mix-blend-multiply opacity-80">
+                    </div>
+                    <div class="p-8 space-y-4 flex-grow">
+                        <div class="flex justify-between items-start">
+                            <span class="text-ksy-gold text-[9px] font-bold tracking-[0.2em] uppercase">${p.condition}</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-lg text-ksy-blue leading-snug">${p.name}</h3>
+                        <p class="text-xs text-ksy-blue/60 leading-relaxed">${p.desc}</p>
+                        
+                        <div class="pt-4 border-t border-ksy-blue/10">
+                            <p class="text-[10px] font-bold uppercase text-ksy-blue/40 tracking-widest mb-1">Compatibilité Technique</p>
+                            <p class="text-xs font-semibold text-ksy-blue">${p.compat}</p>
+                        </div>
+                    </div>
+                    <div class="px-8 pb-8">
+                        <button class="w-full py-3 border border-ksy-blue text-ksy-blue text-[10px] font-bold uppercase tracking-widest hover:bg-ksy-blue hover:text-white transition-all">
+                            Demander une fiche technique
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            checkEmptyState();
+        }
+
+        function checkEmptyState() {
+            const empty = document.getElementById('emptyState');
+            const grid = document.getElementById('productExposition');
+            if (grid.children.length === 0) {
+                empty.classList.remove('hidden');
+            } else {
+                empty.classList.add('hidden');
+            }
+        }
+
+        // Filtre année listener
+        document.getElementById('yearFilter').addEventListener('change', (e) => {
+            selection.year = e.target.value;
+            if(selection.category) renderExposition();
+        });
+
+    </script>
+</body>
+</html>

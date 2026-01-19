@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSY GROUPE | Identité & Politique</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome pour les icônes vectorielles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Configuration des couleurs -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ksy: {
+                            white: '#FFFFFF',
+                            blue: '#0B1F3B',
+                            gold: '#C9A24D',
+                            black: '#000000',
+                            gray: '#F3F4F6'
+                        }
+                    },
+                     fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    backgroundImage: {
+                        'hero-corporate': "url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2301&auto=format&fit=crop')",
+                        'pattern-geo': "url('https://www.transparenttextures.com/patterns/cubes.png')"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B1F3B;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+        
+        /* Scrollbar Premium */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B1F3B; }
+        ::-webkit-scrollbar-thumb { background: #C9A24D; border-radius: 4px; }
+
+        .glass-effect {
+            background: rgba(11, 31, 59, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Animation Reveal */
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Countdown Box Style */
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(201, 162, 77, 0.3);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- NAVIGATION (Similaire au catalogue mais avec Hamburger) -->
+    <nav class="fixed w-full z-50 glass-effect border-b border-ksy-gold/20" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <div class="text-2xl font-serif font-bold tracking-widest text-ksy-white">
+                        <a href="index.html">KSY <span class="text-ksy-gold">GROUPE</span></a>
+                    </div>
+                </div>
+
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+               <a href="Ksy_groupe.html#annonces" class="text-ksy-gold border-b border-ksy-gold pb-1">Annonces</a>
+                <a href="Ksy_groupe.html#vision" class="text-gray-300 hover:text-ksy-gold transition">Ksy Groupe</a>
+                <a href="Ksy_groupe.html#videos" class="text-gray-300 hover:text-ksy-gold transition">Vidéos</a>
+                <a href="index.html#contact" class="text-gray-300 hover:text-ksy-gold transition">Contact</a>
+                </div>
+
+                <!-- Hamburger Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-ksy-gold hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-ksy-blue border-t border-white/10 absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="Ksy_groupe.html#annonces" class="text-ksy-gold border-b border-ksy-gold pb-1">Annonces</a>
+                    <a href="Ksy_groupe.html#vision" class="text-gray-300 hover:text-ksy-gold transition">Ksy Groupe</a>
+                    <a href="Ksy_groupe.html#videos" class="text-gray-300 hover:text-ksy-gold transition">Vidéos</a>
+                    <a href="index.html#contact" class="text-gray-300 hover:text-ksy-gold transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative h-[60vh] flex items-center justify-center">
+        <div class="absolute inset-0 bg-hero-corporate bg-cover bg-center bg-fixed">
+            <div class="absolute inset-0 bg-ksy-blue/80 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-ksy-blue via-transparent to-transparent"></div>
+        </div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in-up">
+            <h2 class="text-ksy-gold text-sm uppercase tracking-[0.5em] mb-4 font-semibold">Notre Identité</h2>
+            <h1 class="text-4xl md:text-6xl font-serif font-bold text-white mb-6 leading-tight text-shadow">
+                Fiabilité & Transparence <br/> au cœur de l'Afrique
+            </h1>
+            <p class="text-gray-200 text-lg font-light leading-relaxed max-w-2xl mx-auto">
+                Moderniser la chaîne logistique automobile pour le Sénégal et la Côte d'Ivoire.
+            </p>
+        </div>
+    </header>
+
+    <!-- 1. VISION & POLITIQUE (Layout Editorial) -->
+    <section id="vision" class="py-20 bg-white text-ksy-blue relative reveal-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Texte -->
+                <div>
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="h-[2px] w-12 bg-ksy-gold"></div>
+                        <span class="text-ksy-gold font-bold uppercase tracking-widest text-sm">Vision & Politique</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold mb-8 text-ksy-blue">Le client au centre de notre chaîne logistique</h2>
+                    
+                    <div class="space-y-6 text-gray-600 leading-relaxed text-justify">
+                        <p>
+                            Chez <strong>KSY GROUPE</strong>, nous croyons qu'un e‑commerce automobile performant repose sur une chaîne d'approvisionnement modernisée, transparente et humaine.
+                        </p>
+                        <p>
+                            Notre politique logistique vise trois objectifs clairs : <strong>réduire les délais, sécuriser les livraisons, et proposer des tarifs justes</strong> adaptés aux réalités africaines. Nous investissons dans des partenariats locaux pour couvrir chaque commune et province du Sénégal et de la Côte d'Ivoire, et déployons des procédés de vérification qualité avant départ afin que chaque pièce arrive en parfait état.
+                        </p>
+                        <p>
+                            Nous privilégions la simplicité : confirmation de commande claire, suivi en temps réel lorsque possible, échange fluide avec le service client, et résolution proactive en cas d'incident.
+                        </p>
+                        <p class="italic border-l-4 border-ksy-gold pl-4 text-ksy-blue font-medium">
+                            "Notre vision est de contribuer à professionnaliser le secteur automobile local — en offrant aux mécaniciens, garages et particuliers un accès fiable à des pièces authentiques."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Image / Illustration -->
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-ksy-gold hidden md:block"></div>
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1632&auto=format&fit=crop" 
+                         alt="Service Client KSY" 
+                         class="w-full h-auto rounded-lg shadow-2xl object-cover grayscale hover:grayscale-0 transition duration-700">
+                    <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-ksy-gold hidden md:block"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. SECTION ANNONCES (Nouveaux Arrivages avec Countdown) -->
+    <section id="annonces" class="py-20 bg-ksy-blue bg-pattern-geo relative border-t border-white/5 reveal-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-serif font-bold text-white mb-2">Annonces & Arrivages</h2>
+                <div class="h-1 w-20 bg-ksy-gold mx-auto"></div>
+            </div>
+
+            <!-- Carte Principal Arrivage -->
+            <div class="bg-gradient-to-br from-[#0f2a4f] to-[#08172c] rounded-2xl p-8 md:p-12 shadow-2xl border border-ksy-gold/20 flex flex-col md:flex-row gap-12 items-center">
+                
+                <div class="w-full md:w-1/2">
+                    <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block animate-pulse">Bientôt Disponible</span>
+                    <h3 class="text-2xl md:text-4xl font-serif font-bold text-white mb-4">Arrivage Massif : Moteurs & Boites</h3>
+                    <ul class="text-gray-300 space-y-2 mb-6 text-sm">
+                        <li><i class="fas fa-check text-ksy-gold mr-2"></i> Marque : <span class="text-white">HYUNDAI / KIA</span></li>
+                        <li><i class="fas fa-check text-ksy-gold mr-2"></i> Modèles : <span class="text-white">Santa Fe 2023, Sorento 2024</span></li>
+                        <li><i class="fas fa-check text-ksy-gold mr-2"></i> Catégorie : <span class="text-white">Moteurs Complets Certifiés</span></li>
+                    </ul>
+                    
+                    <div class="flex gap-4">
+                        <button class="bg-ksy-gold text-ksy-blue font-bold py-3 px-6 rounded hover:bg-white transition flex items-center gap-2">
+                            <i class="fas fa-phone"></i> Réserver via Service Client
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Compte à rebours -->
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <div class="grid grid-cols-4 gap-4 text-center">
+                        <div class="countdown-box p-4 rounded-lg w-20 md:w-24">
+                            <span id="days" class="block text-3xl font-bold text-ksy-gold">03</span>
+                            <span class="text-xs uppercase text-gray-400">Jours</span>
+                        </div>
+                        <div class="countdown-box p-4 rounded-lg w-20 md:w-24">
+                            <span id="hours" class="block text-3xl font-bold text-ksy-gold">12</span>
+                            <span class="text-xs uppercase text-gray-400">Heures</span>
+                        </div>
+                        <div class="countdown-box p-4 rounded-lg w-20 md:w-24">
+                            <span id="minutes" class="block text-3xl font-bold text-ksy-gold">45</span>
+                            <span class="text-xs uppercase text-gray-400">Min</span>
+                        </div>
+                        <div class="countdown-box p-4 rounded-lg w-20 md:w-24">
+                            <span id="seconds" class="block text-3xl font-bold text-ksy-gold">30</span>
+                            <span class="text-xs uppercase text-gray-400">Sec</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Communiqués Officiels -->
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white/5 p-6 rounded-lg border-l-4 border-ksy-gold">
+                    <p class="text-xs text-ksy-gold mb-1">Communiqué Officiel - 19 Jan 2026</p>
+                    <h4 class="text-white font-bold mb-2">Extension du réseau de distribution</h4>
+                    <p class="text-sm text-gray-400">Ouverture prochaine de notre point relais à Bouaké (Côte d'Ivoire).</p>
+                </div>
+                <div class="bg-white/5 p-6 rounded-lg border-l-4 border-gray-500">
+                    <p class="text-xs text-gray-400 mb-1">Information - 15 Jan 2026</p>
+                    <h4 class="text-white font-bold mb-2">Mise à jour des tarifs logistiques</h4>
+                    <p class="text-sm text-gray-400">Optimisation des coûts de transport pour la zone Dakar-Plateau.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. POLITIQUE D'ACHAT (Visuel PNG/JPG) -->
+    <section class="py-20 bg-gray-50 text-ksy-blue reveal-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-ksy-gold font-bold uppercase tracking-widest text-sm">Comment acheter ?</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-ksy-blue mt-2">Politique d'Achat KSY</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto mt-4 text-sm">
+                    Actuellement, nos transactions se font en présentiel ou assistées par téléphone. 
+                    <span class="text-ksy-gold font-bold">L'achat en ligne automatisé arrive très bientôt.</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                
+                <!-- Option 1: Service Client -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 border border-gray-100">
+                    <div class="h-64 overflow-hidden relative">
+                        <!-- Image PNG/JPG Représentative -->
+                        <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=1470&auto=format&fit=crop" 
+                             alt="Service Client Téléphone" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-ksy-blue/30 group-hover:bg-ksy-blue/10 transition"></div>
+                        <div class="absolute bottom-0 left-0 bg-ksy-gold text-ksy-blue font-bold px-4 py-2 text-sm uppercase">Option 1</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-serif font-bold mb-4">Via Service Client</h3>
+                        <ol class="space-y-3 text-gray-600 list-decimal list-inside marker:text-ksy-gold marker:font-bold">
+                            <li>Repérez l'article sur le catalogue.</li>
+                            <li>Contactez nos experts au <strong>+33 1 23 45 67 89</strong>.</li>
+                            <li>Validation de la disponibilité et réservation.</li>
+                            <li>Paiement à la livraison ou via Mobile Money.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Option 2: Magasin -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 border border-gray-100">
+                    <div class="h-64 overflow-hidden relative">
+                         <!-- Image PNG/JPG Représentative -->
+                        <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=1470&auto=format&fit=crop" 
+                             alt="Achat en Magasin" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-ksy-blue/30 group-hover:bg-ksy-blue/10 transition"></div>
+                        <div class="absolute bottom-0 left-0 bg-ksy-blue text-white font-bold px-4 py-2 text-sm uppercase">Option 2</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-serif font-bold mb-4">Au Magasin</h3>
+                        <ol class="space-y-3 text-gray-600 list-decimal list-inside marker:text-ksy-gold marker:font-bold">
+                            <li>Rendez-vous à notre showroom principal.</li>
+                            <li>Conseil personnalisé avec nos techniciens.</li>
+                            <li>Inspection physique de la pièce.</li>
+                            <li>Paiement comptant et retrait immédiat.</li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. POLITIQUE DE LIVRAISON (Map & Icones Vectorielles) -->
+    <section class="py-20 bg-ksy-blue text-white relative reveal-section border-t border-white/10">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cartographer.png')] opacity-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Zone de Couverture -->
+                <div class="lg:col-span-5">
+                    <h2 class="text-3xl font-serif font-bold mb-6">Couverture Nationale</h2>
+                    <p class="text-gray-300 mb-8 leading-relaxed">
+                        KSY GROUPE assure la livraison sur l'ensemble du territoire national du 
+                        <span class="text-ksy-gold font-bold">Sénégal</span> et de la 
+                        <span class="text-ksy-gold font-bold">Côte d'Ivoire</span>, toutes provinces et régions confondues.
+                    </p>
+                    
+                    <!-- Liste des Régions (Illustration) -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center space-x-3 bg-white/5 p-3 rounded">
+                            <i class="fas fa-map-marker-alt text-ksy-gold"></i>
+                            <span class="text-sm">Grand Dakar</span>
+                        </div>
+                        <div class="flex items-center space-x-3 bg-white/5 p-3 rounded">
+                            <i class="fas fa-map-marker-alt text-ksy-gold"></i>
+                            <span class="text-sm">Abidjan & Banlieues</span>
+                        </div>
+                        <div class="flex items-center space-x-3 bg-white/5 p-3 rounded">
+                            <i class="fas fa-map-marker-alt text-ksy-gold"></i>
+                            <span class="text-sm">Provinces Intérieures</span>
+                        </div>
+                        <div class="flex items-center space-x-3 bg-white/5 p-3 rounded">
+                            <i class="fas fa-map-marker-alt text-ksy-gold"></i>
+                            <span class="text-sm">Zones Frontalières</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modes de Livraison (Icones Vectorielles) -->
+                <div class="lg:col-span-7">
+                    <h2 class="text-3xl font-serif font-bold mb-6">Modes de Livraison</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <!-- Moto -->
+                        <div class="bg-gradient-to-br from-[#0f2a4f] to-[#08172c] p-6 rounded-xl border border-white/10 hover:border-ksy-gold transition group">
+                            <div class="w-16 h-16 bg-ksy-gold/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-ksy-gold group-hover:text-ksy-blue text-ksy-gold transition-colors duration-300">
+                                <!-- Icône vectorielle Moto -->
+                                <i class="fas fa-motorcycle text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Livraison Moto Express</h3>
+                            <p class="text-sm text-gray-400 mb-2">Petites & Moyennes Commandes</p>
+                            <ul class="text-xs text-gray-500 space-y-1">
+                                <li>• Pièces légères (Filtres, Bougies)</li>
+                                <li>• Priorité Centre-Ville</li>
+                                <li>• Délai : 2h - 4h</li>
+                            </ul>
+                        </div>
+
+                        <!-- Camion -->
+                        <div class="bg-gradient-to-br from-[#0f2a4f] to-[#08172c] p-6 rounded-xl border border-white/10 hover:border-ksy-gold transition group">
+                            <div class="w-16 h-16 bg-ksy-gold/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-ksy-gold group-hover:text-ksy-blue text-ksy-gold transition-colors duration-300">
+                                <!-- Icône vectorielle Camion -->
+                                <i class="fas fa-truck-moving text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Camions Transporteurs</h3>
+                            <p class="text-sm text-gray-400 mb-2">Commandes Volumineuses</p>
+                            <ul class="text-xs text-gray-500 space-y-1">
+                                <li>• Moteurs, Carrosserie, Lots Garages</li>
+                                <li>• Planification Hebdomadaire</li>
+                                <li>• Livraison Points Relais</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SECTION VIDÉOS (Immersion) -->
+    <section id="videos" class="py-20 bg-white text-ksy-blue reveal-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-ksy-gold font-bold uppercase tracking-widest text-sm">Immersion</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Au cœur de KSY GROUPE</h2>
+                <p class="text-gray-500 text-sm">Découvrez nos infrastructures, nos équipes et nos arrivages en vidéo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Vidéo 1 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-video bg-gray-900 rounded-lg overflow-hidden shadow-lg mb-4">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1470&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-ksy-gold/90 rounded-full flex items-center justify-center pl-1 group-hover:scale-110 transition duration-300">
+                                <i class="fas fa-play text-white text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1 group-hover:text-ksy-gold transition">Visite du Showroom</h3>
+                    <p class="text-xs text-gray-500">Une présentation complète de notre espace de vente à Dakar.</p>
+                </div>
+
+                <!-- Vidéo 2 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-video bg-gray-900 rounded-lg overflow-hidden shadow-lg mb-4">
+                        <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1374&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-ksy-gold/90 rounded-full flex items-center justify-center pl-1 group-hover:scale-110 transition duration-300">
+                                <i class="fas fa-play text-white text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1 group-hover:text-ksy-gold transition">Processus de Contrôle Qualité</h3>
+                    <p class="text-xs text-gray-500">Comment nous vérifions chaque moteur avant la mise en vente.</p>
+                </div>
+
+                <!-- Vidéo 3 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-video bg-gray-900 rounded-lg overflow-hidden shadow-lg mb-4">
+                        <img src="https://images.unsplash.com/photo-1605218427368-35b01990c95a?q=80&w=1374&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-ksy-gold/90 rounded-full flex items-center justify-center pl-1 group-hover:scale-110 transition duration-300">
+                                <i class="fas fa-play text-white text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1 group-hover:text-ksy-gold transition">Témoignages Clients</h3>
+                    <p class="text-xs text-gray-500">La parole aux professionnels qui nous font confiance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+           <section id="contact">
+        <!-- Premium Separator (Originally the bottom border) -->
+        <div class="h-2 w-full bg-gradient-to-r from-ksy-blue via-ksy-gold to-ksy-blue relative z-30"></div>
+
+        <!-- NEW: CORPORATE FOOTER -->
+        <footer  class="bg-ksy-white text-ksy-blue py-20 border-t border-ksy-blue/5">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center md:items-start gap-16">
+                
+                <!-- Company Trust Anchor -->
+                <div class="text-center md:text-left space-y-4 max-w-xs">
+                    <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+                         <span class="font-serif font-bold text-2xl tracking-wide">KSY Groupe</span>
+                    </div>
+                    <div class="flex flex-col items-center md:items-start gap-2">
+                        <address class="not-italic text-sm text-ksy-blue/50 leading-relaxed font-light">
+                            128 Premium Boulevard, Automotive District<br>
+                            Dakar, Senegal
+                        </address>
+                        <a href="tel:+221338000000" class="text-sm font-bold text-ksy-blue hover:text-ksy-gold transition-colors mt-2">+221 33 800 00 00</a>
+                    </div>
+                </div>
+
+                <!-- Direct Actions -->
+                <div class="flex flex-col items-center md:items-start gap-5">
+                    <span class="text-[10px] uppercase tracking-widest text-ksy-blue font-bold">Contact prioritaire</span>
+                    
+                    <a href="https://wa.me/221338000000" class="group flex items-center gap-4 text-sm text-white hover:text-ksy-gold transition-colors bg-ksy-blue px-6 py-3 rounded-sm border border-white/5 hover:border-ksy-gold/30">
+                        <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                        <span class="font-medium">WhatsApp Official</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/30 group-hover:text-ksy-gold"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    </a>
+                    
+                    <a href="mailto:contact@ksygroupe.com" class="group flex items-center gap-4 text-sm text-ksy-blue hover:text-ksy-gold transition-colors px-6">
+                        <div class="w-2 h-2 rounded-full bg-ksy-gold"></div>
+                        <span class="font-medium">contact@ksygroupe.com</span>
+                    </a>
+                </div>
+
+                <!-- Socials -->
+                <div class="flex items-center gap-6">
+                    <a href="#" class="text-ksy-blue hover:text-ksy-gold transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="#" class="text-ksy-blue hover:text-ksy-gold transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                </div>
+
+            </div>
+            
+            <div class="mt-20 text-center border-t border-ksy-blue/3 pt-8">
+                <p class="text-[10px] text-ksy-blue uppercase tracking-widest font-medium">&copy; 2026 KSY Groupe</p>
+            </div>
+        </footer>
+        </section>
+
+    <!-- Scripts JS -->
+    <script>
+        // --- 1. Reveal Animation on Scroll ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal-section').forEach((section) => {
+            observer.observe(section);
+        });
+
+        // --- 2. Mobile Menu Toggle ---
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- 3. Countdown Timer Logic ---
+        // Date cible : 3 jours à partir de maintenant pour la démo
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 3);
+        targetDate.setHours(12, 0, 0);
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                // Si expiré, on reset pour la démo
+                targetDate.setDate(targetDate.getDate() + 3);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // First call immediately
+
+    </script>
+</body>
+</html>
