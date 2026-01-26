@@ -49,13 +49,6 @@
         const breadcrumbCurrent = document.getElementById('breadcrumb-current');
         const categoryTitle = document.getElementById('category-title');
 
-            // - Mobile Menu Toggle ---
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
         
         // --- INITIALISATION ---
         function init() {
@@ -151,12 +144,19 @@
         // --- SEARCH LOGIC ---
         function setupSearch() {
             const input = document.getElementById('global-search');
-            const resultsBox = document.getElementById('search-results-dropdown');
+            const desktopResultsBox = document.getElementById('search-results-dropdown');
+const mobileResultsBox = document.getElementById('mobile-search-results');
+
+function getActiveResultsBox() {
+    return window.innerWidth < 768 ? mobileResultsBox : desktopResultsBox;
+}
+
             const inputMobile = document.getElementById('mobile-search');
 
             const performSearch = (query) => {
                 if (query.length < 2) {
-                    resultsBox.classList.add('hidden');
+                    const box = getActiveResultsBox();
+                    box.classList.add('hidden');
                     return;
                 }
 
@@ -184,25 +184,35 @@
                 if(el) el.addEventListener('input', (e) => performSearch(e.target.value));
             });
 
-            function renderSearchResults(results) {
-                if (results.length === 0) {
-                    resultsBox.innerHTML = '<div class="p-4 text-sm text-gray-500 italic">Aucun produit trouvé. Essayez "Freinage"...</div>';
-                } else {
-                    resultsBox.innerHTML = results.map(r => `
-                        <div class="p-3 hover:bg-gray-50 cursor-pointer flex items-center gap-4 border-b border-gray-100 last:border-0 transition-colors" 
-                             onclick="handleSearchResultClick('${r.type}', '${r.id || r.catId}', '${r.text.replace(/'/g, "\\'")}', '${r.img || ''}')">
-                            <div class="w-10 h-10 bg-ksy-blue/5 rounded flex items-center justify-center text-ksy-blue overflow-hidden">
-                                ${r.img ? `<img src="${r.img}" class="w-full h-full object-cover">` : `<i class="fas fa-folder"></i>`}
-                            </div>
-                            <div>
-                                <p class="text-sm font-bold text-ksy-blue">${r.text}</p>
-                                <p class="text-[10px] text-ksy-gold uppercase tracking-wider">${r.type === 'category' ? 'Voir la catégorie' : 'Voir le produit'}</p>
-                            </div>
-                        </div>
-                    `).join('');
-                }
-                resultsBox.classList.remove('hidden');
-            }
+          function renderSearchResults(results) {
+    const box = getActiveResultsBox();
+
+    if (!box) return;
+
+    if (results.length === 0) {
+        box.innerHTML = `<div class="p-4 text-sm text-gray-500 italic">
+            Aucun produit trouvé.
+        </div>`;
+    } else {
+        box.innerHTML = results.map(r => `
+            <div class="p-3 hover:bg-gray-50 cursor-pointer flex items-center gap-4 border-b last:border-0"
+                 onclick="handleSearchResultClick('${r.type}', '${r.id || r.catId}', '${r.text.replace(/'/g, "\\'")}', '${r.img || ''}')">
+                <div class="w-10 h-10 bg-ksy-blue/5 rounded overflow-hidden flex items-center justify-center">
+                    ${r.img ? `<img src="${r.img}" class="w-full h-full object-cover">` : `<i class="fas fa-folder"></i>`}
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-ksy-blue">${r.text}</p>
+                    <p class="text-[10px] text-ksy-gold uppercase">
+                        ${r.type === 'category' ? 'Voir la catégorie' : 'Voir le produit'}
+                    </p>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    box.classList.remove('hidden');
+}
+
         }
 
         function handleSearchResultClick(type, catId, name, img) {
@@ -247,7 +257,23 @@
 
         // Click outside search to close
         document.addEventListener('click', function(event) {
-            const searchBox = document.getElementById('search-results-dropdown');
+            document.addEventListener('click', (e) => {
+    const desktopBox = document.getElementById('search-results-dropdown');
+    const mobileBox = document.getElementById('mobile-search-results');
+    const desktopInput = document.getElementById('global-search');
+    const mobileInput = document.getElementById('mobile-search');
+
+    if (
+        (!desktopInput || !desktopInput.contains(e.target)) &&
+        (!mobileInput || !mobileInput.contains(e.target)) &&
+        (!desktopBox.contains(e.target)) &&
+        (!mobileBox.contains(e.target))
+    ) {
+        desktopBox.classList.add('hidden');
+        mobileBox.classList.add('hidden');
+    }
+});
+
             const searchInput = document.getElementById('global-search');
             if (!searchInput.contains(event.target) && !searchBox.contains(event.target)) {
                 searchBox.classList.add('hidden');

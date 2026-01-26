@@ -1,163 +1,187 @@
-  /* Custom Utilities for that extra airy feel */
+
+        /* Styles personnalisés pour les transitions et scrollbar */
         body {
-            background-color: #FFFFFF;
+            background-color: #0B1F3B; /* Couleur secondaire dominante */
+            color: #FFFFFF;
             overflow-x: hidden;
         }
 
-            html{
-  scroll-behavior: smooth;
+         /* HEADER LINKS */
+.nav-link {
+  position: relative;
+  color: rgba(11, 31, 59, 0.75);
+  transition: color 0.3s ease;
 }
-section{
-  scroll-margin-top: 80px;
+html, body {
+  width: 100%;
+  overflow-x: hidden;
 }
 
-        /* Smooth reveal animation */
-        .reveal-up {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 1px;
+  background: #C9A24D;
+  transition: width 0.35s ease;
+}
 
-        .reveal-delay-1 { animation-delay: 0.1s; }
-        .reveal-delay-2 { animation-delay: 0.2s; }
-        .reveal-delay-3 { animation-delay: 0.3s; }
+.nav-link:hover {
+  color: #0B1F3B;
+}
 
-        @keyframes revealUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+.nav-link:hover::after {
+  width: 100%;
+}
 
-        /* Subtle floating animation for the car */
-        .float-car {
-            animation: float 6s ease-in-out infinite;
-        }
+/* Mobile */
+.mobile-link {
+  color: #0B1F3B;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
+.mobile-link:hover {
+  color: #C9A24D;
+  transform: translateX(6px);
+}
 
-        /* Search input transition */
-        .search-bar {
-            width: 0;
-            opacity: 0;
-            transition: all 0.4s ease;
+        /* Masquer la scrollbar standard mais garder le scroll */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        .search-bar.active {
-            width: 200px;
-            opacity: 1;
-            padding-left: 1rem;
-            padding-right: 1rem;
+        ::-webkit-scrollbar-track {
+            background: #0B1F3B;
         }
-
-        /* Accordion Animation */
-        #inventory-accordion {
-            transition: max-height 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease-in-out;
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-        }
-        #inventory-accordion.open {
-            opacity: 1;
-        }
-
-        /* Custom Scrollbar for Inventory Grid */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(11, 31, 59, 0.05);
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
+        ::-webkit-scrollbar-thumb {
             background: #C9A24D;
             border-radius: 4px;
         }
-        
-        /* Institutional Pattern Background */
-        .bg-grid-pattern {
-            background-image: radial-gradient(#0B1F3B 0.5px, transparent 0.5px);
-            background-size: 24px 24px;
+
+        .glass-effect {
+            background: rgba(11, 31, 59, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        /* Search Highlight Animation */
-        @keyframes highlightPulse {
-            0% { box-shadow: 0 0 0 0 rgba(201, 162, 77, 0); }
-            50% { box-shadow: 0 0 0 10px rgba(201, 162, 77, 0.1); border-color: #C9A24D; }
-            100% { box-shadow: 0 0 0 0 rgba(201, 162, 77, 0); }
-        }
-        .highlight-product {
-            animation: highlightPulse 1.5s ease-out forwards;
-        }
-        .float-car::before {
-  content: "";
-  position: absolute;
-  inset: -10%;
-  background: radial-gradient(
-    circle at center,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 0.4) 35%,
-    rgba(255, 255, 255, 0.15) 55%,
-    transparent 70%
-  );
-  z-index: -1;
-  pointer-events: none;
-}
-.float-car video {
-  -webkit-mask-image: radial-gradient(
-    ellipse at center,
-    black 55%,
-    rgba(0, 0, 0, 0.85) 65%,
-    rgba(0, 0, 0, 0.4) 75%,
-    transparent 85%
-  );
-  mask-image: radial-gradient(
-    ellipse at center,
-    black 55%,
-    rgba(0, 0, 0, 0.85) 65%,
-    rgba(0, 0, 0, 0.4) 75%,
-    transparent 85%
-  );
-}
-
- /* Animation de révélation Premium */
         .reveal-section {
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .reveal-section.visible {
+        
+        .reveal-visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Hero Background Fusion */
-        .hero-fusion {
-            background: linear-gradient(to right, rgba(11, 31, 59, 1) 30%, rgba(11, 31, 59, 0.7) 100%), 
-                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1920');
-            background-size: cover;
-            background-position: center;
+        /* Effet de survol sur les cartes */
+        .card-hover {
+            transition: all 0.4s ease;
         }
-
-        /* Scrollbar Personnalisée */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #0B1F3B; }
-        ::-webkit-scrollbar-thumb { background: #C9A24D; }
-
-        .brand-logo-card {
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .brand-logo-card:hover, .brand-logo-card.active {
-            border-color: #C9A24D;
-            background: rgba(201, 162, 77, 0.05);
+        .card-hover:hover {
             transform: translateY(-5px);
-        }
-
-        .model-pill.active {
-            background-color: #C9A24D;
-            color: #0B1F3B;
+            box-shadow: 0 10px 30px -10px rgba(201, 162, 77, 0.3);
             border-color: #C9A24D;
         }
+
+        /* Animation de chargement */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #C9A24D;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        
+.social-column {
+    pointer-events: auto;
+}
+
+/* Base icon */
+.social-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 0 0 0 rgba(201, 162, 77, 0.6);
+    animation: magneticPulse 2.8s infinite ease-out;
+    transition: transform 0.3s ease;
+}
+
+.social-icon img {
+    width: 22px;
+    height: 22px;
+}
+
+/* Hover effect */
+.social-icon:hover {
+    transform: scale(1.15);
+}
+
+/* Magnetic pulse */
+@keyframes magneticPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(201, 162, 77, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 18px rgba(201, 162, 77, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(201, 162, 77, 0);
+    }
+}
+
+/* Mobile spacing */
+@media (max-width: 768px) {
+
+    .social-column {
+        top: auto;
+        bottom: 90px;          /* Passe sous les CTA */
+        right: 6px;            /* Plus proche du bord */
+        transform: none;
+        gap: 14px;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        animation-duration: 3.4s;
+    }
+
+    .social-icon img {
+        width: 18px;
+        height: 18px;
+    }
+}
+        
+footer {
+  margin-top: auto;
+}
+@media (max-width: 768px) {
+  footer {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  footer address {
+    margin-top: 0.25rem;
+  }
+
+  footer p {
+    margin-top: 0.75rem;
+  }
+}

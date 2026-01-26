@@ -449,3 +449,95 @@ Le style Tailwind CSS doit reposer sur ces couleurs :
 Je veux une présentation de 2 processus(service client ou se rendre au magasin) en format PNG ou JPEG pour la section politique d'achat.
 Des icônes vectorielles de qualité en SVG pour représenter, illustrer les zones de livraisons(localités) et modes de livraison(moto et camions transporteurs). 
 
+Le but est de modifier le positionnement de certains éléments du hero c'est à dire placer la video exploded view tout au dessus des deux boutons CTA.
+Une modification majeure qui implique aussi d'agrandir la taille de la vidéo pour la résolution du pc et fournir également la taille pour le côté responsive design.
+En effet, la vidéo actuellement possède une taille assez restreinte pour le Pc.
+Interdiction formelle de toucher à l'ensemble du design et à la structure du code.
+Ton objectif est de positionner en premier lieu la vidéo après les liens du header et avant les 2 boutons CTA et pour finir agrandir un peu la vidéo pour le 
+côté Pc. La vidéo et les boutons doivent être positionés au centre. 
+
+Le but est d'apporter des modifications drastiques au footer.
+Nous allons modifier le style et le positionnement des pages sociales(liens) qui sont instagram, Facebook, numéro de téléphone, Email.
+Pour ce faire, les liens auront maintenant une disposition latérale et un positionnement en colonnes fixe à droite comme c'est le cas dans le site internet de Masuma.com 
+une disposition latérale et un positionnement en colonne fixe à droite. C'est alignement en colonne sera présent sur le côté responsive mobile et PC.
+Et concernant le style et le design, je veux que chaque lien soit représenté par son vrai logo et ajouter à cela une animation pulse qui tourne à l'infini visible emettant un 
+champ magnétique. Sur le footer, il ne restera que l'adresse de KSY Groupe y compris le copyright. Donc, il faudra réduire la taille du footer car les liens(pages 
+sociales) seront en position latérale fixe en colonne.
+Interdiction formelle de toucher à la structure et design de parties non concernées. 
+
+Le travail attendu est de proposer une nouvelle structure de header à la page d'accueil qui dispose actuellement d'une fusion entre le header et le hero.
+Et cela, gêne drastiquement le positionnement des éléments qui suivent après. 
+A partir de la structure HTML présente et les couleurs utilisées, nous allons les réutiliser pour proposer un nouveau header indépendant et séparé du hero.
+Un header simple où la couleur blanche dominera plus que le bleu. Une logique simple du header et le hero qui suit et reste à sa place sans fusionner 
+avec le header. 
+Un header de style premium épuré avec le nom de l'entreprise KSY GROUPE à gauche suivi des liens au centre sans oublier menu hamburger pour le côté responsive 
+mobile bien géré logiquement et fonctionnel sans aucun comportement statique.
+Le hero dispose d'une video exploded view background. Interdiction formelle de toucher à la structure de la vidéo et design. Le hero est dominé par le bleu 
+et j'aimerai que pour le header le blanc domine pour montrer la séparation entre les deux. N'oublie pas les animations hover et de survol.
+Les ressources : 
+HTML 
+
+CSS
+
+En plus du header principal pésent sur la page, le travail attendu est de rajouter un deuxième header premium qui s'occupe de l'information de l'entreprise KSY Groupe 
+(identité et objectifs) à travers de liens à choisir par toi.
+Ce deuxième header a pour but d'informer le client sur l'entreprise avec un système de changement de contenu qui garde le header principal et change juste le texte.
+Le nom de ce composant HTML m'échappe mais pour plus d'illustration, ce composant est présent à la page About du site de Masuma où en bas du header principal 
+on voit trois liens(company introduction, Corporate culture, Agent information) dans un autre header.
+Le but est de reproduire ce composant à l'image de notre design et nos couleurs. Le deuxième header doit être indépendant du principal et surtout ne pas 
+gêner ou casser la structure des éléments présents. 
+Voici le texte descriptif de l'entreprise :
+ Présentation de KSY Groupe :
+KSY Groupe est un groupe spécialisé dans la distribution et les solutions liées aux équipements automobiles.
+Implanté au Sénégal et tourné vers le marché régional, KSY Groupe accompagne les particuliers, les entreprises et les institutions
+dans la mise à disposition de solutions fiables, performantes et adaptées aux réalités économiques et opérationnelles de la sous-région.
+Grâce à une solide connaissance du terrain, à des partenariats stratégiques et à une approche orientée qualité,
+KSY Groupe propose des produits et services conformes aux standards internationaux tout en tenant compte des spécificités locales.
+Notre ambition est de devenir un acteur de référence dans la région, reconnu pour son sérieux, sa fiabilité et sa capacité d’adaptation.
+Concernant le lien qui présentera les objectifs, je veux des liens SVG cohérents avec une bonne animation hover.
+Interdiction formelle de toucher au design et à la structure des éléments non concernés.
+
+HTML 
+
+CSS 
+
+Prompt Video Exploded view qui mise sur la reconnaissance visuelle des pièces dans un paysage ensoillé africain.
+A high-end cinematic 3D CGI video designed as a silent hero background for a premium corporate automotive company.
+
+The scene opens with a modern, neutral sedan or SUV fully assembled, presented in a clean, controlled industrial visualization context.
+
+The vehicle then gradually transitions into a precise exploded-view animation: exterior body panels separate first, followed by clearly identifiable automotive systems including the engine block, transmission system, suspension components, braking system, cooling system, and electronic modules.
+
+Each system and component must remain visually recognizable at all times, with accurate proportions, clear silhouettes, and sufficient spatial separation to allow immediate identification by the viewer (engine, brakes, suspension, transmission). The animation prioritizes mechanical clarity and component legibility over spectacle.
+
+Every part moves smoothly and deliberately, strictly following real-world automotive mechanical hierarchy. Movements are linear or radial only, with controlled easing, no collisions, no overlapping geometry, no destruction.
+
+The camera performs a slow, continuous cinematic dolly with subtle lateral motion, maintaining a stable horizon and an engineering documentation aesthetic. Camera framing consistently favors close-to-mid views that enhance the visual recognition of individual parts during separation phases. No fast cuts, no aggressive zooms.
+
+Lighting is premium and controlled, balancing industrial studio precision with natural daylight influence: soft but well-defined lighting, clear highlights on mechanical edges, subtle rim lighting to visually separate components, and soft, realistic shadows. Materials are clean, matte to semi-gloss, with no wear, no dirt, no damage.
+
+The vehicle design strictly follows the corporate color palette:
+– Dominant deep midnight institutional blue (#0B1F3B) used for approximately 60% of the vehicle body and structural elements
+– Clean pure white (#FFFFFF) used for approximately 30% of internal mechanical components to enhance contrast and readability
+– Subtle matte premium gold accents (#C9A24D) used sparingly (about 10%) to highlight key certified spare parts and areas of technical value
+
+The background environment is a bright, daylight African-inspired landscape, illuminated by natural sunlight. The setting evokes an authentic African environmental context through light, atmosphere, and color temperature rather than literal landmarks. The background remains clean, non-distracting, and visually secondary, while benefiting from clear daylight that reinforces realism, transparency, and trust.
+
+The overall mood is confident, technical, precise, and ultra-premium corporate, with an emphasis on clarity, reliability, and mechanical expertise rather than dramatic or cinematic excess.
+
+No text, no logos, no UI elements, no futuristic sci-fi effects, no holograms, no particles.
+
+The visual must communicate trust, engineering mastery, and certified automotive spare parts expertise, clearly expressing the idea: “We do not sell a car, we sell what is inside.”
+
+The video should be suitable for a seamless loop, with the first and last frames visually compatible in composition and spatial balance.
+
+Il existe un élément bloquant inconnu qui empêche l'affichage des résultats après recherche en mode responsive.
+Ton travail est de passer au crible l'intégralité de code et ensuite proposer les codes de solutions afin de régler ce problème qui n'apparaît 
+que lorsque la page est en mode responsive mobile. Ce comportement bloquant ne s'affiche uniquement aue sur le mode responsive. 
+Interdiction  formelle de toucher les parties non concernées. 
+
+HTML 
+
+CSS 
+
+SCRIPT 

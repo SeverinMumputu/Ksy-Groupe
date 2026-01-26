@@ -10,7 +10,9 @@
     
     <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+     <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="Marque.css">
     <!-- Google Fonts: Playfair Display (Titres Premium) & Inter (Corps) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
@@ -40,91 +42,32 @@
         }
     </script>
 
-    <style>
-        /* Styles personnalisés pour les transitions et scrollbar */
-        body {
-            background-color: #0B1F3B; /* Couleur secondaire dominante */
-            color: #FFFFFF;
-            overflow-x: hidden;
-        }
-
-        /* Masquer la scrollbar standard mais garder le scroll */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0B1F3B;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #C9A24D;
-            border-radius: 4px;
-        }
-
-        .glass-effect {
-            background: rgba(11, 31, 59, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .reveal-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .reveal-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Effet de survol sur les cartes */
-        .card-hover {
-            transition: all 0.4s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px -10px rgba(201, 162, 77, 0.3);
-            border-color: #C9A24D;
-        }
-
-        /* Animation de chargement */
-        .loader {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #C9A24D;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
 
-    <!-- 1. FUSION HEADER (Sticky) -->
-    <nav class="fixed w-full z-50 glass-effect border-b border-ksy-gold/20 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24">
-                
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.location.reload()">
-                    <div class="text-2xl font-serif font-bold tracking-widest text-ksy-white">
-                        <a href="index.html">KSY <span class="text-ksy-gold">GROUPE</span></a>
-                    </div>
-                </div>
+   <header class="relative z-50 bg-ksy-white border-b border-ksy-blue/5 w-full">
+  
+  <!-- FULL WIDTH BACKGROUND -->
+  <div class="w-full">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      <div class="flex items-center justify-between h-20">
 
-                <!-- 2. BARRE DE RECHERCHE (LOUPE) -->
+        <!-- Logo -->
+        <div class="flex items-center cursor-pointer select-none">
+          <span class="font-serif text-xl tracking-widest text-ksy-blue">
+            <a href="index.html">KSY <span class="text-ksy-gold">GROUPE</span></a>
+          </span>
+        </div>
+
+         <!-- 2. BARRE DE RECHERCHE (LOUPE) -->
                 <div class="hidden md:block relative w-1/3">
                     <div class="relative">
                         <input type="text" 
                                id="global-search"
                                placeholder="Rechercher une pièce (ex: Alternateur Tucson...)" 
-                               class="w-full bg-ksy-blue/50 text-ksy-white border border-gray-600 rounded-full py-2 pl-5 pr-12 focus:outline-none focus:border-ksy-gold focus:ring-1 focus:ring-ksy-gold transition-all text-sm placeholder-gray-400">
+                               class="w-full bg-ksy-blue text-ksy-white border border-gray-600 rounded-full py-2 pl-5 pr-12 focus:outline-none focus:border-ksy-gold focus:ring-1 focus:ring-ksy-gold transition-all text-sm placeholder-gray-400">
                         <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                            <i class="fas fa-search text-ksy-gold"></i>
+                            <i class="fas fa-search text-ksy-blue"></i>
                         </div>
                     </div>
                     <!-- Résultats de recherche live -->
@@ -133,43 +76,48 @@
                     </div>
                 </div>
 
-                <!-- Menu (Décoratif pour le contexte corporate) -->
-                <div class="hidden md:flex space-x-8 text-sm font-medium">
-                    <a href="Ksy_groupe.html#annonces" class="text-ksy-gold border-b border-ksy-gold pb-1">Annonces</a>
-                    <a href="Ksy_groupe.html#vision" class="text-gray-300 hover:text-ksy-gold transition">Ksy Groupe</a>
-                    <a href="Ksy_groupe.html#videos" class="text-gray-300 hover:text-ksy-gold transition">Vidéos</a>
-                    <a href="index.html#contact" class="text-gray-300 hover:text-ksy-gold transition">Contact</a>
-                </div>
-
-                   <!-- Hamburger Mobile -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-ksy-gold hover:text-white focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+         <a href="Ksy_groupe.html#annonces" class="nav-link">Annonces</a>
+          <a href="Ksy_groupe.html#vision" class="nav-link">KSY Groupe</a>
+          <a href="piece_detachee.html" class="nav-link">Produits</a>
+          <a href="Ksy_groupe.html#videos" class="nav-link">Vidéos</a>
+          <a href="Ksy_groupe.html#contact" class="nav-link">Contact</a>
         </div>
+
+        <!-- Mobile Button -->
+        <button id="burgerBtn" class="md:hidden text-ksy-blue">
+          <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+
+      </div>
+    </nav>
         <!-- Mobile Search (Visible only on small screens) -->
         <div class="md:hidden px-4 pb-4">
             <div class="relative">
-                <input type="text" id="mobile-search" placeholder="Rechercher..." class="w-full bg-ksy-blue/50 text-white border border-gray-600 rounded-full py-2 pl-4 pr-10 text-sm focus:border-ksy-gold focus:outline-none">
+                <input type="text" id="mobile-search" placeholder="Rechercher..." class="w-full bg-ksy-blue text-white border border-gray-600 rounded-full py-2 pl-4 pr-10 text-sm focus:border-ksy-gold focus:outline-none">
                 <i class="fas fa-search absolute right-3 top-3 text-ksy-gold"></i>
             </div>
         </div>
+  </div>
 
-               <!-- Menu Mobile Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-ksy-blue border-t border-white/10 absolute w-full">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                    <a href="Ksy_groupe.html#annonces" class="text-ksy-gold border-b border-ksy-gold pb-1">Annonces</a>
-                    <a href="Ksy_groupe.html#vision" class="text-gray-300 hover:text-ksy-gold transition">Ksy Groupe</a>
-                    <a href="Ksy_groupe.html#videos" class="text-gray-300 hover:text-ksy-gold transition">Vidéos</a>
-                    <a href="index.html#contact" class="text-gray-300 hover:text-ksy-gold transition">Contact</a>
-            </div>
-        </div>
-    </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileNav"
+       class="hidden md:hidden bg-ksy-white border-t border-ksy-blue/5 w-full">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-5 text-sm">
+          <a href="Ksy_groupe.html#annonces" class="nav-link">Annonces</a>
+          <a href="Ksy_groupe.html#vision" class="nav-link">KSY Groupe</a>
+          <a href="piece_detachee.html" class="nav-link">Produits</a>
+          <a href="Ksy_groupe.html#videos" class="nav-link">Vidéos</a>
+          <a href="Ksy_groupe.html#contact" class="nav-link">Contact</a>
+    </div>
+  </div>
+
+</header>
 
     <!-- 3. HERO SECTION & 4. SÉLECTION MARQUE -->
-    <header class="relative min-h-screen flex flex-col justify-center items-center pt-24 pb-12">
+    <section class="relative min-h-screen flex flex-col justify-center items-center pt-24 pb-12">
         <!-- Background Image (Voiture + Fond fusionné) -->
         <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed">
             <!-- Overlay sombre pour intégration parfaite -->
@@ -204,7 +152,7 @@
             </div>
 
         </div>
-    </header>
+    </section>
 
     <!-- 5. BLOC SÉLECTION MODÈLE (Reveal) -->
     <section id="model-section" class="py-16 bg-ksy-blue relative hidden reveal-section">
@@ -286,57 +234,59 @@
         </div>
     </section>
 
-     <section id="contact">
+       <!-- FIXED SOCIAL COLUMN -->
+<div class="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-5 social-column">
+    
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/ksy_groupe?igsh=emhvNXQ5M3FwMTZo"
+       target="_blank"
+       class="social-icon instagram">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+    </a>
+
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/profile.php?id=61586569700984"
+       target="_blank"
+       class="social-icon facebook">
+        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook">
+    </a>
+
+  <!-- WhatsApp -->
+<a href="https://wa.me/message/7TWKY3HMAWNJL1"
+   target="_blank"
+   class="social-icon whatsapp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+</a>
+
+
+    <!-- Email -->
+    <a href="mailto:contact@ksygroupe@gmail.com"
+       class="social-icon email">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email">
+    </a>
+
+</div>
+
         <!-- Premium Separator (Originally the bottom border) -->
         <div class="h-2 w-full bg-gradient-to-r from-ksy-blue via-ksy-gold to-ksy-blue relative z-30"></div>
 
-        <!-- NEW: CORPORATE FOOTER -->
-        <footer  class="bg-ksy-white text-ksy-blue py-20 border-t border-ksy-blue/5">
-            <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center md:items-start gap-16">
-                
-                <!-- Company Trust Anchor -->
-                <div class="text-center md:text-left space-y-4 max-w-xs">
-                    <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
-                         <span class="font-serif font-bold text-2xl tracking-wide">KSY Groupe</span>
-                    </div>
-                    <div class="flex flex-col items-center md:items-start gap-2">
-                        <address class="not-italic text-sm text-ksy-blue/50 leading-relaxed font-light">
-                            128 Premium Boulevard, Automotive District<br>
-                            Dakar, Senegal
-                        </address>
-                        <a href="tel:+221338000000" class="text-sm font-bold text-ksy-blue hover:text-ksy-gold transition-colors mt-2">+221 33 800 00 00</a>
-                    </div>
-                </div>
+<footer class="bg-ksy-white text-ksy-blue border-t border-ksy-blue/5 w-full">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-10 text-center">
+    
+    <p class="text-xs font-medium tracking-widest">
+      BUREAU
+    </p>
 
-                <!-- Direct Actions -->
-                <div class="flex flex-col items-center md:items-start gap-5">
-                    <span class="text-[10px] uppercase tracking-widest text-ksy-blue font-bold">Contact prioritaire</span>
-                    
-                    <a href="https://wa.me/message/7TWKY3HMAWNJL1" class="group flex items-center gap-4 text-sm text-white hover:text-ksy-gold transition-colors bg-ksy-blue px-6 py-3 rounded-sm border border-white/5 hover:border-ksy-gold/30">
-                        <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                        <span class="font-medium">WhatsApp Official</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/30 group-hover:text-ksy-gold"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                    </a>
-                    
-                    <a href="mailto:contact@ksygroupe.com" class="group flex items-center gap-4 text-sm text-ksy-blue hover:text-ksy-gold transition-colors px-6">
-                        <div class="w-2 h-2 rounded-full bg-ksy-gold"></div>
-                        <span class="font-medium">contact@ksygroupe@gmail.com</span>
-                    </a>
-                </div>
+    <address class="mt-2 not-italic text-xs text-ksy-blue/60 leading-relaxed font-light">
+      FASS CASIER N°61 – Dakar, Senegal
+    </address>
 
-                <!-- Socials -->
-                <div class="flex items-center gap-6">
-                    <a href="https://www.facebook.com/profile.php?id=61586569700984" class="text-ksy-blue hover:text-ksy-gold transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-                    <a href="https://www.instagram.com/ksy_groupe?igsh=emhvNXQ5M3FwMTZo" class="text-ksy-blue hover:text-ksy-gold transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-                </div>
+    <p class="mt-6 text-[10px] text-ksy-blue uppercase tracking-widest font-medium">
+      © 2026 KSY Groupe
+    </p>
 
-            </div>
-            
-            <div class="mt-20 text-center border-t border-ksy-blue/3 pt-8">
-                <p class="text-[10px] text-ksy-blue uppercase tracking-widest font-medium">&copy; 2026 KSY Groupe</p>
-            </div>
-        </footer>
-        </section>       
+  </div>
+</footer>
 
     <!-- MODAL DÉTAILS PRODUIT -->
     <div id="product-modal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -392,6 +342,17 @@
     </div>
 
     <!-- JAVASCRIPT LOGIC -->
+      <!-- Scripts JS -->
+     <script>
+ 
+  lucide.createIcons();
+  const burger = document.getElementById('burgerBtn');
+  const mobileNav = document.getElementById('mobileNav');
+
+  burger.addEventListener('click', () => {
+    mobileNav.classList.toggle('hidden');
+  });
+</script>
     <script src="Marque.js"></script>
 </body>
 </html>

@@ -71,14 +71,6 @@
         const productSection = document.getElementById('product-section');
         const productGrid = document.getElementById('product-grid');
 
-         // - Mobile Menu Toggle ---
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
         // --- INITIALISATION ---
         function init() {
             renderBrands();

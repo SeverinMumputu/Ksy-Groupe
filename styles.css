@@ -1,9 +1,57 @@
   /* Custom Utilities for that extra airy feel */
-        body {
+       
+  body {
              background-color: #0B1F3B; /* Couleur secondaire dominante */
             color: #FFFFFF;
             overflow-x: hidden;
+              min-height: 100vh;
+  display: flex;
+  flex-direction: column;
         }
+
+        /* HEADER LINKS */
+.nav-link {
+  position: relative;
+  color: rgba(11, 31, 59, 0.75);
+  transition: color 0.3s ease;
+}
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 1px;
+  background: #C9A24D;
+  transition: width 0.35s ease;
+}
+
+.nav-link:hover {
+  color: #0B1F3B;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Mobile */
+.mobile-link {
+  color: #0B1F3B;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.mobile-link:hover {
+  color: #C9A24D;
+  transform: translateX(6px);
+}
+
 
             html{
   scroll-behavior: smooth;
@@ -121,4 +169,153 @@ section{
     rgba(0, 0, 0, 0.4) 75%,
     transparent 85%
   );
+}
+
+.social-column {
+    pointer-events: auto;
+}
+
+/* Base icon */
+.social-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 0 0 0 rgba(201, 162, 77, 0.6);
+    animation: magneticPulse 2.8s infinite ease-out;
+    transition: transform 0.3s ease;
+}
+
+.social-icon img {
+    width: 22px;
+    height: 22px;
+}
+
+/* Hover effect */
+.social-icon:hover {
+    transform: scale(1.15);
+}
+
+/* Magnetic pulse */
+@keyframes magneticPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(201, 162, 77, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 18px rgba(201, 162, 77, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(201, 162, 77, 0);
+    }
+}
+
+/* Mobile spacing */
+@media (max-width: 768px) {
+
+    .social-column {
+        top: auto;
+        bottom: 90px;          /* Passe sous les CTA */
+        right: 6px;            /* Plus proche du bord */
+        transform: none;
+        gap: 14px;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        animation-duration: 3.4s;
+    }
+
+    .social-icon img {
+        width: 18px;
+        height: 18px;
+    }
+}
+/* HERO CAROUSEL */
+#heroCarousel {
+  backdrop-filter: blur(2px);
+}
+#heroCarousel {
+  transition: opacity 0.8s ease;
+  opacity: 0;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(201, 162, 77, 0.35);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.carousel-dot.active {
+  background: #C9A24D;
+  transform: scale(1.3);
+}
+/* HERO MEDIA – UNIFIED MASK (video + images) */
+.hero-media .hero-slide {
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    black 55%,
+    rgba(0, 0, 0, 0.85) 65%,
+    rgba(0, 0, 0, 0.4) 75%,
+    transparent 85%
+  );
+  mask-image: radial-gradient(
+    ellipse at center,
+    black 55%,
+    rgba(0, 0, 0, 0.85) 65%,
+    rgba(0, 0, 0, 0.4) 75%,
+    transparent 85%
+  );
+}
+/* HERO IMAGE GLOW – SAME DNA AS VIDEO */
+.hero-media img.hero-slide {
+  filter:
+    drop-shadow(0 0 60px rgba(255, 255, 255, 0.35))
+    drop-shadow(0 0 120px rgba(201, 162, 77, 0.15));
+}
+/* HERO MEDIA EDGE DIFFUSION */
+.hero-media::after {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0.15) 30%,
+      rgba(11, 31, 59, 0.05) 55%,
+      transparent 70%
+    );
+  filter: blur(40px);
+  z-index: -1;
+  pointer-events: none;
+}
+/* IMAGE FLOAT SOFTENING */
+.hero-media img.hero-slide {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+footer {
+  margin-top: auto;
+}
+@media (max-width: 768px) {
+  footer {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  footer address {
+    margin-top: 0.25rem;
+  }
+
+  footer p {
+    margin-top: 0.75rem;
+  }
 }
