@@ -541,3 +541,18 @@ HTML
 CSS 
 
 SCRIPT 
+2020 - 2025 , 
+
+KIA : Sorento IV 2020 - 2025 , Sportage V année 2020 - 2025
+HYUNDAI : Tucson III Année 2018, Tucson IV 2021, Santa Fe III, Santa Fe IV, Sonata VIII, Elantra VI, Elantra VII
+
+Le but est de rajouter un nouveau bloc de filtrage permettant à l'utilisateur de retrouver le modèle d'une marque. 
+Actuellement les artciles sont représentés sous cette logique :
+marque --> modèle ---> categorie --->  nom du produit  ---> etat ---> description ---> compatibilité ---> 
+C'est-à-dire lorsque le client clique sur marque, le modèle apparaît, après le choix du modèle, il doit choisir la catégorie.
+Ton travail est de rajouter un nouveau bloc de filtrage de types de modèles d'une marque par exemple Sorento IV année 2020 - 2025.
+Ce nouveau bloc doit se placer avant le bloc de catégorie. Donc la logique actuelle sera :
+marque --> modèle ---> Types de modèle ---> categorie --->  nom du produit  ---> etat ---> description ---> compatibilité 
+Donc, le client choisit la marque après le modèle, après avoir choisi le modèle, il doit choisir le type de ce modèle. Ensuite, il choisit la catégorie.
+Voici les types de modèles dont dispose KSY GROUPE à ajouter : 
+Marque 

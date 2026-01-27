@@ -1,13 +1,14 @@
  // --- DONNÉES ---
         const data = {
             brands: [
-                { id: 'hyundai', name: 'HYUNDAI', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Hyundai_Motor_Company_logo.svg' },
-                { id: 'kia', name: 'KIA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Kia_logo.svg/2560px-Kia_logo.svg' },
-                { id: 'peugeot', name: 'PEUGEOT', logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Peugeot_Logo.svg' },
-                { id: 'suzuki', name: 'SUZUKI', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/12/Suzuki_logo_2.svg' },
-                { id: 'jetour', name: 'JETOUR', logo: 'https://upload.wikimedia./1200px-Jetour_logo.svg.png' }, // Placeholder logo
-                { id: 'baic', name: 'BAIC', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/13/BAIC_Motor_Logo.svg' },
-                { id: 'changan', name: 'CHANGAN', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Changan_Automobile_logo.svg' }
+        { id: 'hyundai', name: 'HYUNDAI', image: 'hyundai-logo.png' },
+        { id: 'kia', name: 'KIA', image: 'kia-logo.png' },
+        { id: 'peugeot', name: 'PEUGEOT', image: 'peugeot-logo.png' },
+        { id: 'suzuki', name: 'SUZUKI', image: 'suzuki-logo.webp' },
+        { id: 'jetour', name: 'JETOUR', image: 'jetour.png' },
+        { id: 'baic', name: 'BAIC', image: 'baic-logo-png_seeklogo-391483.png' },
+        { id: 'changan', name: 'CHANGAN', image: 'changan-automobile-logo-png_seeklogo-428837.png' }
+   
             ],
             models: {
                 hyundai: ['Tucson', 'Santa Fe', 'Palisade', 'Elantra', 'Kona', 'Sonata'],
@@ -19,29 +20,35 @@
                 changan: ['CS55', 'Alsvin']
             },
             categories: [
-                { id: 'freinage', name: 'Freinage', icon: 'fa-compact-disc' },
+                { id: 'freinage', name: 'Freinage', icon: 'fa-compact-disc' } ,
                 { id: 'suspension', name: 'Suspension', icon: 'fa-springs' }, // fa-springs n'existe pas, using custom or similar
                 { id: 'electricite', name: 'Electricité', icon: 'fa-bolt' },
                 { id: 'filtration', name: 'Filtration', icon: 'fa-filter' },
                 { id: 'carrosserie', name: 'Carrosserie', icon: 'fa-car-side' },
-                { id: 'refroidissement', name: 'Refroidissement', icon: 'fa-snowflake' }
+                { id: 'refroidissement', name: 'Refroidissement', icon: 'fa-snowflake' },
+                { id: 'moteur', name: 'moteur', icon: 'fa-snowflake' },
+                { id: 'essuie-glaces', name: 'essuie-glaces', icon: 'fa-snowflake' }
             ],
             // Mapping Catégories -> Produits de base
             productsMap: {
-                'freinage': ['Plaquettes de frein AR', 'Plaquettes de frein AV'],
-                'suspension': ['Amortisseur AV', 'Amortisseur AR'],
-                'electricite': ['Bougies', 'Alternateur', 'Démarreur', 'Phare avant', 'Feu arrière'],
-                'filtration': ['Filtre à air', 'Filtre à carburant'],
+                'freinage': ['Plaquettes de frein ARRIERRE', 'Plaquettes de frein AVANT'],
+                'suspension': ['Amortisseur AVANT', 'Amortisseur ARRIERRE', 'Biellette de barre stabilisatrice Avant', ''],
+                'electricite': ['Bougies', 'Alternateur', 'Démarreur', 'Phare avant', 'Feu arrière', 'Bobine d\allumage'],
+                'filtration': ['Filtre à air', 'Filtre à huile', 'Filtre de transmission', 'Filtre habitacle'],
                 'carrosserie': ['Rétroviseur'], // Ajouté Rétroviseur basé sur l'exemple
-                'refroidissement': ['Radiateur', 'Compresseur de clim']
+                'refroidissement': ['Radiateur', 'Compresseur de clim'],
+                'moteur': ['Courroie d\entraînement du climatiseur, de l\alternateur, '],
+                'essuie-glaces': ['Radiateur', 'Compresseur de clim']
             }
         };
 
         // Images placeholders par type de produit
         const productImages = {
-            'Filtre à air': 'Filtre  air HYUNDAI Kona.webp',
+            'Filtre à air': 'filtre a air jetour x70 P.jpg',
             'Feu arrière': 'feu_arriere.jpg',
-            'Filtre à carburant': 'Filtre  carburant HYUNDAI Kona.webp',
+            'Filtre à huile': 'filtre a huile jetour x70.png',
+            'Filtre habitacle': 'Filtre_habitacle.jpg',
+            'Filtre de transmission': 'filtre a transmission jetour x70.png',
             'Bougies': 'Bougies KIA Picanto.webp',
             'Alternateur': 'Alternateur HYUNDAI Palisade.webp', // Générique moteur
             'Démarreur': 'Demarreur HYUNDAI Kona.webp',
@@ -84,10 +91,11 @@
                 <div onclick="selectBrand('${brand.id}')" 
                      class="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 cursor-pointer hover:bg-white hover:border-ksy-gold transition-all duration-500 flex items-center justify-center aspect-[4/3] relative overflow-hidden">
                     <div class="absolute inset-0 bg-ksy-gold/0 group-hover:bg-ksy-gold/5 transition duration-500"></div>
-                    <img src="${brand.logo}" 
-                         alt="${brand.name}" 
-                         class="max-w-[80%] max-h-[60%] object-contain filter grayscale brightness-200 contrast-0 group-hover:filter-none transition-all duration-500 transform group-hover:scale-110"
-                         onerror="this.src='https://placehold.co/100x50/0B1F3B/C9A24D?text=${brand.name}'">
+                    <img src="${brand.image}" 
+     alt="${brand.name}" 
+     class="max-w-[80%] max-h-[60%] object-contain filter grayscale brightness-200 contrast-0 group-hover:filter-none transition-all duration-500 transform group-hover:scale-110"
+     onerror="this.src='https://placehold.co/100x50/0B1F3B/C9A24D?text=${brand.name}'">
+
                     <div class="absolute bottom-2 text-[10px] text-gray-400 group-hover:text-ksy-blue font-bold tracking-widest opacity-0 group-hover:opacity-100 transition duration-500 uppercase">
                         Sélectionner
                     </div>
@@ -202,7 +210,17 @@
             
             productGrid.innerHTML = baseProducts.map(baseName => {
                 const fullName = `${baseName} ${state.brand.name} ${state.model}`;
-                const imgUrl = productImages[baseName] || 'https://placehold.co/300x300/f3f4f6/0B1F3B?text=KSY+Part';
+                // Normalisation du nom produit pour matcher productImages
+const normalizedBaseName = baseName
+    .replace('AVANT', 'AV')
+    .replace('ARRIERRE', 'AR')
+    .replace('ARRIERE', 'AR')
+    .trim();
+
+const imgUrl = productImages[normalizedBaseName]
+    ? productImages[normalizedBaseName]
+    : 'https://placehold.co/300x300/f3f4f6/0B1F3B?text=KSY+GROUPE';
+
                 
                 return `
                 <div class="bg-white rounded-lg overflow-hidden border border-gray-100 hover:shadow-xl hover:border-ksy-gold transition-all duration-300 group flex flex-col">
@@ -228,6 +246,7 @@
                 </div>
                 `;
             }).join('');
+            
             
             document.getElementById('result-context').innerText = `Affichage des pièces ${state.category.name.toLowerCase()} pour ${state.brand.name} ${state.model}`;
         }
