@@ -28,7 +28,8 @@
         { id: 'carrosserie', name: 'Carrosserie', icon: 'fa-car-side' },
         { id: 'refroidissement', name: 'Refroidissement', icon: 'fa-snowflake' },
         { id: 'moteur', name: 'Moteur', icon: 'fa-cogs' },
-        { id: 'essuieglaces', name: 'Essuie-glaces', icon: 'fa-water' }
+        { id: 'essuieglaces', name: 'Essuie-glaces', icon: 'fa-water' },
+        { id: 'huile', name: 'Huiles', icon: 'fa-water' }
     ]
 };
 

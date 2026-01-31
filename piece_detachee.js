@@ -3,12 +3,15 @@ const EXPERT_PHONE = "+221778509048";
 
         // Catégories avec images HD (PNG/JPEG)
         const categories = [
-            { id: 'freinage', name: 'Freinage', image: 'kit_frein.jpg' },
-            { id: 'suspension', name: 'Suspension', image: 'suspension.jpg' },
-            { id: 'electricite', name: 'Electricité', image: 'electricité.jpg' },
-            { id: 'filtre', name: 'Filtre', image: 'filtre_2.jpg' },
-            { id: 'carrosserie', name: 'Carrosserie', image: 'carrosserie.jpg' },
-            { id: 'refroidissement', name: 'Refroidissement', image: 'compresseur.webp' }
+            { id: 'freinage', name: 'Système de freinage', image: 'kit_frein.jpg' },
+            { id: 'suspension', name: 'Transmission et suspension', image: 'suspension.jpg' },
+            { id: 'electricite', name: 'Electricité', image:'electricité.jpg' },
+            { id: 'filtre', name: 'Filtre', image:'filtre_bg.jpg'},
+            { id: 'carrosserie', name: 'Carrosserie', image:'carrosserie.jpg' },
+            { id: 'refroidissement', name: 'Refroidissement', image: 'clim.jpg' },
+            { id: 'moteur', name: 'Moteur', image: 'moteur.jpg' },
+            { id: 'essuieglaces', name: 'Essuie-glace', image:'essuie-glace.jpg' },
+            { id: 'huile', name: 'Huiles', image:'huile.jpg' }
         ];
 
         // Produits par catégorie
@@ -44,6 +47,34 @@ const EXPERT_PHONE = "+221778509048";
     ],
 
     electricite: [
+        {
+            name: 'Alternateur',
+            img: 'Alternateur HYUNDAI Palisade.webp',
+            description: 'Alternateur OEM assurant une alimentation électrique stable du véhicule.',
+            compatibility: 'HYUNDAI Palisade'
+        },
+        {
+            name: 'Démarreur',
+            img: 'Demarreur HYUNDAI Kona.webp',
+            description: 'Démarreur haute fiabilité pour démarrage à froid et conditions extrêmes.',
+            compatibility: 'HYUNDAI Kona'
+        }
+    ],
+        moteur: [
+        {
+            name: 'Alternateur',
+            img: 'Alternateur HYUNDAI Palisade.webp',
+            description: 'Alternateur OEM assurant une alimentation électrique stable du véhicule.',
+            compatibility: 'HYUNDAI Palisade'
+        },
+        {
+            name: 'Démarreur',
+            img: 'Demarreur HYUNDAI Kona.webp',
+            description: 'Démarreur haute fiabilité pour démarrage à froid et conditions extrêmes.',
+            compatibility: 'HYUNDAI Kona'
+        }
+    ],
+            huile: [
         {
             name: 'Alternateur',
             img: 'Alternateur HYUNDAI Palisade.webp',
