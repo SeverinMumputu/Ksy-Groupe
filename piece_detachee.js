@@ -1,46 +1,66 @@
 // --- DONNÉES ---
+const EXPERT_PHONE = "+221778509048";
+
         // Catégories avec images HD (PNG/JPEG)
         const categories = [
             { id: 'freinage', name: 'Freinage', image: 'kit_frein.jpg' },
             { id: 'suspension', name: 'Suspension', image: 'suspension.jpg' },
             { id: 'electricite', name: 'Electricité', image: 'electricité.jpg' },
-            { id: 'filtration', name: 'Filtration', image: 'filtre_2.jpg' },
+            { id: 'filtre', name: 'Filtre', image: 'filtre_2.jpg' },
             { id: 'carrosserie', name: 'Carrosserie', image: 'carrosserie.jpg' },
             { id: 'refroidissement', name: 'Refroidissement', image: 'compresseur.webp' }
         ];
 
         // Produits par catégorie
         const productsMap = {
-            'freinage': [
-                { name: 'Plaquettes de frein AR', img: 'Plaquettes de frein AV HYUNDAI Elantra.webp' },
-                { name: 'Plaquettes de frein AV', img: 'Plaquettes de frein AV HYUNDAI Kona.webp' }
-            ],
-            'suspension': [
-                { name: 'Amortisseur AV', img: 'Amortisseurs arriere KIA Sportage.webp' },
-                { name: 'Amortisseur AR', img: 'Amortisseurs avant KIA Sorento.webp' }
-            ],
-            'electricite': [
-                { name: 'Bougies', img: 'Bougies KIA Picanto.webp' },
-                { name: 'Alternateur', img: 'Alternateur HYUNDAI Palisade.webp' },
-                { name: 'Démarreur', img: 'Demarreur HYUNDAI Kona.webp' },
-                { name: 'Phare avant', img: 'Phare avant HYUNDAI Elantra.webp' },
-                { name: 'Feu arrière', img: 'feu_arriere.jpg' }
-            ],
-            'filtration': [
-                { name: 'Filtre à air', img: 'Filtre  air HYUNDAI Kona.webp' },
-                { name: 'Filtre à carburant', img: 'Filtre  carburant HYUNDAI Kona.webp' }
-            ],
-            'carrosserie': [
-                { name: 'Rétroviseur', img: 'Rétroviseur gauche KIA Picanto.webp' }
-            ],
-            'refroidissement': [
-                { name: 'Radiateur', img: 'Radiateur HYUNDAI Kona.webp' },
-                { name: 'Compresseur de clim', img: 'Compresseur de climatisation KIA Picanto.webp' }
-            ]
-        };
+    freinage: [
+        {
+            name: 'Plaquettes de frein AR',
+            img: 'Plaquettes de frein AV HYUNDAI Elantra.webp',
+            description: 'Plaquettes arrière haute performance assurant un freinage stable et silencieux.',
+            compatibility: 'HYUNDAI Elantra, HYUNDAI i30'
+        },
+        {
+            name: 'Plaquettes de frein AV',
+            img: 'Plaquettes de frein AV HYUNDAI Kona.webp',
+            description: 'Plaquettes avant d’origine conçues pour une réponse immédiate au freinage.',
+            compatibility: 'HYUNDAI Kona, KIA Seltos'
+        }
+    ],
 
-        // Liste fictive de compatibilité pour la démo
-        const commonCompatibility = "HYUNDAI Tucson, KIA Sportage, PEUGEOT 3008, SUZUKI Vitara";
+    suspension: [
+        {
+            name: 'Amortisseur AV',
+            img: 'Amortisseurs arriere KIA Sportage.webp',
+            description: 'Amortisseur avant garantissant confort et tenue de route optimale.',
+            compatibility: 'KIA Sportage, HYUNDAI Tucson'
+        },
+        {
+            name: 'Amortisseur AR',
+            img: 'Amortisseurs avant KIA Sorento.webp',
+            description: 'Amortisseur arrière renforcé pour charges et routes dégradées.',
+            compatibility: 'KIA Sorento'
+        }
+    ],
+
+    electricite: [
+        {
+            name: 'Alternateur',
+            img: 'Alternateur HYUNDAI Palisade.webp',
+            description: 'Alternateur OEM assurant une alimentation électrique stable du véhicule.',
+            compatibility: 'HYUNDAI Palisade'
+        },
+        {
+            name: 'Démarreur',
+            img: 'Demarreur HYUNDAI Kona.webp',
+            description: 'Démarreur haute fiabilité pour démarrage à froid et conditions extrêmes.',
+            compatibility: 'HYUNDAI Kona'
+        }
+    ]
+};
+
+
+      
 
         // --- DOM ELEMENTS ---
         const categoryGrid = document.getElementById('category-grid');
@@ -81,59 +101,46 @@
         }
 
         function selectCategory(catId) {
-            const category = categories.find(c => c.id === catId);
-            const products = productsMap[catId] || [];
+    const category = categories.find(c => c.id === catId);
+    const products = productsMap[catId] || [];
 
-            // Update UI Content
-            breadcrumbCurrent.innerText = category.name;
-            categoryTitle.innerText = category.name;
+    breadcrumbCurrent.innerText = category.name;
+    categoryTitle.innerText = category.name;
 
-            // Render Products
-            productGrid.innerHTML = products.map(prod => `
-                <div class="bg-white group cursor-default">
-                    <div class="relative aspect-square overflow-hidden bg-gray-50 border border-gray-100 mb-6">
-                        <img src="${prod.img}" alt="${prod.name}" class="w-full h-full object-cover mix-blend-multiply group-hover:scale-110 transition duration-700">
-                        <div class="absolute top-4 right-4 bg-ksy-blue text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Neuf</div>
-                        
-                        <!-- Overlay Action -->
-                        <div class="absolute inset-0 bg-ksy-blue/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <button onclick="openModal('${prod.name.replace(/'/g, "\\'")}', '${prod.img}', '${category.name}')" 
-                                    class="border border-ksy-gold text-ksy-gold px-6 py-3 uppercase text-xs font-bold tracking-widest hover:bg-ksy-gold hover:text-ksy-blue transition transform translate-y-4 group-hover:translate-y-0 duration-300">
-                                Voir Détails
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-lg font-bold text-ksy-blue mb-2">${prod.name}</h3>
-                        <div class="flex items-center text-xs text-gray-500 mb-3 space-x-2">
-                             <span class="bg-gray-100 px-2 py-1 rounded">Ref: KSY-${Math.floor(Math.random()*1000)}</span>
-                             <span class="text-green-600 font-semibold"><i class="fas fa-check-circle"></i> En stock</span>
-                        </div>
-                        <p class="text-sm text-gray-500 line-clamp-2 leading-relaxed">
-                            Composant de qualité supérieure pour le système de ${category.name.toLowerCase()}. Conçu pour une durabilité maximale.
-                        </p>
-                    </div>
+    productGrid.innerHTML = products.map((prod, index) => `
+        <div class="bg-white group">
+            <div class="relative aspect-square overflow-hidden bg-gray-50 border border-gray-100 mb-6">
+                <img src="${prod.img}" alt="${prod.name}"
+                     class="w-full h-full object-cover mix-blend-multiply group-hover:scale-110 transition duration-700">
+
+                <div class="absolute top-4 right-4 bg-ksy-blue text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">
+                    Neuf
                 </div>
-            `).join('');
 
-            // Reveal Section
-            productSection.classList.remove('hidden');
-            setTimeout(() => {
-                productSection.classList.add('reveal-visible');
-                // Scroll doux vers les produits
-                const offset = 80; // Hauteur header
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = productSection.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
+                <!-- OVERLAY ACTION -->
+                <div class="absolute inset-0 bg-ksy-blue/80 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                    <button
+                        onclick="openProductModal('${catId}', ${index})"
+                        class="border border-ksy-gold text-ksy-gold px-6 py-3 uppercase text-xs font-bold tracking-widest
+                               hover:bg-ksy-gold hover:text-ksy-blue transition transform translate-y-4
+                               group-hover:translate-y-0">
+                        Voir détails
+                    </button>
+                </div>
+            </div>
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }, 100);
-        }
+            <h3 class="text-lg font-bold text-ksy-blue mb-2">${prod.name}</h3>
+
+            <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">
+                ${prod.description}
+            </p>
+        </div>
+    `).join('');
+
+    productSection.classList.remove('hidden');
+    setTimeout(() => productSection.classList.add('reveal-visible'), 100);
+}
+
 
         function resetToCategories() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -227,29 +234,47 @@ function getActiveResultsBox() {
                 // Petit délai pour laisser le temps au DOM de se mettre à jour si nécessaire
                 setTimeout(() => {
                     const catName = categories.find(c => c.id === catId).name;
-                    openModal(name, img, catName);
+                    const productIndex = productsMap[catId].findIndex(p => p.name === name);
+openProductModal(catId, productIndex);
+
                 }, 500);
             }
         }
 
         // --- MODAL ---
-        function openModal(title, image, categoryName) {
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-category').innerText = categoryName;
-            document.getElementById('modal-image').src = image;
-            
-            document.getElementById('modal-desc').innerHTML = `
-                Ce produit <strong>${title}</strong> est une pièce de rechange certifiée KSY GROUPE. 
-                <br><br>
-                Fabriquée selon des normes strictes pour assurer une compatibilité parfaite avec le système de ${categoryName.toLowerCase()}.
-                <br>
-                Matériaux haute résistance et durabilité éprouvée.
-            `;
-            
-            document.getElementById('modal-compat').innerText = commonCompatibility;
-            
-            document.getElementById('product-modal').classList.remove('hidden');
-        }
+function openProductModal(catId, productIndex) {
+    const product = productsMap[catId][productIndex];
+    const categoryName = categories.find(c => c.id === catId).name;
+
+    document.getElementById('modal-title').innerText = product.name;
+    document.getElementById('modal-category').innerText = categoryName;
+    document.getElementById('modal-image').src = product.img;
+    document.getElementById('modal-desc').innerText = product.description;
+    document.getElementById('modal-compat').innerText = product.compatibility;
+
+    // 👉 WhatsApp message dynamique (premium & contextuel)
+    const message = `
+Bonjour,
+Je souhaite avoir plus d'informations sur le produit suivant :
+
+• Produit : ${product.name}
+• Catégorie : ${categoryName}
+• Compatibilité : ${product.compatibility}
+
+Merci.
+    `.trim();
+
+    const whatsappUrl = `https://wa.me/${EXPERT_PHONE.replace(/\+/g, '')}?text=${encodeURIComponent(message)}`;
+
+    const contactBtn = document.getElementById('contact-expert-btn');
+    contactBtn.setAttribute("href", whatsappUrl);
+    contactBtn.setAttribute("target", "_blank");
+
+    document.getElementById('product-modal').classList.remove('hidden');
+}
+
+
+
 
         function closeModal() {
             document.getElementById('product-modal').classList.add('hidden');
