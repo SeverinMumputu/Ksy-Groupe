@@ -3,7 +3,6 @@ const EXPERT_PHONE = "+221778509048";
 
         // Catégories avec images HD (PNG/JPEG)
         const categories = [
-            { id: 'freinage', name: 'Système de freinage', image: 'kit_frein.jpg' },
             { id: 'suspension', name: 'Transmission et suspension', image: 'suspension.jpg' },
             { id: 'electricite', name: 'Electricité', image:'electricité.jpg' },
             { id: 'filtre', name: 'Filtre', image:'filtre_bg.jpg'},
@@ -11,13 +10,14 @@ const EXPERT_PHONE = "+221778509048";
             { id: 'refroidissement', name: 'Refroidissement', image: 'clim.jpg' },
             { id: 'moteur', name: 'Moteur', image: 'moteur.jpg' },
             { id: 'essuieglaces', name: 'Essuie-glace', image:'essuie-glace.jpg' },
-            { id: 'huile', name: 'Huiles', image:'huile.jpg' }
+            { id: 'huile', name: 'Huiles', image:'huile.jpg' },
+            { id: 'frein', name: 'Système de freinage', image:'frein.jpg' },
 
         ];
 
         // Produits par catégorie
         const productsMap = {
-    freinage: [
+    frei: [
         {
             name: 'Plaquettes de frein AR',
             img: 'Plaquettes de frein AV HYUNDAI Elantra.webp',
