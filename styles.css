@@ -140,36 +140,7 @@ section{
         .highlight-product {
             animation: highlightPulse 1.5s ease-out forwards;
         }
-        .float-car::before {
-  content: "";
-  position: absolute;
-  inset: -10%;
-  background: radial-gradient(
-    circle at center,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 0.4) 35%,
-    rgba(255, 255, 255, 0.15) 55%,
-    transparent 70%
-  );
-  z-index: -1;
-  pointer-events: none;
-}
-.float-car video {
-  -webkit-mask-image: radial-gradient(
-    ellipse at center,
-    black 55%,
-    rgba(0, 0, 0, 0.85) 65%,
-    rgba(0, 0, 0, 0.4) 75%,
-    transparent 85%
-  );
-  mask-image: radial-gradient(
-    ellipse at center,
-    black 55%,
-    rgba(0, 0, 0, 0.85) 65%,
-    rgba(0, 0, 0, 0.4) 75%,
-    transparent 85%
-  );
-}
+ 
 
 .social-column {
     pointer-events: auto;

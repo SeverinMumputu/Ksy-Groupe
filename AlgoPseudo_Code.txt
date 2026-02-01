@@ -533,8 +533,9 @@ The video should be suitable for a seamless loop, with the first and last frames
 
 Il existe un élément bloquant inconnu qui empêche l'affichage des résultats après recherche en mode responsive.
 Ton travail est de passer au crible l'intégralité de code et ensuite proposer les codes de solutions afin de régler ce problème qui n'apparaît 
-que lorsque la page est en mode responsive mobile. Ce comportement bloquant ne s'affiche uniquement aue sur le mode responsive. 
-Interdiction  formelle de toucher les parties non concernées. 
+que lorsque la page est en mode responsive mobile. Ce comportement bloquant ne s'affiche uniquement aue sur le mode responsive. Il est impossible 
+pour les résultats de s'afficher après recherche en mode responsive.
+Interdiction  formelle de toucher les parties non concernées et de modifier la structure logique de données. 
 
 HTML 
 
@@ -556,3 +557,71 @@ marque --> modèle ---> Types de modèle ---> categorie --->  nom du produit  --
 Donc, le client choisit la marque après le modèle, après avoir choisi le modèle, il doit choisir le type de ce modèle. Ensuite, il choisit la catégorie.
 Voici les types de modèles dont dispose KSY GROUPE à ajouter : 
 Marque 
+
+L'objectif est d'arrêter une réutilisation de filtrage de mêmes données pour l'ensemble des marques. Une réutilisation  soutenue par un filtrage fonctionnel et 
+bien organisé qui s'occupe de répéter les mêmes noms de produits et changer uniquement le nom de la marque à la fin. Cette réutilisation empêche d'apporter une modification
+précise à un produit pour une marque et une catégorie. Le risque grannd rencontré est la centralisation map de données de tous les produits qui contribue à mélanger et 
+faire ressembler toutes les données, ce qui fait qu'on a le produit Plaquettes de frein AVANT défini pour toutes les marques au lieu d'appartenir à une marque 
+précise. Ton travail ne consiste pas à changer le système de filtrage. Nous allons conserver ce système de filtrage et modifier uniquement sa structure pour avoir 
+une nouvelle structure répartie où chaque marque à une constante(const marque []) particulière et à l'intérieur de la const on peut préciser plusieurs éléments tels que 
+category, name, image, description,
+et autres dans le but de manipuler ou modifier des données d'une marque sans appliquer un comportement général aux autres marques.
+Interdiction formelle de toucher aux données, aux informations de produits, images , description , catégorie car ce sont les infos officielles.
+Ton travail est de rendre le système de filtrage plus réparti et organisé afin d'apporter des modifications à un produit sans le généraliser.
+HTML  
+
+SCRIPT
+
+Il existe un élément bloquant inconnu qui empêche l'affichage des résultats après recherche à la ligne 3187 de mon script.
+Ton travail est de passer au crible l'intégralité de code et ensuite proposer les codes de solutions afin de régler 
+ce problème qui empêche l'affichage des résultats en mode pc et en responsive mobile. 
+Interdiction  formelle de toucher les parties non concernées. Le script est assez long, je te fournis les parties nécessaires.
+
+Erreur Console 
+
+HTML
+
+SCRIPT
+
+
+Le but est d'améliorer le système de recherche à la barre de recherche pour ajouter à partir du nom de produit par exemple (filtre à air sportage) en plus 
+de la recherche par nom de la marque et modèle qui s'occupe de la recherche de manière générale. Le travail attendu est de proposer au client plusieurs 
+options de recherches. Interdiction formelle de casser la structure de filtrage de données et autres. Ton seul travail est d'améliorer la fonction de 
+recherche afin de rechercher à partir du nom de produit.
+
+Fonction ciblée du script à améliorer 
+
+Script sémi-complet vu la longueur du script 
+
+Prompt Vidéo en français
+Une vidéo 3D CGI haut de gamme, conçue comme une bande-son silencieuse pour une marque automobile prestigieuse.
+
+La scène s'ouvre sur une berline ou un SUV moderne et neutre, entièrement assemblé, présenté dans un contexte de visualisation industrielle épuré et maîtrisé.
+
+Le véhicule se transforme ensuite progressivement en une animation éclatée précise : les panneaux de carrosserie extérieurs se séparent d'abord, suivis des systèmes automobiles clairement identifiables, notamment le bloc moteur, la transmission, les éléments de suspension, le système de freinage, le système de refroidissement et les modules électroniques.
+
+Chaque système et composant doit rester visuellement reconnaissable en permanence, avec des proportions exactes, des silhouettes nettes et un espacement suffisant pour permettre une identification immédiate par le spectateur (moteur, freins, suspension, transmission). L'animation privilégie la clarté mécanique et la lisibilité des composants au détriment du spectaculaire.
+
+Chaque pièce se déplace avec fluidité et précision, respectant scrupuleusement la hiérarchie mécanique automobile réelle. Les mouvements sont uniquement linéaires ou radiaux, avec un lissage contrôlé, sans collision, sans superposition de géométrie, sans destruction.
+
+La caméra effectue un travelling lent et continu, avec un léger mouvement latéral, maintenant un horizon stable et une esthétique digne d'un document technique. Le cadrage privilégie systématiquement les plans rapprochés et moyens, facilitant la reconnaissance visuelle des différentes pièces lors des phases de séparation. Pas de coupes rapides, pas de zooms brusques.
+
+L'éclairage, soigné et maîtrisé, allie la précision d'un studio industriel à l'influence de la lumière naturelle : un éclairage doux mais précis, des reflets nets sur les arêtes mécaniques, un éclairage de contour subtil pour distinguer visuellement les composants et des ombres douces et réalistes. Les matériaux sont impeccables, mats à semi-brillants, sans usure, saleté ni dommage.
+
+Le design du véhicule respecte scrupuleusement la palette de couleurs de l'entreprise :
+
+– Un bleu nuit profond et institutionnel (#0B1F3B) dominant, utilisé pour environ 60 % de la carrosserie et des éléments structurels.
+
+– Un blanc pur (#FFFFFF) utilisé pour environ 30 % des composants mécaniques internes afin d'améliorer le contraste et la lisibilité.
+
+– De subtiles touches d'or mat haut de gamme (#C9A24D), utilisées avec parcimonie (environ 10 %), pour mettre en valeur les pièces détachées certifiées essentielles et les zones d'importance technique.
+
+L'arrière-plan est un paysage africain lumineux, baigné de lumière naturelle. Le décor évoque un contexte environnemental africain authentique grâce à la lumière, l'atmosphère et la température de couleur, plutôt qu'à des monuments littéraux. L'arrière-plan reste épuré, discret et visuellement secondaire, tout en bénéficiant d'une lumière naturelle abondante qui renforce le réalisme, la transparence et la confiance.
+
+L'ambiance générale est assurée, technique, précise et résolument haut de gamme, mettant l'accent sur la clarté, la fiabilité et l'expertise mécanique plutôt que sur des effets dramatiques ou cinématographiques excessifs.
+
+Aucun texte, aucun logo, aucun élément d'interface utilisateur, aucun effet futuriste de science-fiction, aucun hologramme, aucune particule.
+
+Le visuel doit communiquer la confiance, la maîtrise technique et l'expertise en pièces détachées automobiles certifiées, exprimant clairement l'idée : « Nous ne vendons pas une voiture, nous vendons ce qu'il y a à l'intérieur.»
+
+La vidéo doit pouvoir être lue en boucle sans interruption, la première et la dernière image étant visuellement compatibles en termes de composition et d'équilibre spatial.
