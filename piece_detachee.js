@@ -12,6 +12,7 @@ const EXPERT_PHONE = "+221778509048";
             { id: 'moteur', name: 'Moteur', image: 'moteur.jpg' },
             { id: 'essuieglaces', name: 'Essuie-glace', image:'essuie-glace.jpg' },
             { id: 'huile', name: 'Huiles', image:'huile.jpg' }
+
         ];
 
         // Produits par catégorie
