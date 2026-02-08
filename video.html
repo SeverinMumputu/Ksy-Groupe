@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSY GROUPE | Présentation & Culture</title>
+    
+    <!-- Préchargement des polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (via CDN pour le prototypage rapide et propre) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuration du Design System KSY -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ksy: {
+                            blue: '#0B1F3B',
+                            gold: '#C9A24D',
+                            gray: '#F3F4F6',
+                            text: '#1F2937'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Styles critiques pour la stabilité structurelle */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Comportement des transitions de contenu */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Indicateur actif du Sub-Header (Style Masuma/Corporate) */
+        .sub-nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .sub-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -17px; /* Alignement avec la bordure du header */
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background-color: #C9A24D;
+            transition: width 0.3s ease;
+        }
+
+        .sub-nav-link.active {
+            color: #0B1F3B;
+            font-weight: 600;
+        }
+
+        .sub-nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Simulation de lien Top Header (Hover effect) */
+        .top-nav-link:hover {
+            color: #C9A24D;
+        }
+        
+.social-column {
+    pointer-events: auto;
+}
+
+/* Base icon */
+.social-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 0 0 0 rgba(201, 162, 77, 0.6);
+    animation: magneticPulse 2.8s infinite ease-out;
+    transition: transform 0.3s ease;
+}
+
+.social-icon img {
+    width: 22px;
+    height: 22px;
+}
+
+/* Hover effect */
+.social-icon:hover {
+    transform: scale(1.15);
+}
+
+/* Magnetic pulse */
+@keyframes magneticPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(201, 162, 77, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 18px rgba(201, 162, 77, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(201, 162, 77, 0);
+    }
+}
+
+/* Mobile spacing */
+@media (max-width: 768px) {
+
+    .social-column {
+        top: auto;
+        bottom: 90px;          /* Passe sous les CTA */
+        right: 6px;            /* Plus proche du bord */
+        transform: none;
+        gap: 14px;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        animation-duration: 3.4s;
+    }
+
+    .social-icon img {
+        width: 18px;
+        height: 18px;
+    }
+}
+    </style>
+</head>
+<body class="bg-white text-gray-800 flex flex-col min-h-screen">
+
+    <!-- ========================================== -->
+    <!-- 1️⃣ TOP HEADER — NAVIGATION PRINCIPALE GLOBALE -->
+    <!-- ========================================== -->
+    <header id="top-header" class="w-full bg-ksy-blue h-20 fixed top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
+            
+            <!-- Logo / Brand -->
+            <div class="flex-shrink-0">
+                <a href="index.html" class="text-white font-serif text-2xl tracking-wider font-bold">
+                    KSY <span class="text-ksy-gold">GROUPE</span>
+                </a>
+            </div>
+
+            <!-- Liens de Navigation (Chargement complet de page simulé) -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="top-nav-link text-gray-300 text-sm uppercase tracking-widest font-medium transition-colors">Accueil</a>
+                <a href="Ksy_groupe.html" class="top-nav-link text-gray-300 text-sm uppercase tracking-widest font-medium transition-colors">Présentation</a>
+                <a href="piece_detachee.html" class="top-nav-link text-gray-300 text-sm uppercase tracking-widest font-medium transition-colors">Produits</a>
+                <a href="news.html" class="top-nav-link text-gray-300 text-sm uppercase tracking-widest font-medium transition-colors">Actualités</a>
+                <a href="video.html#contact" class="top-nav-link text-ksy-gold border border-ksy-gold px-4 py-2 hover:bg-ksy-gold hover:text-white transition-all text-sm uppercase tracking-widest font-medium">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu Burger (Visuel uniquement pour la démo) -->
+            <div class="md:hidden">
+                <button class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Espacement pour compenser le Header Fixe -->
+    <div class="h-20"></div>
+
+    <!-- ========================================== -->
+    <!-- 5️⃣ CONTENU PRINCIPAL (BODY) -->
+    <!-- ========================================== -->
+    <main class="flex-grow w-full max-w-7xl mx-auto px-6 py-12 md:py-20">
+     <!-- 5. SECTION VIDÉOS (Immersion) -->
+    <section id="videos" class="py-20 bg-white text-ksy-blue reveal-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-ksy-gold font-bold uppercase tracking-widest text-sm">Immersion</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Au cœur de KSY GROUPE</h2>
+                <p class="text-gray-500 text-sm">Découvrez nos infrastructures, nos équipes et nos arrivages en vidéo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Vidéo 1 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-video bg-gray-900 rounded-lg overflow-hidden shadow-lg mb-4">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1470&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-ksy-gold/90 rounded-full flex items-center justify-center pl-1 group-hover:scale-110 transition duration-300">
+                                <i class="fas fa-play text-white text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1 group-hover:text-ksy-gold transition">Visite du Showroom</h3>
+                    <p class="text-xs text-gray-500">Une présentation complète de notre espace de vente à Dakar.</p>
+                </div>
+
+                <!-- Vidéo 2 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-video bg-gray-900 rounded-lg overflow-hidden shadow-lg mb-4">
+                        <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1374&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-ksy-gold/90 rounded-full flex items-center justify-center pl-1 group-hover:scale-110 transition duration-300">
+                                <i class="fas fa-play text-white text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1 group-hover:text-ksy-gold transition">Processus de Contrôle Qualité</h3>
+                    <p class="text-xs text-gray-500">Comment nous vérifions chaque moteur avant la mise en vente.</p>
+                </div>
+
+                <!-- Vidéo 3 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-video bg-gray-900 rounded-lg overflow-hidden shadow-lg mb-4">
+                        <img src="https://images.unsplash.com/photo-1605218427368-35b01990c95a?q=80&w=1374&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-ksy-gold/90 rounded-full flex items-center justify-center pl-1 group-hover:scale-110 transition duration-300">
+                                <i class="fas fa-play text-white text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg mb-1 group-hover:text-ksy-gold transition">Témoignages Clients</h3>
+                    <p class="text-xs text-gray-500">La parole aux professionnels qui nous font confiance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+     <!-- FIXED SOCIAL COLUMN -->
+<div class="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-5 social-column">
+    
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/ksy_groupe?igsh=emhvNXQ5M3FwMTZo"
+       target="_blank"
+       class="social-icon instagram">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+    </a>
+
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/profile.php?id=61586569700984"
+       target="_blank"
+       class="social-icon facebook">
+        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook">
+    </a>
+
+  <!-- WhatsApp -->
+<a href="https://wa.me/message/7TWKY3HMAWNJL1"
+   target="_blank"
+   class="social-icon whatsapp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+</a>
+
+
+    <!-- Email -->
+    <a href="mailto:contact@ksygroupe@gmail.com"
+       class="social-icon email">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email">
+    </a>
+
+</div>
+
+<section id="contact">
+    <!-- Footer Institutionnel Rapide (Pour ancrage visuel) -->
+    <footer class="bg-ksy-blue text-white py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 text-center text-sm opacity-60">
+                <p class="text-xs font-medium tracking-widest">
+      SHOWROOM
+    </p>
+
+    <p class="text-xs font-medium tracking-widest"></p>
+      FASS CASIER N°61 – Dakar, Senegal
+</p> <br>
+            <p>&copy; 2026 KSY GROUPE. Tous droits réservés.</p>
+        </div>
+    </footer>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- LOGIQUE COMPORTEMENTALE (STRICTE) -->
+    <!-- ========================================== -->
+    <script>
+        /**
+         * Gestionnaire de navigation contextuelle (Sub-Header)
+         * - Ne change PAS l'URL
+         * - Ne recharge PAS la page
+         * - Manipule uniquement la visibilité des sections et l'état actif des boutons
+         */
+        function switchContent(sectionId) {
+            // 1. Récupération des éléments DOM
+            const sectionPresentation = document.getElementById('content-presentation');
+            const sectionCulture = document.getElementById('content-culture');
+            
+            const btnPresentation = document.getElementById('btn-presentation');
+            const btnCulture = document.getElementById('btn-culture');
+
+            // 2. Logique de bascule (Switch)
+            if (sectionId === 'presentation') {
+                // Afficher Présentation
+                sectionPresentation.classList.add('active');
+                sectionCulture.classList.remove('active');
+
+                // Mise à jour visuelle des boutons (Sub-Header)
+                btnPresentation.classList.add('active', 'text-ksy-blue');
+                btnPresentation.classList.remove('text-gray-500');
+                
+                btnCulture.classList.remove('active', 'text-ksy-blue');
+                btnCulture.classList.add('text-gray-500');
+
+            } else if (sectionId === 'culture') {
+                // Afficher Culture
+                sectionCulture.classList.add('active');
+                sectionPresentation.classList.remove('active');
+
+                // Mise à jour visuelle des boutons (Sub-Header)
+                btnCulture.classList.add('active', 'text-ksy-blue');
+                btnCulture.classList.remove('text-gray-500');
+
+                btnPresentation.classList.remove('active', 'text-ksy-blue');
+                btnPresentation.classList.add('text-gray-500');
+            }
+        }
+    </script>
+</body>
+</html>

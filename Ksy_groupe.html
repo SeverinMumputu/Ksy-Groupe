@@ -3,358 +3,304 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KSY GROUPE | Identité & Politique</title>
+    <title>KSY GROUPE | Présentation & Culture</title>
     
-    <!-- Tailwind CSS -->
+    <!-- Préchargement des polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (via CDN pour le prototypage rapide et propre) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome pour les icônes vectorielles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="Ksy_groupe.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Configuration des couleurs -->
+    <!-- Configuration du Design System KSY -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         ksy: {
-                            white: '#FFFFFF',
                             blue: '#0B1F3B',
                             gold: '#C9A24D',
-                            black: '#000000',
-                            gray: '#F3F4F6'
+                            gray: '#F3F4F6',
+                            text: '#1F2937'
                         }
                     },
-                     fontFamily: {
+                    fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
-                    },
-                    backgroundImage: {
-                        'hero-corporate': "url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2301&auto=format&fit=crop')",
-                        'pattern-geo': "url('https://www.transparenttextures.com/patterns/cubes.png')"
                     }
                 }
             }
         }
     </script>
 
+    <style>
+        /* Styles critiques pour la stabilité structurelle */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Comportement des transitions de contenu */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Indicateur actif du Sub-Header (Style Masuma/Corporate) */
+        .sub-nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .sub-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -17px; /* Alignement avec la bordure du header */
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background-color: #C9A24D;
+            transition: width 0.3s ease;
+        }
+
+        .sub-nav-link.active {
+            color: #0B1F3B;
+            font-weight: 600;
+        }
+
+        .sub-nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Simulation de lien Top Header (Hover effect) */
+        .top-nav-link:hover {
+            color: #C9A24D;
+        }
+        
+.social-column {
+    pointer-events: auto;
+}
+
+/* Base icon */
+.social-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 0 0 0 rgba(201, 162, 77, 0.6);
+    animation: magneticPulse 2.8s infinite ease-out;
+    transition: transform 0.3s ease;
+}
+
+.social-icon img {
+    width: 22px;
+    height: 22px;
+}
+
+/* Hover effect */
+.social-icon:hover {
+    transform: scale(1.15);
+}
+
+/* Magnetic pulse */
+@keyframes magneticPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(201, 162, 77, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 18px rgba(201, 162, 77, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(201, 162, 77, 0);
+    }
+}
+
+/* Mobile spacing */
+@media (max-width: 768px) {
+
+    .social-column {
+        top: auto;
+        bottom: 90px;          /* Passe sous les CTA */
+        right: 6px;            /* Plus proche du bord */
+        transform: none;
+        gap: 14px;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        animation-duration: 3.4s;
+    }
+
+    .social-icon img {
+        width: 18px;
+        height: 18px;
+    }
+}
+    </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col">
+<body class="bg-white text-gray-800 flex flex-col min-h-screen">
 
-    <header class="relative z-50 bg-ksy-white border-b border-ksy-blue/5 w-full">
-  
-  <!-- FULL WIDTH BACKGROUND -->
-  <div class="w-full">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-      <div class="flex items-center justify-between h-20">
-
-        <!-- Logo -->
-        <div class="flex items-center cursor-pointer select-none">
-          <span class="font-serif text-xl tracking-widest text-ksy-blue">
-            <a href="index.html">KSY <span class="text-ksy-gold">GROUPE</span></a>
-          </span>
-        </div>
-
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex items-center gap-10 text-sm font-medium">
-         <a href="Ksy_groupe.html#vision" class="nav-link">Présentation</a>
-          <a href="piece_detachee.html" class="nav-link">Produits</a>
-          <a href="Ksy_groupe.html#videos" class="nav-link">Vidéos</a>
-          <a href="Ksy_groupe.html#annonces" class="nav-link">Actualités</a>
-          <a href="Ksy_groupe.html#contact" class="nav-link">Contact</a>
-        </div>
-
-        <!-- Mobile Button -->
-        <button id="burgerBtn" class="md:hidden text-ksy-blue">
-          <i data-lucide="menu" class="w-7 h-7"></i>
-        </button>
-
-      </div>
-    </nav>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobileNav"
-       class="hidden md:hidden bg-ksy-white border-t border-ksy-blue/5 w-full">
-    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-5 text-sm">
-          <a href="Ksy_groupe.html#vision" class="nav-link">Présentation</a>
-          <a href="piece_detachee.html" class="nav-link">Produits</a>
-          <a href="Ksy_groupe.html#videos" class="nav-link">Vidéos</a>
-          <a href="Ksy_groupe.html#annonces" class="nav-link">Actualités</a>
-          <a href="Ksy_groupe.html#contact" class="nav-link">Contact</a>
-    </div>
-  </div>
-
-</header>
-
-<!-- SECONDARY ABOUT HEADER -->
-<section id="vision" class="bg-ksy-white border-b border-ksy-blue/5 relative z-40">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-6">
-
-    <!-- Tabs -->
-    <div class="flex flex-wrap gap-6 items-center justify-center md:justify-start text-sm font-medium">
-      
-      <button class="about-tab active" data-target="about-presentation">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M3 12h18M3 6h18M3 18h18"/>
-        </svg>
-        Présentation
-      </button>
-
-      <button class="about-tab" data-target="about-objectifs">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M12 6v6l4 2"/>
-        </svg>
-        Objectifs
-      </button>
-
-      <button class="about-tab" data-target="about-valeurs">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/>
-        </svg>
-        Valeurs & Positionnement
-      </button>
-
-    </div>
-
-    <!-- Dynamic Content -->
-    <div class="mt-8 max-w-4xl">
-      
-      <!-- Présentation -->
-      <div id="about-presentation" class="about-content active">
-        <p class="text-gray-600 leading-relaxed text-justify">
-          <strong>KSY Groupe</strong> est un groupe spécialisé dans la distribution et les solutions
-          liées aux équipements automobiles. Implanté au Sénégal et tourné vers le marché régional,
-          nous accompagnons particuliers, entreprises et institutions avec des solutions fiables,
-          performantes et adaptées aux réalités économiques locales.
-        </p>
-      </div>
-
-       <!-- Objectifs -->
-<div id="about-objectifs" class="about-content">
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-2">
-
-    <!-- Objectif 1 -->
-    <div class="objective-card">
-      <div class="objective-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M12 2l4 9h6l-5 4 2 9-7-5-7 5 2-9-5-4h6z"/>
-        </svg>
-      </div>
-      <div>
-        <h4>Leadership régional</h4>
-        <p>
-          Devenir un acteur de référence dans la distribution automobile
-          en Afrique de l’Ouest.
-        </p>
-      </div>
-    </div>
-
-    <!-- Objectif 2 -->
-    <div class="objective-card">
-      <div class="objective-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="M12 7v5l3 3"/>
-        </svg>
-      </div>
-      <div>
-        <h4>Standards internationaux</h4>
-        <p>
-          Garantir des produits certifiés, fiables et conformes aux exigences
-          du marché international.
-        </p>
-      </div>
-    </div>
-
-    <!-- Objectif 3 -->
-    <div class="objective-card">
-      <div class="objective-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M3 12h18"/>
-          <path d="M12 3v18"/>
-        </svg>
-      </div>
-      <div>
-        <h4>Adaptation locale</h4>
-        <p>
-          Concevoir des solutions adaptées aux réalités économiques,
-          logistiques et opérationnelles locales.
-        </p>
-      </div>
-    </div>
-
-    <!-- Objectif 4 -->
-    <div class="objective-card">
-      <div class="objective-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M16 11c1.66 0 3-1.34 3-3S17.66 5 16 5"/>
-          <path d="M8 11c-1.66 0-3-1.34-3-3s1.34-3 3-3"/>
-          <path d="M12 14c-3.33 0-6 1.67-6 4v1h12v-1c0-2.33-2.67-4-6-4z"/>
-        </svg>
-      </div>
-      <div>
-        <h4>Partenariats durables</h4>
-        <p>
-          Développer des relations solides avec des partenaires stratégiques
-          sur le long terme.
-        </p>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-      </div>
-
-      <!-- Valeurs -->
-      <div id="about-valeurs" class="about-content">
-        <p class="text-gray-600 leading-relaxed">
-          Notre positionnement repose sur la <strong>fiabilité</strong>, la <strong>transparence</strong>,
-          la <strong>qualité de service</strong> et une connaissance approfondie du terrain.
-          KSY Groupe s’engage à évoluer avec les besoins du marché tout en conservant une approche
-          humaine et professionnelle.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-    
-    <!-- HERO SECTION 
-    <section  class="relative h-[60vh] flex items-center justify-center">
-        <div class="absolute inset-0 bg-hero-corporate bg-cover bg-center bg-fixed">
-            <div class="absolute inset-0 bg-ksy-blue/80 mix-blend-multiply"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-ksy-blue via-transparent to-transparent"></div>
-        </div>
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in-up">
-            <h2 class="text-ksy-gold text-sm uppercase tracking-[0.5em] mb-4 font-semibold">Notre Identité</h2>
-            <h1 class="text-4xl md:text-6xl font-serif font-bold text-white mb-6 leading-tight text-shadow">
-                Fiabilité & Transparence <br/> au cœur de l'Afrique
-            </h1>
-            <p class="text-gray-200 text-lg font-light leading-relaxed max-w-2xl mx-auto">
-                Moderniser la chaîne logistique automobile au Sénégal.
-            </p>
-        </div>
-    </section>-->
-
-    <!-- 1. VISION & POLITIQUE (Layout Editorial) -->
-    <section  class="py-20 bg-white text-ksy-blue relative reveal-section">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <!-- Texte -->
-                <div>
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="h-[2px] w-12 bg-ksy-gold"></div>
-                        <span class="text-ksy-gold font-bold uppercase tracking-widest text-sm">Vision & Politique</span>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold mb-8 text-ksy-blue">Le client au centre de notre chaîne logistique</h2>
-                    
-                    <div class="space-y-6 text-gray-600 leading-relaxed text-justify">
-                        <p>
-                            Chez <strong>KSY GROUPE</strong>, nous croyons qu'un e‑commerce automobile performant repose sur une chaîne d'approvisionnement modernisée, transparente et humaine.
-                        </p>
-                        <p>
-                            Notre politique logistique vise trois objectifs clairs : <strong>réduire les délais, sécuriser les livraisons, et proposer des tarifs justes</strong> adaptés aux réalités africaines. Nous investissons dans des partenariats locaux pour couvrir chaque commune et province du Sénégal et de la Côte d'Ivoire, et déployons des procédés de vérification qualité avant départ afin que chaque pièce arrive en parfait état.
-                        </p>
-                        <p>
-                            Nous privilégions la simplicité : confirmation de commande claire, suivi en temps réel lorsque possible, échange fluide avec le service client, et résolution proactive en cas d'incident.
-                        </p>
-                        <p class="italic border-l-4 border-ksy-gold pl-4 text-ksy-blue font-medium">
-                            "Notre vision est de contribuer à professionnaliser le secteur automobile local — en offrant aux mécaniciens, garages et particuliers un accès fiable à des pièces authentiques."
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Image / Illustration -->
-                <div class="relative">
-                    <div class="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-ksy-gold hidden md:block"></div>
-                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1632&auto=format&fit=crop" 
-                         alt="Service Client KSY" 
-                         class="w-full h-auto rounded-lg shadow-2xl object-cover grayscale hover:grayscale-0 transition duration-700">
-                    <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-ksy-gold hidden md:block"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 2. SECTION ANNONCES (Nouveaux Arrivages avec Countdown) -->
-    <section id="annonces" class="py-20 bg-ksy-blue bg-pattern-geo relative border-t border-white/5 reveal-section">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-serif font-bold text-white mb-2">Annonces & Arrivages</h2>
-                <div class="h-1 w-20 bg-ksy-gold mx-auto"></div>
+    <!-- ========================================== -->
+    <!-- 1️⃣ TOP HEADER — NAVIGATION PRINCIPALE GLOBALE -->
+    <!-- ========================================== -->
+    <header id="top-header" class="w-full bg-ksy-blue h-20 fixed top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
+            
+            <!-- Logo / Brand -->
+            <div class="flex-shrink-0">
+                <a href="index.html" class="text-white font-serif text-2xl tracking-wider font-bold">
+                    KSY <span class="text-ksy-gold">GROUPE</span>
+                </a>
             </div>
 
-            <!-- Carte Principal Arrivage -->
-            <div class="bg-gradient-to-br from-[#0f2a4f] to-[#08172c] rounded-2xl p-8 md:p-12 shadow-2xl border border-ksy-gold/20 flex flex-col md:flex-row gap-12 items-center">
+            <!-- Liens de Navigation (Chargement complet de page simulé) -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="top-nav-link text-gray-300 text-sm uppercase tracking-widest font-medium transition-colors">Accueil</a>
+                <a href="piece_detachee.html" class="top-nav-link text-gray-300 text-sm uppercase tracking-widest font-medium transition-colors">Produits</a>
+                <a href="video.html" class="top-nav-link text-gray-300 text-sm uppercase tracking-widest font-medium transition-colors">Vidéo</a>
+                <a href="news.html" class="top-nav-link text-gray-300 text-sm uppercase tracking-widest font-medium transition-colors">Actualités</a>
+                <a href="Ksy_groupe.html#contact" class="top-nav-link text-ksy-gold border border-ksy-gold px-4 py-2 hover:bg-ksy-gold hover:text-white transition-all text-sm uppercase tracking-widest font-medium">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu Burger (Visuel uniquement pour la démo) -->
+            <div class="md:hidden">
+                <button class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Espacement pour compenser le Header Fixe -->
+    <div class="h-20"></div>
+
+    <!-- ========================================== -->
+    <!-- 2️⃣ SUB-HEADER — NAVIGATION CONTEXTUELLE -->
+    <!-- ========================================== -->
+    <header id="sub-header" class="w-full bg-white border-b border-gray-200 sticky top-20 z-40">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center">
+            <!-- Alignement STRICTEMENT À GAUCHE -->
+            <nav class="flex space-x-10 h-full items-center">
+                <!-- Bouton 1 : Présentation -->
+                <button 
+                    onclick="switchContent('presentation')" 
+                    id="btn-presentation"
+                    class="sub-nav-link active text-ksy-blue text-sm uppercase tracking-wide cursor-pointer focus:outline-none h-full flex items-center">
+                    Présentation de KSY GROUPE
+                </button>
+
+                <!-- Bouton 2 : Culture -->
+                <button 
+                    onclick="switchContent('culture')" 
+                    id="btn-culture"
+                    class="sub-nav-link text-gray-500 hover:text-ksy-blue text-sm uppercase tracking-wide cursor-pointer focus:outline-none h-full flex items-center">
+                    Culture de l'entreprise
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- 5️⃣ CONTENU PRINCIPAL (BODY) -->
+    <!-- ========================================== -->
+    <main class="flex-grow w-full max-w-7xl mx-auto px-6 py-12 md:py-20">
+
+        <!-- SECTION A : PRÉSENTATION (Par défaut : Visible) -->
+        <section id="content-presentation" class="content-section active">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                 
-                <div class="w-full md:w-1/2">
-                    <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block animate-pulse">Bientôt Disponible</span>
-                    <h3 class="text-2xl md:text-4xl font-serif font-bold text-white mb-4">Arrivage Massif : Moteurs & Boites</h3>
-                    <ul class="text-gray-300 space-y-2 mb-6 text-sm">
-                        <li><i class="fas fa-check text-ksy-gold mr-2"></i> Marque : <span class="text-white">HYUNDAI / KIA</span></li>
-                        <li><i class="fas fa-check text-ksy-gold mr-2"></i> Modèles : <span class="text-white">Santa Fe 2023, Sorento 2024</span></li>
-                        <li><i class="fas fa-check text-ksy-gold mr-2"></i> Catégorie : <span class="text-white">Moteurs Complets Certifiés</span></li>
-                    </ul>
+                <!-- Colonne Gauche : Image Corporate -->
+                <div class="relative overflow-hidden rounded-sm shadow-lg h-96 lg:h-auto min-h-[400px]">
+                    <!-- Placeholder image corporate haute qualité -->
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Siège social KSY GROUPE" 
+                         class="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-ksy-blue opacity-10 mix-blend-multiply"></div>
+                </div>
+
+                <!-- Colonne Droite : Texte Structuré -->
+                <div class="flex flex-col justify-center">
+                    <h1 class="font-serif text-3xl md:text-4xl text-ksy-blue mb-8 leading-tight">
+                        Présentation de <br><span class="text-ksy-gold">KSY GROUPE</span>
+                    </h1>
                     
-                    <div class="flex gap-4">
-                        <button class="bg-ksy-gold text-ksy-blue font-bold py-3 px-6 rounded hover:bg-white transition flex items-center gap-2">
-                            <i class="fas fa-phone"></i> Réserver via Service Client
-                        </button>
+                    <div class="space-y-6 text-gray-600 font-sans leading-relaxed text-justify">
+                        <p>
+                            <strong class="text-ksy-blue">KSY GROUPE</strong> est un groupe spécialisé dans la distribution et les solutions liées aux équipements automobiles. Implanté en Afrique de l’Ouest, le groupe accompagne particuliers, professionnels et institutions avec des produits rigoureusement sélectionnés et adaptés aux réalités du marché régional.
+                        </p>
+                        <p>
+                            Notre approche repose sur une compréhension fine des enjeux locaux : disponibilité des pièces, fiabilité des fournisseurs, délais logistiques et exigences de qualité. Cette maîtrise nous permet d’apporter des solutions durables, pensées pour répondre aux besoins réels du terrain.
+                        </p>
+                        <p class="border-l-4 border-ksy-gold pl-4 italic text-gray-800">
+                            KSY GROUPE s’inscrit dans une dynamique de structuration du secteur automobile, en mettant l’accent sur la transparence, la traçabilité et la relation de confiance avec ses partenaires et ses clients.
+                        </p>
+                    </div>
+
+                    <!-- Signature visuelle discrète -->
+                    <div class="mt-10 pt-6 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Depuis 2010</span>
+                        <div class="h-1 w-20 bg-ksy-gold"></div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Compte à rebours 
-                <div class="w-full md:w-1/2 flex justify-center">
-                    <div class="grid grid-cols-4 gap-4 text-center">
-                        <div class="countdown-box p-4 rounded-lg w-20 md:w-24">
-                            <span id="days" class="block text-3xl font-bold text-ksy-gold">03</span>
-                            <span class="text-xs uppercase text-gray-400">Jours</span>
-                        </div>
-                        <div class="countdown-box p-4 rounded-lg w-20 md:w-24">
-                            <span id="hours" class="block text-3xl font-bold text-ksy-gold">12</span>
-                            <span class="text-xs uppercase text-gray-400">Heures</span>
-                        </div>
-                        <div class="countdown-box p-4 rounded-lg w-20 md:w-24">
-                            <span id="minutes" class="block text-3xl font-bold text-ksy-gold">45</span>
-                            <span class="text-xs uppercase text-gray-400">Min</span>
-                        </div>
-                        <div class="countdown-box p-4 rounded-lg w-20 md:w-24">
-                            <span id="seconds" class="block text-3xl font-bold text-ksy-gold">30</span>
-                            <span class="text-xs uppercase text-gray-400">Sec</span>
-                        </div>
+        <!-- SECTION B : CULTURE (Par défaut : Caché) -->
+        <section id="content-culture" class="content-section">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="font-serif text-3xl md:text-4xl text-ksy-blue mb-10 text-center">
+                    Culture de l’entreprise — <span class="text-ksy-gold">KSY GROUPE</span>
+                </h1>
+
+                <div class="prose prose-lg mx-auto text-gray-600 font-sans text-justify">
+                    
+                    <p class="mb-6 first-letter:text-5xl first-letter:text-ksy-gold first-letter:font-serif first-letter:mr-2 float-none">
+                        Chez KSY GROUPE, la culture d’entreprise repose sur une conviction fondamentale : la performance durable ne peut exister sans rigueur, responsabilité et respect du contexte local.
+                    </p>
+
+                    <p class="mb-6">
+                        Nous évoluons dans un environnement où la fiabilité est un enjeu quotidien. Chaque décision, chaque partenariat, chaque produit distribué engage non seulement notre image, mais aussi l’activité de milliers de professionnels qui comptent sur nous. Cette réalité structure notre manière de travailler.
+                    </p>
+
+                    <h3 class="font-serif text-xl text-ksy-blue mt-10 mb-4">Une culture opérationnelle</h3>
+                    <p class="mb-6">
+                        Notre culture est avant tout opérationnelle. Elle valorise la maîtrise des processus, la connaissance du terrain et la capacité à anticiper les contraintes logistiques, techniques et humaines propres aux marchés africains. Nous privilégions les solutions concrètes aux promesses abstraites.
+                    </p>
+
+                    <h3 class="font-serif text-xl text-ksy-blue mt-10 mb-4">Responsabilité collective</h3>
+                    <p class="mb-6">
+                        KSY GROUPE défend une culture de responsabilité collective. Chaque collaborateur, chaque partenaire, chaque point de contact avec le client participe à la crédibilité du groupe. Cette exigence se traduit par une attention constante portée à la qualité, à la traçabilité et à la transparence.
+                    </p>
+
+                    <div class="bg-ksy-gray p-8 rounded-sm my-10 border-l-4 border-ksy-blue">
+                        <p class="text-ksy-blue font-medium italic m-0">
+                            "Notre ambition n’est pas la vitesse, mais la solidité. Construire des bases saines, développer des relations durables et instaurer des standards professionnels élevés constituent le socle de notre vision long terme."
+                        </p>
                     </div>
-                </div>-->
-            </div>
 
-            <!-- Communiqués Officiels -->
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white/5 p-6 rounded-lg border-l-4 border-ksy-gold">
-                    <p class="text-xs text-ksy-gold mb-1">Communiqué Officiel - 19 Jan 2026</p>
-                    <h4 class="text-white font-bold mb-2">Extension du réseau de distribution</h4>
-                    <p class="text-sm text-gray-400">Ouverture prochaine de notre point relais à Bouaké (Côte d'Ivoire).</p>
-                </div>
-                <div class="bg-white/5 p-6 rounded-lg border-l-4 border-gray-500">
-                    <p class="text-xs text-gray-400 mb-1">Information - 15 Jan 2026</p>
-                    <h4 class="text-white font-bold mb-2">Mise à jour des tarifs logistiques</h4>
-                    <p class="text-sm text-gray-400">Optimisation des coûts de transport pour la zone Dakar-Plateau.</p>
+                    <p class="mb-6">
+                        Nous croyons également à une croissance structurée, progressive et maîtrisée. Enfin, notre culture est profondément orientée vers l’avenir. Nous investissons dans l’apprentissage, l’amélioration continue et l’adaptation technologique, avec une seule finalité : contribuer à la professionnalisation du secteur automobile régional, tout en restant fidèles à nos valeurs de sérieux, d’intégrité et de respect.
+                    </p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- 3. POLITIQUE D'ACHAT (Visuel PNG/JPG) -->
-    <section class="py-20 bg-gray-50 text-ksy-blue reveal-section">
+              <!-- 3. POLITIQUE D'ACHAT (Visuel PNG/JPG) -->
+    <section class="py-20 bg-gray-50 text-ksy-blue">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-12">
                 <span class="text-ksy-gold font-bold uppercase tracking-widest text-sm">Comment acheter ?</span>
@@ -413,140 +359,11 @@
         </div>
     </section>
 
-    <!-- 4. POLITIQUE DE LIVRAISON (Map & Icones Vectorielles) 
-    <section class="py-20 bg-ksy-blue text-white relative reveal-section border-t border-white/10">
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cartographer.png')] opacity-10"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">-->
-                
-                <!-- Zone de Couverture 
-                <div class="lg:col-span-5">
-                    <h2 class="text-3xl font-serif font-bold mb-6">Couverture Nationale</h2>
-                    <p class="text-gray-300 mb-8 leading-relaxed">
-                        KSY GROUPE assure la livraison sur l'ensemble du territoire national du 
-                        <span class="text-ksy-gold font-bold">Sénégal</span> et de la 
-                        <span class="text-ksy-gold font-bold">Côte d'Ivoire</span>, toutes provinces et régions confondues.
-                    </p>-->
-                    
-                    <!-- Liste des Régions (Illustration)
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex items-center space-x-3 bg-white/5 p-3 rounded">
-                            <i class="fas fa-map-marker-alt text-ksy-gold"></i>
-                            <span class="text-sm">Grand Dakar</span>
-                        </div>
-                        <div class="flex items-center space-x-3 bg-white/5 p-3 rounded">
-                            <i class="fas fa-map-marker-alt text-ksy-gold"></i>
-                            <span class="text-sm">Abidjan & Banlieues</span>
-                        </div>
-                        <div class="flex items-center space-x-3 bg-white/5 p-3 rounded">
-                            <i class="fas fa-map-marker-alt text-ksy-gold"></i>
-                            <span class="text-sm">Provinces Intérieures</span>
-                        </div>
-                        <div class="flex items-center space-x-3 bg-white/5 p-3 rounded">
-                            <i class="fas fa-map-marker-alt text-ksy-gold"></i>
-                            <span class="text-sm">Zones Frontalières</span>
-                        </div>
-                    </div>
-                </div> -->
+        </section>
 
-                <!-- Modes de Livraison (Icones Vectorielles) 
-                <div class="lg:col-span-7">
-                    <h2 class="text-3xl font-serif font-bold mb-6">Modes de Livraison</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> -->
-                        
-                        <!-- Moto 
-                        <div class="bg-gradient-to-br from-[#0f2a4f] to-[#08172c] p-6 rounded-xl border border-white/10 hover:border-ksy-gold transition group">
-                            <div class="w-16 h-16 bg-ksy-gold/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-ksy-gold group-hover:text-ksy-blue text-ksy-gold transition-colors duration-300"> -->
-                                <!-- Icône vectorielle Moto 
-                                <i class="fas fa-motorcycle text-3xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Livraison Moto Express</h3>
-                            <p class="text-sm text-gray-400 mb-2">Petites & Moyennes Commandes</p>
-                            <ul class="text-xs text-gray-500 space-y-1">
-                                <li>• Pièces légères (Filtres, Bougies)</li>
-                                <li>• Priorité Centre-Ville</li>
-                                <li>• Délai : 2h - 4h</li>
-                            </ul>
-                        </div>-->
+    </main>
 
-                        <!-- Camion 
-                        <div class="bg-gradient-to-br from-[#0f2a4f] to-[#08172c] p-6 rounded-xl border border-white/10 hover:border-ksy-gold transition group">
-                            <div class="w-16 h-16 bg-ksy-gold/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-ksy-gold group-hover:text-ksy-blue text-ksy-gold transition-colors duration-300"> -->
-                                <!-- Icône vectorielle Camion 
-                                <i class="fas fa-truck-moving text-3xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Camions Transporteurs</h3>
-                            <p class="text-sm text-gray-400 mb-2">Commandes Volumineuses</p>
-                            <ul class="text-xs text-gray-500 space-y-1">
-                                <li>• Moteurs, Carrosserie, Lots Garages</li>
-                                <li>• Planification Hebdomadaire</li>
-                                <li>• Livraison Points Relais</li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>-->
-
-    <!-- 5. SECTION VIDÉOS (Immersion) -->
-    <section id="videos" class="py-20 bg-white text-ksy-blue reveal-section">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <span class="text-ksy-gold font-bold uppercase tracking-widest text-sm">Immersion</span>
-                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Au cœur de KSY GROUPE</h2>
-                <p class="text-gray-500 text-sm">Découvrez nos infrastructures, nos équipes et nos arrivages en vidéo.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Vidéo 1 -->
-                <div class="group cursor-pointer">
-                    <div class="relative aspect-video bg-gray-900 rounded-lg overflow-hidden shadow-lg mb-4">
-                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1470&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-16 h-16 bg-ksy-gold/90 rounded-full flex items-center justify-center pl-1 group-hover:scale-110 transition duration-300">
-                                <i class="fas fa-play text-white text-2xl"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="font-bold text-lg mb-1 group-hover:text-ksy-gold transition">Visite du Showroom</h3>
-                    <p class="text-xs text-gray-500">Une présentation complète de notre espace de vente à Dakar.</p>
-                </div>
-
-                <!-- Vidéo 2 -->
-                <div class="group cursor-pointer">
-                    <div class="relative aspect-video bg-gray-900 rounded-lg overflow-hidden shadow-lg mb-4">
-                        <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1374&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-16 h-16 bg-ksy-gold/90 rounded-full flex items-center justify-center pl-1 group-hover:scale-110 transition duration-300">
-                                <i class="fas fa-play text-white text-2xl"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="font-bold text-lg mb-1 group-hover:text-ksy-gold transition">Processus de Contrôle Qualité</h3>
-                    <p class="text-xs text-gray-500">Comment nous vérifions chaque moteur avant la mise en vente.</p>
-                </div>
-
-                <!-- Vidéo 3 -->
-                <div class="group cursor-pointer">
-                    <div class="relative aspect-video bg-gray-900 rounded-lg overflow-hidden shadow-lg mb-4">
-                        <img src="https://images.unsplash.com/photo-1605218427368-35b01990c95a?q=80&w=1374&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-16 h-16 bg-ksy-gold/90 rounded-full flex items-center justify-center pl-1 group-hover:scale-110 transition duration-300">
-                                <i class="fas fa-play text-white text-2xl"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="font-bold text-lg mb-1 group-hover:text-ksy-gold transition">Témoignages Clients</h3>
-                    <p class="text-xs text-gray-500">La parole aux professionnels qui nous font confiance.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-      <!-- FIXED SOCIAL COLUMN -->
+     <!-- FIXED SOCIAL COLUMN -->
 <div class="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-5 social-column">
     
     <!-- Instagram -->
@@ -578,39 +395,66 @@
     </a>
 
 </div>
-        
-        <!-- Premium Separator (Originally the bottom border) -->
-        <div class="h-2 w-full bg-gradient-to-r from-ksy-blue via-ksy-gold to-ksy-blue relative z-30"></div>
+
     <section id="contact">
-<footer  class="bg-ksy-white text-ksy-blue border-t border-ksy-blue/5 w-full">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-10 text-center">
-    
-    <p class="text-xs font-medium tracking-widest">
+    <!-- Footer Institutionnel Rapide (Pour ancrage visuel) -->
+    <footer class="bg-ksy-blue text-white py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 text-center text-sm opacity-60">
+                <p class="text-xs font-medium tracking-widest">
       SHOWROOM
     </p>
 
-    <address class="mt-2 not-italic text-xs text-ksy-blue/60 leading-relaxed font-light">
+    <p class="text-xs font-medium tracking-widest"></p>
       FASS CASIER N°61 – Dakar, Senegal
-    </address>
-
-    <p class="mt-6 text-[10px] text-ksy-blue uppercase tracking-widest font-medium">
-      © 2026 KSY Groupe
-    </p>
-
-  </div>
-</footer>
+</p> <br>
+            <p>&copy; 2026 KSY GROUPE. Tous droits réservés.</p>
+        </div>
+    </footer>
 </section>
-    <!-- Scripts JS -->
-     <script>
- 
-  lucide.createIcons();
-  const burger = document.getElementById('burgerBtn');
-  const mobileNav = document.getElementById('mobileNav');
+    <!-- ========================================== -->
+    <!-- LOGIQUE COMPORTEMENTALE (STRICTE) -->
+    <!-- ========================================== -->
+    <script>
+        /**
+         * Gestionnaire de navigation contextuelle (Sub-Header)
+         * - Ne change PAS l'URL
+         * - Ne recharge PAS la page
+         * - Manipule uniquement la visibilité des sections et l'état actif des boutons
+         */
+        function switchContent(sectionId) {
+            // 1. Récupération des éléments DOM
+            const sectionPresentation = document.getElementById('content-presentation');
+            const sectionCulture = document.getElementById('content-culture');
+            
+            const btnPresentation = document.getElementById('btn-presentation');
+            const btnCulture = document.getElementById('btn-culture');
 
-  burger.addEventListener('click', () => {
-    mobileNav.classList.toggle('hidden');
-  });
-</script>
-    <script src="Ksy_groupe.js"> </script>
+            // 2. Logique de bascule (Switch)
+            if (sectionId === 'presentation') {
+                // Afficher Présentation
+                sectionPresentation.classList.add('active');
+                sectionCulture.classList.remove('active');
+
+                // Mise à jour visuelle des boutons (Sub-Header)
+                btnPresentation.classList.add('active', 'text-ksy-blue');
+                btnPresentation.classList.remove('text-gray-500');
+                
+                btnCulture.classList.remove('active', 'text-ksy-blue');
+                btnCulture.classList.add('text-gray-500');
+
+            } else if (sectionId === 'culture') {
+                // Afficher Culture
+                sectionCulture.classList.add('active');
+                sectionPresentation.classList.remove('active');
+
+                // Mise à jour visuelle des boutons (Sub-Header)
+                btnCulture.classList.add('active', 'text-ksy-blue');
+                btnCulture.classList.remove('text-gray-500');
+
+                btnPresentation.classList.remove('active', 'text-ksy-blue');
+                btnPresentation.classList.add('text-gray-500');
+            }
+        }
+    </script>
 </body>
 </html>
