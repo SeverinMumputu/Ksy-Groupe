@@ -178,14 +178,34 @@
                 <a href="video.html#contact" class="top-nav-link text-ksy-gold border border-ksy-gold px-4 py-2 hover:bg-ksy-gold hover:text-white transition-all text-sm uppercase tracking-widest font-medium">Contact</a>
             </nav>
 
-            <!-- Mobile Menu Burger (Visuel uniquement pour la démo) -->
+        
             <div class="md:hidden">
-                <button class="text-white focus:outline-none">
+                <button id="mobile-menu-btn" class="text-white focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
             </div>
         </div>
     </header>
+    <!-- MOBILE MENU -->
+<div id="mobile-menu" class="hidden md:hidden bg-ksy-blue w-full fixed top-20 left-0 z-40 shadow-lg">
+    <div class="flex flex-col space-y-6 px-6 py-8 text-center">
+
+        <a href="index.html" class="mobile-link text-gray-300 uppercase tracking-widest text-sm">Accueil</a>
+
+        <a href="Ksy_groupe.html" class="mobile-link text-gray-300 uppercase tracking-widest text-sm">Présentation</a>
+
+        <a href="piece_detachee.html" class="mobile-link text-gray-300 uppercase tracking-widest text-sm">Produits</a>
+
+        <a href="news.html" class="mobile-link text-gray-300 uppercase tracking-widest text-sm">Actualités</a>
+
+        <a href="video.html#contact"
+           class="mobile-link text-ksy-gold border border-ksy-gold px-4 py-2">
+           Contact
+        </a>
+
+    </div>
+</div>
+
 
     <!-- Espacement pour compenser le Header Fixe -->
     <div class="h-20"></div>
@@ -303,12 +323,26 @@
     <!-- LOGIQUE COMPORTEMENTALE (STRICTE) -->
     <!-- ========================================== -->
     <script>
-        /**
-         * Gestionnaire de navigation contextuelle (Sub-Header)
-         * - Ne change PAS l'URL
-         * - Ne recharge PAS la page
-         * - Manipule uniquement la visibilité des sections et l'état actif des boutons
-         */
+        
+        // ===============================
+// MOBILE MENU TOGGLE
+// ===============================
+const mobileBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileLinks = document.querySelectorAll('.mobile-link');
+
+mobileBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+});
+
+// Fermer automatiquement après clic sur un lien
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+    });
+});
+
+
         function switchContent(sectionId) {
             // 1. Récupération des éléments DOM
             const sectionPresentation = document.getElementById('content-presentation');
